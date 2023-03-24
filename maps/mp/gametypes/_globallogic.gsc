@@ -434,15 +434,19 @@ spawnPlayer()
 
 	self notify( "spawned_player" );
 
-	if ( isDefined( game["state"] ) && game["state"] == "postgame" )
-		self freezePlayerForRoundEnd();
 
 	waittillframeend;
 
 	self thread phoenix\_events::onSpawnPlayer();
 
+	if( level.dvar[ "old_hardpoints" ] )
+		self thread maps\mp\gametypes\_hardpoints::hardpointItemWaiter();
+
 	if ( !isDefined( level.rdyup ) || !level.rdyup )
 		self.statusicon = "";
+	
+	if ( isDefined( game["state"] ) && game["state"] == "postgame" )
+		self freezePlayerForRoundEnd();
 
 	self promod\shoutcast::updatePlayer();
 }
@@ -2707,6 +2711,8 @@ Callback_StartGameType()
 	// phoenix
 	thread phoenix\init::startGameType();
 
+	thread maps\mp\gametypes\_hardpoints::init();
+
 	stringNames = getArrayKeys( game["strings"] );
 	for ( i = 0; i < stringNames.size; i++ )
 		if(!isstring(game["strings"][stringNames[i]]))
@@ -2893,10 +2899,14 @@ Callback_PlayerConnect()
 	self.assists = self getPersStat( "assists" );
 
 	self initPersStat( "teamkills" );
+	self.teamKillPunish = false;
 
 	self.lastGrenadeSuicideTime = -1;
 
 	self.teamkillsThisRound = 0;
+
+	self.cur_kill_streak = 0;
+	self.cur_death_streak = 0;
 
 	self.pers["lives"] = level.numLives;
 
@@ -3423,6 +3433,26 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 					scoreSub = maps\mp\gametypes\_tweakables::getTweakableValue( "game", "deathpointloss" );
 					_setPlayerScore( self, _getPlayerScore( self ) - scoreSub );
 				}
+
+				// hardpoints related from new ex - start
+
+				if ( isAlive( attacker ) )
+				{
+					checkW = ( sWeapon == "artillery_mp" || isSubStr( sWeapon, "cobra" ) || isSubStr( sWeapon, "hind" ) );
+					if( !checkW )
+					{
+						attacker.cur_kill_streak++;
+						if( level.dvar["old_hardpoints"] )
+							attacker thread maps\mp\gametypes\_hardpoints::giveHardpointItemForStreak();
+					}
+					else if( checkW && level.dvar[ "hardpoint_streak" ] )
+					{
+						attacker.cur_kill_streak++;
+						if( level.dvar["old_hardpoints"] )
+							attacker thread maps\mp\gametypes\_hardpoints::giveHardpointItemForStreak();
+					}
+				}
+				// hardpoints related from new ex - end
 
 				prof_end( "pks1" );
 

@@ -13,40 +13,121 @@
 ||/ '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------' \||
 || - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -||
 || ******************************************************** DEVELOPED BY |PHX| GHOST ********************************************************** ||
-================================================================================================================================================*/
+=============================================================== Code from Leiizko ==============================================================*/
 
-GlobalLogicInit() {
-    thread phoenix\_events::init();
-	thread phoenix\_player::init();
-
-	if( !level.dvar[ "old_hardpoints" ] )
-		thread phoenix\_hardpoints::init();
-    
-    thread fx_cache();
-
-    level.openFiles = [];
-    level.FSD = [];
-}
-
-startGameType() {
-    
-}
-
-fx_cache() {
-    precacheModel( "projectile_hellfire_missile" );
-	precacheModel( "projectile_cbu97_clusterbomb" );
-	PreCacheShellShock( "radiation_low" );
-	PreCacheShellShock( "radiation_med" );
-	PreCacheShellShock( "radiation_high" );
-	precacheShader( "waypoint_kill" );
-	precacheShader( "killiconsuicide" );
-	precacheShader( "killiconmelee" );
-	precacheShader( "killiconheadshot" );
-
-	level.hardEffects = [];
-	level.hardEffects[ "artilleryExp" ] = loadfx("explosions/artilleryExp_dirt_brown");
-	level.hardEffects[ "hellfireGeo" ] = loadfx("smoke/smoke_geotrail_hellfire");
-	level.hardEffects[ "tankerExp" ] = loadfx( "explosions/tanker_explosion" );
-	level.hardEffects[ "smallExp" ] = loadfx( "impacts/large_mud" );
-	level.hardEffects[ "fire" ] = loadfx( "fire/tank_fire_engine" );
+toUpper( letter )
+{
+	upper = letter;
+	
+	switch( letter )
+	{
+		case "a":
+			upper = "A";
+			break;
+			
+		case "b":
+			upper = "B";
+			break;
+			
+		case "c":
+			upper = "C";
+			break;
+			
+		case "d":
+			upper = "D";
+			break;
+			
+		case "e":
+			upper = "E";
+			break;
+			
+		case "f":
+			upper = "F";
+			break;
+			
+		case "g":
+			upper = "G";
+			break;
+			
+		case "h":
+			upper = "H";
+			break;
+			
+		case "i":
+			upper = "I";
+			break;
+			
+		case "j":
+			upper = "J";
+			break;
+			
+		case "k":
+			upper = "K";
+			break;
+			
+		case "l":
+			upper = "L";
+			break;
+			
+		case "m":
+			upper = "M";
+			break;
+			
+		case "n":
+			upper = "N";
+			break;
+			
+		case "o":
+			upper = "O";
+			break;
+			
+		case "p":
+			upper = "P";
+			break;
+			
+		case "q":
+			upper = "Q";
+			break;
+			
+		case "r":
+			upper = "R";
+			break;
+			
+		case "s":
+			upper = "S";
+			break;
+			
+		case "t":
+			upper = "T";
+			break;
+			
+		case "u":
+			upper = "U";
+			break;
+			
+		case "v":
+			upper = "V";
+			break;
+			
+		case "w":
+			upper = "W";
+			break;
+			
+		case "x":
+			upper = "X";
+			break;
+			
+		case "y":
+			upper = "Y";
+			break;
+			
+		case "z":
+			upper = "Z";
+			break;
+			
+		default:
+			break;
+	}
+	
+	return upper;
 }

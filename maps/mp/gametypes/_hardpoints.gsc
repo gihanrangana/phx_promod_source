@@ -1,3 +1,20 @@
+/*===============================================================================================================================================
+|| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -||
+||/ .----------------.  .----------------.  .----------------.  .----------------.  .-----------------. .----------------.  .----------------. \||
+||/| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |\||
+||/| |   ______     | || |  ____  ____  | || |  _________   | || |     ____     | || | ____  _____  | || |     _____    | || |  ____  ____  | |\||
+||/| |  |_   __ \   | || | |_   ||   _| | || | |_   ___  |  | || |   .'    `.   | || ||_   \|_   _| | || |    |_   _|   | || | |_  _||_  _| | |\||
+||/| |    | |__) |  | || |   | |__| |   | || |   | |_  \_|  | || |  /  .--.  \  | || |  |   \ | |   | || |      | |     | || |   \ \  / /   | |\||
+||/| |    |  ___/   | || |   |  __  |   | || |   |  _|  _   | || |  | |    | |  | || |  | |\ \| |   | || |      | |     | || |    > `' <    | |\||
+||/| |   _| |_      | || |  _| |  | |_  | || |  _| |___/ |  | || |  \  `--'  /  | || | _| |_\   |_  | || |     _| |_    | || |  _/ /'`\ \_  | |\||
+||/| |  |_____|     | || | |____||____| | || | |_________|  | || |   `.____.'   | || ||_____|\____| | || |    |_____|   | || | |____||____| | |\||
+||/| |              | || |              | || |              | || |              | || |              | || |              | || |              | |\||
+||/| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |\||
+||/ '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------' \||
+|| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -||
+|| ******************************************************** DEVELOPED BY |PHX| GHOST ********************************************************** ||
+=============================================================== Code from Leiizko ==============================================================*/
+
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
 #include common_scripts\utility;
@@ -34,13 +51,13 @@ registerHardpoints()
 	callbacks[ callbacks.size ] = ::none;
 	callbacks[ callbacks.size ] = ::none;
 	callbacks[ callbacks.size ] = ::none;
-	callbacks[ callbacks.size ] = code\artillery::selectLocation;
-	callbacks[ callbacks.size ] = code\agm::init;
-	callbacks[ callbacks.size ] = code\predator::init;
-	callbacks[ callbacks.size ] = code\asf::init;
-	callbacks[ callbacks.size ] = code\ac130::init;
-	callbacks[ callbacks.size ] = code\heli::init;
-	callbacks[ callbacks.size ] = code\nuke::init;
+	callbacks[ callbacks.size ] = phoenix\hardpoints\_artillery::selectLocation;
+	callbacks[ callbacks.size ] = phoenix\hardpoints\_agm::init;
+	callbacks[ callbacks.size ] = phoenix\hardpoints\_predator::init;
+	callbacks[ callbacks.size ] = phoenix\hardpoints\_asf::init;
+	callbacks[ callbacks.size ] = phoenix\hardpoints\_ac130::init;
+	callbacks[ callbacks.size ] = phoenix\hardpoints\_heli::init;
+	callbacks[ callbacks.size ] = phoenix\hardpoints\_nuke::init;
 	
 	extraParam = [];
 	
@@ -184,7 +201,7 @@ allToUp( s )
 	new = "";
 	
 	for( i = 0; i < s.size; i++ )
-		new += code\common::toUpper( s[ i ] );
+		new += phoenix\_common::toUpper( s[ i ] );
 		
 	return new;
 }
