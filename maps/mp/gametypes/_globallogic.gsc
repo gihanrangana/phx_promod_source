@@ -30,6 +30,8 @@ init()
 
 	checkRestartMap();
 
+	thread pheonix\init::GlobalLogicInit();
+
 	level.otherTeam["allies"] = "axis";
 	level.otherTeam["axis"] = "allies";
 
@@ -436,6 +438,8 @@ spawnPlayer()
 		self freezePlayerForRoundEnd();
 
 	waittillframeend;
+
+	self thread pheonix\_events::onSpawnPlayer();
 
 	if ( !isDefined( level.rdyup ) || !level.rdyup )
 		self.statusicon = "";
@@ -2700,6 +2704,9 @@ Callback_StartGameType()
 
 	thread promod\scorebot::main();
 
+	// pheonix
+	thread pheonix\init::startGameType();
+
 	stringNames = getArrayKeys( game["strings"] );
 	for ( i = 0; i < stringNames.size; i++ )
 		if(!isstring(game["strings"][stringNames[i]]))
@@ -2969,6 +2976,8 @@ Callback_PlayerConnect()
 
 		self thread maps\mp\gametypes\_spectating::setSpectatePermissions();
 	}
+
+	self thread pheonix\_events::onPlayerConnect( self );
 }
 
 Callback_PlayerDisconnect()
@@ -3003,6 +3012,8 @@ Callback_PlayerDisconnect()
 		thread maps\mp\gametypes\_promod::updateClassAvailability( self.pers["team"] );
 
 	level thread updateTeamStatus();
+
+	level thread pheonix\_events::onPlayerDisconnect();
 }
 
 removePlayerOnDisconnect()
@@ -3077,6 +3088,8 @@ Callback_PlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, s
 		else if ( isDefined( eInflictor.destructible_type ) && isSubStr( eInflictor.destructible_type, "vehicle_" ) )
 			sWeapon = "destructible_car";
 	}
+	
+	self thread pheonix\_events::onPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime );
 
 	friendly = false;
 
@@ -3482,6 +3495,8 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 
 	self thread [[level.onPlayerKilled]](eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
 
+	self thread pheonix\_events::onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
+	
 	if ( sWeapon == "none" )
 		doKillcam = false;
 
