@@ -1,3 +1,6 @@
 *.iwd
 *.ff
-*.tmp
+*.tmp*
+*.txt
+*.log
+Mods/*

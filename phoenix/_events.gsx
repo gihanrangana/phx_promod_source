@@ -69,12 +69,6 @@ onSpawnPlayer()
 		self thread [[level.events[ "SpawnPlayer" ][ i ]]]();
 	}
 
-	//disable special nades
-	self setWeaponAmmoClip("flash_grenade_mp",0);
- 	self setWeaponAmmoStock("flash_grenade_mp",0);
-
-	self setWeaponAmmoClip("concussion_grenade_mp",0);
- 	self setWeaponAmmoStock("concussion_grenade_mp",0);
 }
 
 onPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime )
@@ -114,7 +108,7 @@ onPlayerConnect(player)
 {
     
     if( level.events[ "PlayerConnect" ].size < 1 )
-        continue;
+        return;
     
     for( i = 0; i < level.events[ "PlayerConnect" ].size; i++ )
     {

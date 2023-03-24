@@ -30,7 +30,7 @@ init()
 
 	checkRestartMap();
 
-	thread pheonix\init::GlobalLogicInit();
+	thread phoenix\init::GlobalLogicInit();
 
 	level.otherTeam["allies"] = "axis";
 	level.otherTeam["axis"] = "allies";
@@ -439,7 +439,7 @@ spawnPlayer()
 
 	waittillframeend;
 
-	self thread pheonix\_events::onSpawnPlayer();
+	self thread phoenix\_events::onSpawnPlayer();
 
 	if ( !isDefined( level.rdyup ) || !level.rdyup )
 		self.statusicon = "";
@@ -2704,8 +2704,8 @@ Callback_StartGameType()
 
 	thread promod\scorebot::main();
 
-	// pheonix
-	thread pheonix\init::startGameType();
+	// phoenix
+	thread phoenix\init::startGameType();
 
 	stringNames = getArrayKeys( game["strings"] );
 	for ( i = 0; i < stringNames.size; i++ )
@@ -2977,7 +2977,7 @@ Callback_PlayerConnect()
 		self thread maps\mp\gametypes\_spectating::setSpectatePermissions();
 	}
 
-	self thread pheonix\_events::onPlayerConnect( self );
+	self thread phoenix\_events::onPlayerConnect( self );
 }
 
 Callback_PlayerDisconnect()
@@ -3013,7 +3013,7 @@ Callback_PlayerDisconnect()
 
 	level thread updateTeamStatus();
 
-	level thread pheonix\_events::onPlayerDisconnect();
+	level thread phoenix\_events::onPlayerDisconnect();
 }
 
 removePlayerOnDisconnect()
@@ -3089,7 +3089,7 @@ Callback_PlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, s
 			sWeapon = "destructible_car";
 	}
 	
-	self thread pheonix\_events::onPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime );
+	self thread phoenix\_events::onPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime );
 
 	friendly = false;
 
@@ -3495,7 +3495,7 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 
 	self thread [[level.onPlayerKilled]](eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
 
-	self thread pheonix\_events::onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
+	self thread phoenix\_events::onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
 	
 	if ( sWeapon == "none" )
 		doKillcam = false;

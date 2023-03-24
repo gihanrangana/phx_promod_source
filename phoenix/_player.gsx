@@ -15,34 +15,41 @@
 || ******************************************************** DEVELOPED BY |PHX| GHOST ********************************************************** ||
 ================================================================================================================================================*/
 
-GlobalLogicInit() {
-    thread pheonix\_events::init();
+init() {
+    phoenix\_events::addConnectEvent(::onPlayerConnect);
+    phoenix\_events::addSpawnEvent(::onPlayerSpawn);
+    phoenix\_events::addDamageEvent(::onPlayerDamage);
+    phoenix\_events::addDeathEvent(::onPlayerKilled);
+    phoenix\_events::addDisconnectEvent(::onPlayerDisconnect);
+}
+
+onPlayerConnect( player ) {
+    player iPrintLnBold( "player connected : " + player.name);
+}
+
+onPlayerSpawn() {
+    self endon( "disconnect" );
     
-    thread fx_cache();
+	//disable special nades
+	self setWeaponAmmoClip("flash_grenade_mp",0);
+ 	self setWeaponAmmoStock("flash_grenade_mp",0);
 
-    level.openFiles = [];
-    level.FSD = [];
+	self setWeaponAmmoClip("concussion_grenade_mp",0);
+ 	self setWeaponAmmoStock("concussion_grenade_mp",0);
+
+    iPrintLnBold( "player spawned : " + self.name);
+
 }
 
-startGameType() {
-    
+onPlayerKilled( eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration ) {
+
 }
 
-fx_cache() {
-    precacheModel( "projectile_hellfire_missile" );
-	precacheModel( "projectile_cbu97_clusterbomb" );
-	PreCacheShellShock( "radiation_low" );
-	PreCacheShellShock( "radiation_med" );
-	PreCacheShellShock( "radiation_high" );
-	precacheShader( "waypoint_kill" );
-	precacheShader( "killiconsuicide" );
-	precacheShader( "killiconmelee" );
-	precacheShader( "killiconheadshot" );
+onPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime ) {
 
-	level.hardEffects = [];
-	level.hardEffects[ "artilleryExp" ] = loadfx("explosions/artilleryExp_dirt_brown");
-	level.hardEffects[ "hellfireGeo" ] = loadfx("smoke/smoke_geotrail_hellfire");
-	level.hardEffects[ "tankerExp" ] = loadfx( "explosions/tanker_explosion" );
-	level.hardEffects[ "smallExp" ] = loadfx( "impacts/large_mud" );
-	level.hardEffects[ "fire" ] = loadfx( "fire/tank_fire_engine" );
 }
+
+onPlayerDisconnect() {
+
+}
+

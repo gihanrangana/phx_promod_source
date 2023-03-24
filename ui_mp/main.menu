@@ -126,7 +126,7 @@
 		}
 		itemDef
 		{
-			text			"PHEONIX ^1TDM ^7Promod"
+			text			"phoenix ^1TDM ^7Promod"
 			style			0
 			textscale		0.2
 			textstyle		3

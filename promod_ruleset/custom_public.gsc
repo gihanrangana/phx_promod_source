@@ -212,7 +212,7 @@ main()
 	setDvar( "scr_hardcore", 0 ); // [0-1]
 
 	// website
-	setDvar( "promod_hud_website", "PHEONIX ^1TDM ^7Promod" ); // (avoid "//" here)
+	setDvar( "promod_hud_website", "phoenix ^1TDM ^7Promod" ); // (avoid "//" here)
 
 	// messagecenter
 	setDvar( "promod_mc_enable", 0 ); // [0-1]

@@ -26,7 +26,10 @@ copy mod.csv ..\..\zone_source /Y
 cd ..\..\bin
 linker_pc.exe -language english -compress -cleanup mod -verbose
 
-cd ..\mods\phx_promod_source
+cd ..\mods\phx_promod
 copy ..\..\zone\english\mod.ff
 
-pause
+@echo Coping gsx files...
+xcopy /E /I ..\phx_promod_source\phoenix\ ..\phx_promod\phoenix
+
+exit
