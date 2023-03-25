@@ -75,6 +75,8 @@ init()
 	registerDvars();
 
 	precacheModel( "tag_origin" );
+	precacheModel( "vehicle_mig29_desert" );
+	precacheModel( "projectile_cbu97_clusterbomb" );
 
 	precacheShader( "faction_128_usmc" );
 	precacheShader( "faction_128_arab" );

@@ -112,6 +112,6 @@ onPlayerConnect(player)
     
     for( i = 0; i < level.events[ "PlayerConnect" ].size; i++ )
     {
-        player thread [[level.events[ "PlayerConnect" ][ i ]]](player);
+        player thread [[level.events[ "PlayerConnect" ][ i ]]]();
     }
 }

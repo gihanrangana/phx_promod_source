@@ -62,7 +62,7 @@ initialVisionSettings()
 	
 	self setClientDvars( "r_FilmTweakDarktint", "1 1 1",
 						 "r_FilmTweakLighttint", "1 1 1", 
-						 "r_FilmTweakInvert", "1", 
+						 "r_FilmTweakInvert", "0", 
 						 "r_FilmTweakBrightness", "0.5", 
 						 "r_FilmTweakContrast", "1.55", 
 						 "r_FilmTweakDesaturation", "1",

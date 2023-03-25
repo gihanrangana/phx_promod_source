@@ -20,8 +20,8 @@ GlobalLogicInit() {
     thread phoenix\_events::init();
 	thread phoenix\_player::init();
 
-	// if( !level.dvar[ "old_hardpoints" ] )
-	thread phoenix\_hardpoints::init();
+	if( !level.dvar[ "old_hardpoints" ] )
+		thread phoenix\_hardpoints::init();
     
     thread fx_cache();
 
@@ -36,13 +36,17 @@ startGameType() {
 fx_cache() {
     precacheModel( "projectile_hellfire_missile" );
 	precacheModel( "projectile_cbu97_clusterbomb" );
-	PreCacheShellShock( "radiation_low" );
-	PreCacheShellShock( "radiation_med" );
-	PreCacheShellShock( "radiation_high" );
+	precacheModel( "projectile_m203grenade" );
+
+	preCacheShellShock( "radiation_low" );
+	preCacheShellShock( "radiation_med" );
+	preCacheShellShock( "radiation_high" );
+
 	precacheShader( "waypoint_kill" );
 	precacheShader( "killiconsuicide" );
 	precacheShader( "killiconmelee" );
 	precacheShader( "killiconheadshot" );
+	preCacheShader("line_vertical");
 
 	level.hardEffects = [];
 	level.hardEffects[ "artilleryExp" ] = loadfx("explosions/artilleryExp_dirt_brown");

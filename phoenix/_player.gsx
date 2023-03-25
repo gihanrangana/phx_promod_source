@@ -23,10 +23,27 @@ init() {
     phoenix\_events::addDisconnectEvent(::onPlayerDisconnect);
 }
 
-onPlayerConnect( player ) {
+onPlayerConnect() {
     
     self thread userSettings();
 
+	waittillframeend;
+
+	self.pers[ "hardpointSType" ] = level.dvar[ "shopbuttons_default" ];
+	self.money = 10000;
+
+	self.killedPlayers = [];
+	self.killedPlayersCurrent = [];
+	self.killedBy = [];
+	
+	self.leaderDialogQueue = [];
+	self.leaderDialogActive = false;
+	self.leaderDialogGroups = [];
+	self.leaderDialogGroup = "";
+
+	self.pers[ "fov" ] = 2;
+	self.pers[ "promodTweaks" ] = 0;
+	self.pers[ "fullbright" ] = 1;
 }
 
 onPlayerSpawn() {
@@ -38,8 +55,10 @@ onPlayerSpawn() {
 
 	self setWeaponAmmoClip("concussion_grenade_mp",0);
  	self setWeaponAmmoStock("concussion_grenade_mp",0);
+	
+	waittillframeend;
 
-    iPrintLnBold( "player spawned : " + self.name);
+	self.pers[ "lastWeapon" ] = self getCurrentWeapon();
 
 }
 
@@ -73,43 +92,43 @@ userSettings() {
 		case 0:
 			self setClientDvars( 
 								"cg_fovscale", 1.0,
-								"cg_fov", 90
+								"cg_fov", 80
 								);
 			break;
 		case 1:
 			self setClientDvars( 
 								"cg_fovscale", 1.125,
-								"cg_fov", 90
+								"cg_fov", 80
 								);
 			break;
 		case 2:
 			self setClientDvars( 
 									"cg_fovscale", 1.25,
-									"cg_fov", 90
+									"cg_fov", 80
 									);
 			break;
 		case 3:
 			self setClientDvars( 
 									"cg_fovscale", 1.3,
-									"cg_fov", 90
+									"cg_fov", 80
 									);
 			break;
 		case 4:
 			self setClientDvars( 
 									"cg_fovscale", 1.4,
-									"cg_fov", 90
+									"cg_fov", 80
 									);
 			break;
 		case 5:
 			self setClientDvars( 
 									"cg_fovscale", 1.5,
-									"cg_fov", 90
+									"cg_fov", 80
 									);
 			break;
 		default:
 			self setClientDvars( 
 								"cg_fovscale", 1.25,
-								"cg_fov", 90
+								"cg_fov", 80
 								);
 			break;
 	}
