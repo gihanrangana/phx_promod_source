@@ -30,6 +30,6 @@ cd ..\mods\phx_promod
 copy ..\..\zone\english\mod.ff
 
 @echo Coping gsx files...
-xcopy /E /I ..\phx_promod_source\phoenix\ ..\phx_promod\phoenix
+xcopy /E /I ..\phx_promod_source\phoenix\ ..\phx_promod\phoenix /Y
 
 exit

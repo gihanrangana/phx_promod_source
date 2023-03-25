@@ -313,3 +313,407 @@ onWeaponDamage( eInflictor, sWeapon, meansOfDeath, damage )
 
 	maps\mp\gametypes\_shellshock::shellshockOnDamage( meansOfDeath, damage );
 }
+
+// From New Ex
+
+
+// returns true if damage should be done to the item given its owner and the attacker
+friendlyFireCheck( owner, attacker, forcedFriendlyFireRule )
+{
+	if ( !isdefined(owner) ) // owner has disconnected? allow it
+		return true;
+	
+	if ( !level.teamBased ) // not a team based mode? allow it
+		return true;
+	
+	friendlyFireRule = level.friendlyfire;
+	if ( isdefined( forcedFriendlyFireRule ) )
+		friendlyFireRule = forcedFriendlyFireRule;
+	
+	if ( friendlyFireRule != 0 ) // friendly fire is on? allow it
+		return true;
+	
+	if ( attacker == owner ) // owner may attack his own items
+		return true;
+	
+	if (!isdefined(attacker.pers["team"])) // attacker not on a team? allow it
+		return true;
+	
+	if ( attacker.pers["team"] != owner.pers["team"] ) // attacker not on the same team as the owner? allow it
+		return true;
+	
+	return false; // disallow it
+}
+
+// eInflictor = the entity that causes the damage (e.g. a claymore)
+// eAttacker = the player that is attacking
+// iDamage = the amount of damage to do
+// sMeansOfDeath = string specifying the method of death (e.g. "MOD_PROJECTILE_SPLASH")
+// sWeapon = string specifying the weapon used (e.g. "claymore_mp")
+// damagepos = the position damage is coming from
+// damagedir = the direction damage is moving in
+damageEnt(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, damagepos, damagedir)
+{
+	if (self.isPlayer)
+	{
+		self.damageOrigin = damagepos;
+		self.entity thread [[level.callbackPlayerDamage]](
+			eInflictor, // eInflictor The entity that causes the damage.(e.g. a turret)
+			eAttacker, // eAttacker The entity that is attacking.
+			iDamage, // iDamage Integer specifying the amount of damage done
+			0, // iDFlags Integer specifying flags that are to be applied to the damage
+			sMeansOfDeath, // sMeansOfDeath Integer specifying the method of death
+			sWeapon, // sWeapon The weapon number of the weapon used to inflict the damage
+			damagepos, // vPoint The point the damage is from?
+			damagedir, // vDir The direction of the damage
+			"none", // sHitLoc The location of the hit
+			0 // psOffsetTime The time offset for the damage
+		);
+	}
+	else
+	{
+		// destructable walls and such can only be damaged in certain ways.
+		if (self.isADestructable && (sWeapon == "artillery_mp" || sWeapon == "claymore_mp"))
+			return;
+		
+		self.entity notify("damage", iDamage, eAttacker, (0,0,0), (0,0,0), "mod_explosive", "", "" );
+	}
+}
+
+weaponDamageTracePassed(from, to, startRadius, ignore)
+{
+	midpos = undefined;
+	
+	diff = to - from;
+	if ( lengthsquared( diff ) < startRadius*startRadius )
+		midpos = to;
+	dir = vectornormalize( diff );
+	midpos = from + (dir[0]*startRadius, dir[1]*startRadius, dir[2]*startRadius);
+
+	trace = bullettrace(midpos, to, false, ignore);
+	
+	if ( getdvarint("scr_damage_debug") != 0 )
+	{
+		if (trace["fraction"] == 1)
+		{
+			thread debugline(midpos, to, (1,1,1));
+		}
+		else
+		{
+			thread debugline(midpos, trace["position"], (1,.9,.8));
+			thread debugline(trace["position"], to, (1,.4,.3));
+		}
+	}
+	
+	return (trace["fraction"] == 1);
+}
+
+
+// these functions are used with scripted weapons (like c4, claymores, artillery)
+// returns an array of objects representing damageable entities (including players) within a given sphere.
+// each object has the property damageCenter, which represents its center (the location from which it can be damaged).
+// each object also has the property entity, which contains the entity that it represents.
+// to damage it, call damageEnt() on it.
+getDamageableEnts(pos, radius, doLOS, startRadius)
+{
+	ents = [];
+	
+	if (!isdefined(doLOS))
+		doLOS = false;
+		
+	if ( !isdefined( startRadius ) )
+		startRadius = 0;
+		
+	radius = radius * radius;
+	
+	// players
+	players = level.players;
+	for (i = 0; i < players.size; i++)
+	{
+		if (!isalive(players[i]) || players[i].sessionstate != "playing")
+			continue;
+		
+		playerpos = players[i].origin + (0,0,32);
+		dist = distanceSquared(pos, playerpos);
+		if (dist < radius && (!doLOS || weaponDamageTracePassed(pos, playerpos, startRadius, undefined)))
+		{
+			newent = spawnstruct();
+			newent.isPlayer = true;
+			newent.isADestructable = false;
+			newent.entity = players[i];
+			newent.damageCenter = playerpos;
+			ents[ents.size] = newent;
+		}
+	}
+	
+	waittillframeend;
+	
+	// grenades
+	grenades = getentarray("grenade", "classname");
+	for (i = 0; i < grenades.size; i++)
+	{
+		entpos = grenades[i].origin;
+		dist = distanceSquared(pos, entpos);
+		if (dist < radius && (!doLOS || weaponDamageTracePassed(pos, entpos, startRadius, grenades[i])))
+		{
+			newent = spawnstruct();
+			newent.isPlayer = false;
+			newent.isADestructable = false;
+			newent.entity = grenades[i];
+			newent.damageCenter = entpos;
+			ents[ents.size] = newent;
+		}
+	}
+
+	waittillframeend;
+	
+	destructibles = getentarray("destructible", "targetname");
+	for (i = 0; i < destructibles.size; i++)
+	{
+		entpos = destructibles[i].origin;
+		dist = distanceSquared(pos, entpos);
+		if (dist < radius && (!doLOS || weaponDamageTracePassed(pos, entpos, startRadius, destructibles[i])))
+		{
+			newent = spawnstruct();
+			newent.isPlayer = false;
+			newent.isADestructable = false;
+			newent.entity = destructibles[i];
+			newent.damageCenter = entpos;
+			ents[ents.size] = newent;
+		}
+	}
+	
+	waittillframeend;
+
+	destructables = getentarray("destructable", "targetname");
+	for (i = 0; i < destructables.size; i++)
+	{
+		entpos = destructables[i].origin;
+		dist = distanceSquared(pos, entpos);
+		if (dist < radius && (!doLOS || weaponDamageTracePassed(pos, entpos, startRadius, destructables[i])))
+		{
+			newent = spawnstruct();
+			newent.isPlayer = false;
+			newent.isADestructable = true;
+			newent.entity = destructables[i];
+			newent.damageCenter = entpos;
+			ents[ents.size] = newent;
+		}
+	}
+	
+	return ents;
+}
+
+debugline(a, b, color)
+{
+	for (i = 0; i < 30*20; i++)
+	{
+		line(a,b, color);
+		wait .05;
+	}
+}
+
+
+// weapon stowing logic ===================================================================
+
+// weapon class boolean helpers
+isPrimaryWeapon( weaponname )
+{
+	return isdefined( level.primary_weapon_array[weaponname] );
+}
+isSideArm( weaponname )
+{
+	return isdefined( level.side_arm_array[weaponname] );
+}
+isInventory( weaponname )
+{
+	return isdefined( level.inventory_array[weaponname] );
+}
+isGrenade( weaponname )
+{
+	return isdefined( level.grenade_array[weaponname] );
+}
+getWeaponClass_array( current )
+{
+	if( isPrimaryWeapon( current ) )
+		return level.primary_weapon_array;
+	else if( isSideArm( current ) )
+		return level.side_arm_array;
+	else if( isGrenade( current ) )
+		return level.grenade_array;
+	else
+		return level.inventory_array;
+}
+
+// thread loop life = player's life
+updateStowedWeapon()
+{
+	self endon( "spawned" );
+	self endon( "killed_player" );
+	self endon( "disconnect" );
+	
+	//detach_all_weapons();
+	
+	self.tag_stowed_back = undefined;
+	self.tag_stowed_hip = undefined;
+	
+	team = self.pers["team"];
+	class = self.pers["class"];
+	
+	while ( true )
+	{
+		self waittill( "weapon_change", newWeapon );
+		
+		// weapon array reset, might have swapped weapons off the ground
+		self.weapon_array_primary =[];
+		self.weapon_array_sidearm = [];
+		self.weapon_array_grenade = [];
+		self.weapon_array_inventory =[];
+	
+		// populate player's weapon stock arrays
+		weaponsList = self GetWeaponsList();
+		for( idx = 0; idx < weaponsList.size; idx++ )
+		{
+			if ( isPrimaryWeapon( weaponsList[idx] ) )
+				self.weapon_array_primary[self.weapon_array_primary.size] = weaponsList[idx];
+			else if ( isSideArm( weaponsList[idx] ) )
+				self.weapon_array_sidearm[self.weapon_array_sidearm.size] = weaponsList[idx];
+			else if ( isGrenade( weaponsList[idx] ) )
+				self.weapon_array_grenade[self.weapon_array_grenade.size] = weaponsList[idx];
+			else if ( isInventory( weaponsList[idx] ) )
+				self.weapon_array_inventory[self.weapon_array_inventory.size] = weaponsList[idx];
+		}
+
+		detach_all_weapons();
+		stow_on_back();
+		stow_on_hip();
+	}
+}
+
+detach_all_weapons()
+{
+	if( isDefined( self.tag_stowed_back ) )
+	{
+		self detach( self.tag_stowed_back, "tag_stowed_back" );
+		self.tag_stowed_back = undefined;
+	}
+	if( isDefined( self.tag_stowed_hip ) )
+	{
+		detach_model = getWeaponModel( self.tag_stowed_hip );
+		self detach( detach_model, "tag_stowed_hip_rear" );
+		self.tag_stowed_hip = undefined;
+	}
+}
+
+stow_on_back()
+{
+	current = self getCurrentWeapon();
+
+	self.tag_stowed_back = undefined;
+	
+	//  large projectile weaponry always show
+	if ( self hasWeapon( "rpg_mp" ) && current != "rpg_mp" )
+	{
+		self.tag_stowed_back = "weapon_rpg7_stow";
+	}
+	else
+	{
+		for ( idx = 0; idx < self.weapon_array_primary.size; idx++ )
+		{
+			index_weapon = self.weapon_array_primary[idx];
+			assertex( isdefined( index_weapon ), "Primary weapon list corrupted." );
+			
+			if ( index_weapon == current )
+				continue;
+				
+			/*
+			if ( (isSubStr( current, "gl_" ) || isSubStr( current, "_gl_" )) && (isSubStr( self.weapon_array_primary[idx], "gl_" ) || isSubStr( self.weapon_array_primary[idx], "_gl_" )) )
+				continue; 
+			*/
+			
+			if( isSubStr( current, "gl_" ) || isSubStr( index_weapon, "gl_" ) )
+			{
+				index_weapon_tok = strtok( index_weapon, "_" );
+				current_tok = strtok( current, "_" );
+				// finding the alt-mode of current weapon; the tokens of both weapons are subsets of each other
+				for( i=0; i<index_weapon_tok.size; i++ ) 
+				{
+					if( !isSubStr( current, index_weapon_tok[i] ) || index_weapon_tok.size != current_tok.size )
+					{
+						i = 0;
+						break;
+					}
+				}
+				if( i == index_weapon_tok.size )
+					continue;
+			}
+
+			// camo only applicable for custom classes
+			assertex( isdefined( self.curclass ), "Player missing current class" );
+			if ( isDefined( self.custom_class ) && isDefined( self.custom_class[self.class_num]["camo_num"] ) && isSubStr( index_weapon, self.pers["primaryWeapon"] ) && isSubStr( self.curclass, "CUSTOM" ) )
+				self.tag_stowed_back = getWeaponModel( index_weapon, self.custom_class[self.class_num]["camo_num"] );
+			else
+				self.tag_stowed_back = getWeaponModel( index_weapon, 0 );
+		}
+	}
+	
+	if ( !isDefined( self.tag_stowed_back ) )
+		return;
+
+	self attach( self.tag_stowed_back, "tag_stowed_back", true );
+}
+
+stow_on_hip()
+{
+	current = self getCurrentWeapon();
+
+	self.tag_stowed_hip = undefined;
+	/*
+	for ( idx = 0; idx < self.weapon_array_sidearm.size; idx++ )
+	{
+		if ( self.weapon_array_sidearm[idx] == current )
+			continue;
+			
+		self.tag_stowed_hip = self.weapon_array_sidearm[idx];
+	}
+	*/
+	
+	for ( idx = 0; idx < self.weapon_array_inventory.size; idx++ )
+	{
+		if ( self.weapon_array_inventory[idx] == current )
+			continue;
+
+		if ( !self GetWeaponAmmoStock( self.weapon_array_inventory[idx] ) )
+			continue;
+			
+		self.tag_stowed_hip = self.weapon_array_inventory[idx];
+	}
+	
+	if ( !isDefined( self.tag_stowed_hip ) )
+		return;
+
+	weapon_model = getWeaponModel( self.tag_stowed_hip );
+	self attach( weapon_model, "tag_stowed_hip_rear", true );
+}
+
+
+stow_inventory( inventories, current )
+{
+	// deatch last weapon attached
+	if( isdefined( self.inventory_tag ) )
+	{
+		detach_model = getweaponmodel( self.inventory_tag );
+		self detach( detach_model, "tag_stowed_hip_rear" );
+		self.inventory_tag = undefined;
+	}
+
+	if( !isdefined( inventories[0] ) || self GetWeaponAmmoStock( inventories[0] ) == 0 )
+		return;
+
+	if( inventories[0] != current )
+	{
+		self.inventory_tag = inventories[0];
+		weapon_model = getweaponmodel( self.inventory_tag );
+		self attach( weapon_model, "tag_stowed_hip_rear", true );
+	}
+}

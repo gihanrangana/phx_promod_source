@@ -165,3 +165,115 @@ removeRankHUD()
 	if(isDefined(self.hud_rankscroreupdate))
 		self.hud_rankscroreupdate.alpha = 0;
 }
+
+// From New Ex
+
+// unlocks camo - multiple
+unlockCamo( refString )
+{
+	assert( isDefined( refString ) && refString != "" );
+
+	// tokenize reference string, accepting multiple camo unlocks in one call
+	Ref_Tok = strTok( refString, ";" );
+	assertex( Ref_Tok.size > 0, "Camo unlock specified in datatable ["+refString+"] is incomplete or empty" );
+	
+	for( i=0; i<Ref_Tok.size; i++ )
+		unlockCamoSingular( Ref_Tok[i] );
+}
+
+// unlocks camo - singular
+unlockCamoSingular( refString )
+{
+	// parsing for base weapon and camo skin reference strings
+	Tok = strTok( refString, " " );
+	assertex( Tok.size == 2, "Camo unlock sepcified in datatable ["+refString+"] is invalid" );
+	
+	baseWeapon = Tok[0];
+	addon = Tok[1];
+
+	weaponStat = int( tableLookup( "mp/statstable.csv", 4, baseWeapon, 1 ) );
+	addonMask = int( tableLookup( "mp/attachmenttable.csv", 4, addon, 10 ) );
+	
+	if ( self getStat( weaponStat ) & addonMask )
+		return;
+	
+	// ORs the camo/attachment's bitmask with weapon's current bits, thus switching the camo/attachment bit on
+	setstatto = ( self getStat( weaponStat ) | addonMask ) | (addonMask<<16) | (1<<16);
+	self setStat( weaponStat, setstatto );
+	
+	//fullName = tableLookup( "mp/statstable.csv", 4, baseWeapon, 3 ) + " " + tableLookup( "mp/attachmentTable.csv", 4, addon, 3 );
+	self setClientDvar( "player_unlockCamo" + self.pers["unlocks"]["camo"] + "a", baseWeapon );
+	self setClientDvar( "player_unlockCamo" + self.pers["unlocks"]["camo"] + "b", addon );
+	self.pers["unlocks"]["camo"]++;
+	self setClientDvar( "player_unlockCamos", self.pers["unlocks"]["camo"] );
+
+	self unlockPage( 1 );
+}
+
+// End of game summary/unlock menu page setup
+// 0 = no unlocks, 1 = only page one, 2 = only page two, 3 = both pages
+unlockPage( in_page )
+{
+	if( in_page == 1 )
+	{
+		if( self.pers["unlocks"]["page"] == 0 )
+		{
+			self setClientDvar( "player_unlock_page", "1" );
+			self.pers["unlocks"]["page"] = 1;
+		}
+		if( self.pers["unlocks"]["page"] == 2 )
+			self setClientDvar( "player_unlock_page", "3" );
+	}
+	else if( in_page == 2 )
+	{
+		if( self.pers["unlocks"]["page"] == 0 )
+		{
+			self setClientDvar( "player_unlock_page", "2" );
+			self.pers["unlocks"]["page"] = 2;
+		}
+		if( self.pers["unlocks"]["page"] == 1 )
+			self setClientDvar( "player_unlock_page", "3" );	
+	}		
+}
+
+
+unlockAttachment( refString )
+{
+	assert( isDefined( refString ) && refString != "" );
+
+	// tokenize reference string, accepting multiple camo unlocks in one call
+	Ref_Tok = strTok( refString, ";" );
+	assertex( Ref_Tok.size > 0, "Attachment unlock specified in datatable ["+refString+"] is incomplete or empty" );
+	
+	for( i=0; i<Ref_Tok.size; i++ )
+		unlockAttachmentSingular( Ref_Tok[i] );
+}
+
+// unlocks attachment - singular
+unlockAttachmentSingular( refString )
+{
+	Tok = strTok( refString, " " );
+	assertex( Tok.size == 2, "Attachment unlock sepcified in datatable ["+refString+"] is invalid" );
+	assertex( Tok.size == 2, "Attachment unlock sepcified in datatable ["+refString+"] is invalid" );
+	
+	baseWeapon = Tok[0];
+	addon = Tok[1];
+
+	weaponStat = int( tableLookup( "mp/statstable.csv", 4, baseWeapon, 1 ) );
+	addonMask = int( tableLookup( "mp/attachmenttable.csv", 4, addon, 10 ) );
+	
+	if ( self getStat( weaponStat ) & addonMask )
+		return;
+	
+	// ORs the camo/attachment's bitmask with weapon's current bits, thus switching the camo/attachment bit on
+	setstatto = ( self getStat( weaponStat ) | addonMask ) | (addonMask<<16) | (1<<16);
+	self setStat( weaponStat, setstatto );
+
+	//fullName = tableLookup( "mp/statstable.csv", 4, baseWeapon, 3 ) + " " + tableLookup( "mp/attachmentTable.csv", 4, addon, 3 );
+	self setClientDvar( "player_unlockAttachment" + self.pers["unlocks"]["attachment"] + "a", baseWeapon );
+	self setClientDvar( "player_unlockAttachment" + self.pers["unlocks"]["attachment"] + "b", addon );
+	self.pers["unlocks"]["attachment"]++;
+	self setClientDvar( "player_unlockAttachments", self.pers["unlocks"]["attachment"] );
+	
+	self unlockPage( 1 );
+}

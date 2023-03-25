@@ -16,11 +16,12 @@
 ================================================================================================================================================*/
 
 GlobalLogicInit() {
+	thread phoenix\_dvars::init();
     thread phoenix\_events::init();
 	thread phoenix\_player::init();
 
-	if( !level.dvar[ "old_hardpoints" ] )
-		thread phoenix\_hardpoints::init();
+	// if( !level.dvar[ "old_hardpoints" ] )
+	thread phoenix\_hardpoints::init();
     
     thread fx_cache();
 

@@ -3721,3 +3721,151 @@ getObjectiveHintText( team )
 
 	return game["strings"]["objective_hint_"+team];
 }
+
+// From New Ex
+
+isExcluded( entity, entityList )
+{
+	for ( index = 0; index < entityList.size; index++ )
+	{
+		if ( entity == entityList[index] )
+			return true;
+	}
+	return false;
+}
+
+leaderDialog( dialog, team, group, excludeList )
+{
+	assert( isdefined( level.players ) );
+		
+	if ( !isDefined( team ) )
+	{
+		leaderDialogBothTeams( dialog, "allies", dialog, "axis", group, excludeList );
+		return;
+	}
+	
+	if ( isDefined( excludeList ) )
+	{
+		for ( i = 0; i < level.players.size; i++ )
+		{
+			player = level.players[i];
+			if ( (isDefined( player.pers["team"] ) && (player.pers["team"] == team )) && !isExcluded( player, excludeList ) )
+				player leaderDialogOnPlayer( dialog, group );
+		}
+	}
+	else
+	{
+		for ( i = 0; i < level.players.size; i++ )
+		{
+			player = level.players[i];
+			if ( isDefined( player.pers["team"] ) && (player.pers["team"] == team ) )
+				player leaderDialogOnPlayer( dialog, group );
+		}
+	}
+}
+
+leaderDialogBothTeams( dialog1, team1, dialog2, team2, group, excludeList )
+{
+	assert( isdefined( level.players ) );
+	
+	if ( isDefined( excludeList ) )
+	{
+		for ( i = 0; i < level.players.size; i++ )
+		{
+			player = level.players[i];
+			team = player.pers["team"];
+			
+			if ( !isDefined( team ) )
+				continue;
+			
+			if ( isExcluded( player, excludeList ) )
+				continue;
+			
+			if ( team == team1 )
+				player leaderDialogOnPlayer( dialog1, group );
+			else if ( team == team2 )
+				player leaderDialogOnPlayer( dialog2, group );
+		}
+	}
+	else
+	{
+		for ( i = 0; i < level.players.size; i++ )
+		{
+			player = level.players[i];
+			team = player.pers["team"];
+			
+			if ( !isDefined( team ) )
+				continue;
+			
+			if ( team == team1 )
+				player leaderDialogOnPlayer( dialog1, group );
+			else if ( team == team2 )
+				player leaderDialogOnPlayer( dialog2, group );
+		}
+	}
+}
+
+
+leaderDialogOnPlayer( dialog, group )
+{
+	team = self.pers["team"];
+	
+	if ( !isDefined( team ) )
+		return;
+	
+	if ( team != "allies" && team != "axis" )
+		return;
+	
+	if ( isDefined( group ) )
+	{
+		// ignore the message if one from the same group is already playing
+		if ( self.leaderDialogGroup == group )
+			return;
+
+		hadGroupDialog = isDefined( self.leaderDialogGroups[group] );
+
+		self.leaderDialogGroups[group] = dialog;
+		dialog = group;		
+		
+		// exit because the "group" dialog call is already in the queue
+		if ( hadGroupDialog )
+			return;
+	}
+
+	if ( !self.leaderDialogActive )
+		self thread playLeaderDialogOnPlayer( dialog, team );
+	else
+		self.leaderDialogQueue[self.leaderDialogQueue.size] = dialog;
+}
+
+
+playLeaderDialogOnPlayer( dialog, team )
+{
+	self endon ( "disconnect" );
+	
+	self.leaderDialogActive = true;
+	if ( isDefined( self.leaderDialogGroups[dialog] ) )
+	{
+		group = dialog;
+		dialog = self.leaderDialogGroups[group];
+		self.leaderDialogGroups[group] = undefined;
+		self.leaderDialogGroup = group;
+	}
+
+	self playLocalSound( game["voice"][team]+game["dialog"][dialog] );
+
+	wait ( 3.0 );
+	self.leaderDialogActive = false;
+	self.leaderDialogGroup = "";
+
+	if ( self.leaderDialogQueue.size > 0 )
+	{
+		nextDialog = self.leaderDialogQueue[0];
+		
+		for ( i = 1; i < self.leaderDialogQueue.size; i++ )
+			self.leaderDialogQueue[i-1] = self.leaderDialogQueue[i];
+		self.leaderDialogQueue[i-1] = undefined;
+		
+		self thread playLeaderDialogOnPlayer( nextDialog, team );
+	}
+}

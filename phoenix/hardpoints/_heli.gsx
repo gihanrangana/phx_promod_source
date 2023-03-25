@@ -1,3 +1,20 @@
+/*===============================================================================================================================================
+|| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -||
+||/ .----------------.  .----------------.  .----------------.  .----------------.  .-----------------. .----------------.  .----------------. \||
+||/| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |\||
+||/| |   ______     | || |  ____  ____  | || |  _________   | || |     ____     | || | ____  _____  | || |     _____    | || |  ____  ____  | |\||
+||/| |  |_   __ \   | || | |_   ||   _| | || | |_   ___  |  | || |   .'    `.   | || ||_   \|_   _| | || |    |_   _|   | || | |_  _||_  _| | |\||
+||/| |    | |__) |  | || |   | |__| |   | || |   | |_  \_|  | || |  /  .--.  \  | || |  |   \ | |   | || |      | |     | || |   \ \  / /   | |\||
+||/| |    |  ___/   | || |   |  __  |   | || |   |  _|  _   | || |  | |    | |  | || |  | |\ \| |   | || |      | |     | || |    > `' <    | |\||
+||/| |   _| |_      | || |  _| |  | |_  | || |  _| |___/ |  | || |  \  `--'  /  | || | _| |_\   |_  | || |     _| |_    | || |  _/ /'`\ \_  | |\||
+||/| |  |_____|     | || | |____||____| | || | |_________|  | || |   `.____.'   | || ||_____|\____| | || |    |_____|   | || | |____||____| | |\||
+||/| |              | || |              | || |              | || |              | || |              | || |              | || |              | |\||
+||/| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |\||
+||/ '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------' \||
+|| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -||
+|| ******************************************************** DEVELOPED BY |PHX| GHOST ********************************************************** ||
+=============================================================== Code from Leiizko ==============================================================*/
+
 #include maps\mp\_utility;
 
 init()
@@ -40,8 +57,8 @@ setup()
 {
 	self endon( "disconnect" );
 	
-	self thread code\common::notifyTeam( "FRIENDLY MANNED HELI INBOUND!", ( 0.1, 0.1, 1 ), 3 );
-	self thread code\common::notifyTeamLn( "Friendly MANNED HELI called by^1 " + self.name );
+	self thread phoenix\_common::notifyTeam( "FRIENDLY MANNED HELI INBOUND!", ( 0.1, 0.1, 1 ), 3 );
+	self thread phoenix\_common::notifyTeamLn( "Friendly MANNED HELI called by^1 " + self.name );
 
 	heliOrigin = self.origin + ( 0, 0, 1000 );
 	heliAngles = self.angles;
@@ -354,7 +371,7 @@ miscStuff()
 	
 	waittillframeend;
 	
-	self thread code\common::godMod();	
+	self thread phoenix\_common::godMod();	
 	
 	self iPrintLnBold( "Use [{+forward}], [{+back}], [{+moveleft}], [{+moveright}] to pilot the helicopter" );
 	self iPrintLnBold( "[{+gostand}] to climb up, [{+breath_sprint}] to climb down" );
@@ -883,11 +900,11 @@ endHeli( type )
 	
 	if( type != 3 )
 	{
-		self thread code\common::restoreHP();
+		self thread phoenix\_common::restoreHP();
 		if( !level.dvar[ "old_hardpoints" ] )
-			self thread code\hardpoints::moneyHud();
-		self thread code\common::removeInfoHUD();
-		self thread code\common::restoreVisionSettings();
+			self thread phoenix\_hardpoints::moneyHud();
+		self thread phoenix\_common::removeInfoHUD();
+		self thread phoenix\_common::restoreVisionSettings();
 		self setClientDvar( "g_compassshowenemies", 0 );
 		self show();
 		self.inGunner = undefined;

@@ -35,7 +35,7 @@ init()
 	makeShopArray();
 	thread phoenix\_events::addConnectEvent( ::onConnected );
 	thread phoenix\_events::addSpawnEvent( ::onSpawn );
-	thread phoenix\_events::addDeaFthEvent( ::onDeath );
+	thread phoenix\_events::addDeathEvent( ::onDeath );
 	
 	level.radarPlayer = [];
 	iPrintLnBold("hardpoint");
@@ -560,57 +560,57 @@ shop()
 	}
 
 	// main bg
-	self.shop[0] = duffman\_common::addTextHud( self, 0, 0, .65, "center", "middle", "center", "middle", 0, 100 );
+	self.shop[0] = phoenix\_common::addTextHud( self, 0, 0, .65, "center", "middle", "center", "middle", 0, 100 );
 	self.shop[0] setShader("white", level.shop_hud_width, level.shop_hud_height );
 	self.shop[0].color = (0,0,0);
 	self.shop[0].archived = false;
 
 	// header bg
-	self.shop[1] = duffman\_common::addTextHud( self, 0, level.shop_hud_height / -2, 1, "center", "middle", "center", "middle", 0, 102 );
+	self.shop[1] = phoenix\_common::addTextHud( self, 0, level.shop_hud_height / -2, 1, "center", "middle", "center", "middle", 0, 102 );
 	self.shop[1] setShader("white", level.shop_hud_width, 30 );
 	self.shop[1].color = (0,0,0);
 	self.shop[1].archived = false;
 
 	// header text
-	self.shop[2] = duffman\_common::addTextHud( self, level.shop_hud_width / -2 + 40, level.shop_hud_height / -2, 1, "center", "middle", "center", "middle", 1.4, 103 );
+	self.shop[2] = phoenix\_common::addTextHud( self, level.shop_hud_width / -2 + 40, level.shop_hud_height / -2, 1, "center", "middle", "center", "middle", 1.4, 103 );
 	self.shop[2] setText("Price ($)");
 	self.shop[2].color = (0,1,0);
 	self.shop[2].archived = false;
 
-	self.shop[3] = duffman\_common::addTextHud( self, 0, level.shop_hud_height / -2, 1, "center", "middle", "center", "middle", 1.4, 103 );
+	self.shop[3] = phoenix\_common::addTextHud( self, 0, level.shop_hud_height / -2, 1, "center", "middle", "center", "middle", 1.4, 103 );
 	self.shop[3] setText("Item");
 	self.shop[3].color = (0,1,0);
 	self.shop[3].archived = false;
 
 	// price pool
-	self.shop[4] = duffman\_common::addTextHud( self, -85, 0, 0.2, "center", "middle", "center", "middle", 1.4, 101 );
+	self.shop[4] = phoenix\_common::addTextHud( self, -85, 0, 0.2, "center", "middle", "center", "middle", 1.4, 101 );
 	self.shop[4] setShader("white", int(level.shop_hud_width / 3), level.shop_hud_height);
 	self.shop[4].color = (0,1,1);
 	self.shop[4].archived = false;
 	
-	self.shop[5] = duffman\_common::addTextHud( self, level.shop_hud_width / -2 + 40, level.shop_hud_height / -2 + 10, 1, "center", "middle", "center", "middle", 1.4, 102 );
+	self.shop[5] = phoenix\_common::addTextHud( self, level.shop_hud_width / -2 + 40, level.shop_hud_height / -2 + 10, 1, "center", "middle", "center", "middle", 1.4, 102 );
 	self.shop[5] setText(price);
 	self.shop[5].color = (0,1,0);
 	self.shop[5].archived = false;
 
 	//item pool
-	self.shop[6] = duffman\_common::addTextHud( self, 40, level.shop_hud_height / -2 + 10, 1, "center", "middle", "center", "middle", 1.4, 102 );
+	self.shop[6] = phoenix\_common::addTextHud( self, 40, level.shop_hud_height / -2 + 10, 1, "center", "middle", "center", "middle", 1.4, 102 );
 	self.shop[6] setText(items);
 	self.shop[6].color = (0,1,0);
 	self.shop[6].archived = false;
 
-	self.shop[7] = duffman\_common::addTextHud( self, 0, 157, 0.7, "center", "top", "center", "top", 1.4, 101 );
+	self.shop[7] = phoenix\_common::addTextHud( self, 0, 157, 0.7, "center", "top", "center", "top", 1.4, 101 );
 	self.shop[7] setShader("white", level.shop_hud_width, 20);
 	self.shop[7].color = (0,0,0);
 	self.shop[7].archived = false;
 
 	// footer
-	self.shop[8] = duffman\_common::addTextHud( self, 0, level.shop_hud_height / 2 + 20, 0.8, "center", "middle", "center", "middle", 1.4, 101 );
+	self.shop[8] = phoenix\_common::addTextHud( self, 0, level.shop_hud_height / 2 + 20, 0.8, "center", "middle", "center", "middle", 1.4, 101 );
 	self.shop[8] setShader("white", level.shop_hud_width, 40);
 	self.shop[8].color = (0,0,0);
 	self.shop[8].archived = false;
 
-	self.shop[9] = duffman\_common::addTextHud( self, 0, level.shop_hud_height / 2 + 13, 0.8, "center", "middle", "center", "middle", 1.4, 104 );
+	self.shop[9] = phoenix\_common::addTextHud( self, 0, level.shop_hud_height / 2 + 13, 0.8, "center", "middle", "center", "middle", 1.4, 104 );
 	if( !self.pers[ "hardpointSType" ] )
 		self.shop[ 9 ] setText( "Press ^4[{+melee}] ^7or ^4[{+activate}]^7 to move ^4UP ^7or ^4DOWN" );
 	else
@@ -618,7 +618,7 @@ shop()
 	self.shop[9].color = (1,1,1);
 	self.shop[9].archived = false;
 
-	self.shop[10] = duffman\_common::addTextHud( self, 0, level.shop_hud_height / 2 + 30, 0.8, "center", "middle", "center", "middle", 1.4, 104 );
+	self.shop[10] = phoenix\_common::addTextHud( self, 0, level.shop_hud_height / 2 + 30, 0.8, "center", "middle", "center", "middle", 1.4, 104 );
 	self.shop[10] setText( "Press ^3[{+attack}]^7 to ^3BUY^7 the hardpoint" );
 	self.shop[10].color = (1,1,1);
 	self.shop[10].archived = false;

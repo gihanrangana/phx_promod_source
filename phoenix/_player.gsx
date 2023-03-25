@@ -24,7 +24,9 @@ init() {
 }
 
 onPlayerConnect( player ) {
-    player iPrintLnBold( "player connected : " + player.name);
+    
+    self thread userSettings();
+
 }
 
 onPlayerSpawn() {
@@ -53,3 +55,84 @@ onPlayerDisconnect() {
 
 }
 
+userSettings() {
+    // Late joiners might not have these set
+	if( !isDefined( self.pers[ "fov" ] ) || !isDefined( self.pers[ "promodTweaks" ] ) || !isDefined( self.pers[ "fullbright" ] ) )
+		return;
+
+    /*
+        0 - 1.0
+        1 - 1.125
+        2 - 1.25
+        3 - 1.3
+        4 - 1.4
+        5 - 1.5
+    */
+    switch( self.pers[ "fov" ] )
+	{
+		case 0:
+			self setClientDvars( 
+								"cg_fovscale", 1.0,
+								"cg_fov", 90
+								);
+			break;
+		case 1:
+			self setClientDvars( 
+								"cg_fovscale", 1.125,
+								"cg_fov", 90
+								);
+			break;
+		case 2:
+			self setClientDvars( 
+									"cg_fovscale", 1.25,
+									"cg_fov", 90
+									);
+			break;
+		case 3:
+			self setClientDvars( 
+									"cg_fovscale", 1.3,
+									"cg_fov", 90
+									);
+			break;
+		case 4:
+			self setClientDvars( 
+									"cg_fovscale", 1.4,
+									"cg_fov", 90
+									);
+			break;
+		case 5:
+			self setClientDvars( 
+									"cg_fovscale", 1.5,
+									"cg_fov", 90
+									);
+			break;
+		default:
+			self setClientDvars( 
+								"cg_fovscale", 1.25,
+								"cg_fov", 90
+								);
+			break;
+	}
+
+    waittillframeend;
+
+    if( self.pers[ "fullbright" ] == 1 )
+		self setClientDvar( "r_fullbright", 1 );
+	else
+		self setClientDvar( "r_fullbright", 0 );
+
+    waittillframeend;
+
+    if( self.pers[ "promodTweaks" ] == 1 )
+		self SetClientDvars( "r_filmTweakInvert", "0",
+                     	     "r_filmTweakBrightness", "0",
+                     	     "r_filmusetweaks", "1",
+                     	     "r_filmTweakenable", "1",
+                      	     "r_filmtweakLighttint", "0.8 0.8 1",
+                       	     "r_filmTweakContrast", "1.2",
+                       	     "r_filmTweakDesaturation", "0",
+                       	     "r_filmTweakDarkTint", "1.8 1.8 2" );
+	else
+		self SetClientDvars( "r_filmusetweaks", "0",
+							 "r_filmTweakenable", "0" );
+}
