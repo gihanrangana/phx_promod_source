@@ -15,47 +15,78 @@
 || ******************************************************** DEVELOPED BY |PHX| GHOST ********************************************************** ||
 ================================================================================================================================================*/
 
-GlobalLogicInit() {
-	thread phoenix\_dvars::init();
-    thread phoenix\_events::init();
-	thread phoenix\_player::init();
-	thread phoenix\_client_cmd::init();
+init() {
 
-	if( !level.dvar[ "old_hardpoints" ] )
-		thread phoenix\_hardpoints::init();
+    addscriptcommand( "fov", 1 );
+	addscriptcommand( "fps", 1 );
+	addscriptcommand( "promod", 1 );
+	addscriptcommand( "balance", 1 );
 
-	if( level.dvar[ "phx_developer" ] == 1) 
-		thread phoenix\_bots::init();
+    setDvar( "client_cmd", "");
+
+    for( ;; ){
+        
+        client_cmd = getDvar( "client_cmd" );
+
+        if(client_cmd == "") {
+            wait .05;
+            continue;
+        }
+        
+        data = strTok( client_cmd, ":" );
+
+        if ( !isDefined(data[0]) || !isDefined(data[1]) )
+            continue;
+        
+        command = data[0];
+        player = getEntByNum( int(data[1]) );
+        args = data[2];
+
+        if(!isDefined( player )) continue;
+
+
+        enabled_commands = getDvar( "phx_client_cmd" );
+
+        if (enabled_commands == "") {
+            wait .05;
+            player iPrintLnBold("^1Client commands was disabled by admin!");
+            continue;
+        }
+
+        enabled_commands = strTok( getDvar( "phx_client_cmd" ), "|" );
+
+        // for(i=0; i<enabled_commands.size; i++) {
+        //     logPrint("command: " + command + " - " + enabled_commands[i]);
+        //     if( enabled_commands[ i ] == command ) {
+        //         player thread commandHandler( command, player, args);
+        //         continue;
+        //     }else{
+        //         player iPrintLnBold("^1Client command^2 " + command + " ^7was disabled by admin!");
+        //     }
+        // }
+
+        setDvar( "client_cmd", "");
+    }
     
-    thread fx_cache();
-
-    level.openFiles = [];
-    level.FSD = [];
 }
 
-startGameType() {
-    thread phoenix\hardpoints\_heli::plotMap();
-}
+commandHandler( command, player, args ) {
+    
+    if(!isDefined( player ) || !isDefined( command ))
+        return;
 
-fx_cache() {
-    precacheModel( "projectile_hellfire_missile" );
-	precacheModel( "projectile_cbu97_clusterbomb" );
-	precacheModel( "projectile_m203grenade" );
+    switch(command) {
+        case "fps":
+            self iPrintLnBold("FPS");
+            break;
+        case "fov":
+            self iPrintLnBold("FOV");
+            break;
+        case "promod":
+            self iPrintLnBold("PROMOD");
+            break;
+        default:
+            break;
 
-	preCacheShellShock( "radiation_low" );
-	preCacheShellShock( "radiation_med" );
-	preCacheShellShock( "radiation_high" );
-
-	precacheShader( "waypoint_kill" );
-	precacheShader( "killiconsuicide" );
-	precacheShader( "killiconmelee" );
-	precacheShader( "killiconheadshot" );
-	preCacheShader("line_vertical");
-
-	level.hardEffects = [];
-	level.hardEffects[ "artilleryExp" ] = loadfx("explosions/artilleryExp_dirt_brown");
-	level.hardEffects[ "hellfireGeo" ] = loadfx("smoke/smoke_geotrail_hellfire");
-	level.hardEffects[ "tankerExp" ] = loadfx( "explosions/tanker_explosion" );
-	level.hardEffects[ "smallExp" ] = loadfx( "impacts/large_mud" );
-	level.hardEffects[ "fire" ] = loadfx( "fire/tank_fire_engine" );
+    }
 }

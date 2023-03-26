@@ -34,7 +34,7 @@
         <!-- Time format to use to format time strings (also used by the !time command of the Admin Plugin -->
         <set name="time_format">%I:%M%p %Z %m/%d/%y</set>
         <!-- The timezone your bot is in -->
-        <set name="time_zone">CST</set>
+        <set name="time_zone">IST</set>
         <!-- How much detail in the b3 logfile: 9 = verbose, 10 = debug, 21 = bot, 22 = console -->
         <set name="log_level">9</set>
         <!-- Name of the logfile the bot will generate -->
@@ -42,11 +42,11 @@
     </settings>
     <settings name="server">
         <!-- The RCON pass of your gameserver -->
-        <set name="rcon_password">password</set>
+        <set name="rcon_password">phx2k23123</set>
         <!-- The port the server is running on -->
-        <set name="port">27960</set>
+        <set name="port">28960</set>
         <!-- The gameserver generates a logfile, put the path and name here (very important !) -->
-        <set name="game_log">games_mp.log</set>
+        <set name="game_log">C:\Games\Call of Duty Modern Warfare\Mods\phx_promod\games_mp.log</set>
         <!-- If you want to run b3 on a different computer than where your server reside (remote access to the gamelog),
              you can connect via ftp or http by using the following syntax: 
                 <set name="game_log">ftp://username:password@serverhost/path/to/games_mp.log</set>
@@ -125,6 +125,7 @@
         <plugin name="status" config="@b3/conf/plugin_status.ini" />
         <plugin name="tk" config="@b3/conf/plugin_tk.ini" />
         <plugin name="welcome" config="@b3/conf/plugin_welcome.ini" />
+        <plugin name="customcommands" config="@b3/conf/plugin_customcommands.ini" />
 
         <!-- The following plugins have been included recently in B3 as official plugins. They are disabled by
              default. You can enable them by removing the surrounding comment symbols. -->
