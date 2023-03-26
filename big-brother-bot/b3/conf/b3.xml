@@ -24,9 +24,9 @@
                 chiv/csgo/homefront/insurgency/ravaged/ro2/
             (it should NOT be 'changeme')
         -->
-        <set name="parser">changeme</set>
+        <set name="parser">cod4x18</set>
         <!-- Your database info: [protocol]://[db-user]:[db-password]@[db-server[:port]]/[db-name] -->
-        <set name="database">mysql://b3:password@localhost/b3</set>
+        <set name="database">mysql://root@localhost/b3</set>
         <!-- Name of the bot -->
         <set name="bot_name">b3</set>
         <!-- Ingame messages are prefixed with this code, you can use colorcodes -->
