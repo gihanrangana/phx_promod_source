@@ -124,9 +124,9 @@ main()
 	setDvar( "attach_allow_pistol_silencer", 1 );
 
 	// grenades
-	setDvar( "weap_allow_flash_grenade", 1 );
+	setDvar( "weap_allow_flash_grenade", 0 );
 	setDvar( "weap_allow_frag_grenade", 1 );
-	setDvar( "weap_allow_smoke_grenade", 1 );
+	setDvar( "weap_allow_smoke_grenade", 0 );
 
 	// assault class default loadout (preserved)
 	setDvar( "class_assault_primary", "ak47" );
@@ -177,7 +177,7 @@ main()
 	// logging (not likely to be changed)
 	setDvar( "logfile", 1 );
 	setDvar( "g_log", "games_mp.log" );
-	setDvar( "g_logSync", 0 );
+	setDvar( "g_logSync", 2 );
 
 	// server issues (not likely to be changed)
 	setDvar( "g_inactivity", 0 );

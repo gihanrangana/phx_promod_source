@@ -22,6 +22,9 @@ GlobalLogicInit() {
 
 	if( !level.dvar[ "old_hardpoints" ] )
 		thread phoenix\_hardpoints::init();
+
+	if( level.dvar[ "phx_developer" ] == 1) 
+		thread phoenix\_bots::init();
     
     thread fx_cache();
 

@@ -18,6 +18,10 @@
 
 init() {
 
+	// Pheonix Dvar Start
+	addDvar( "phx_developer", "int", 1, 0, 1 ); // Allow admins to add dev bots to the game
+	// Pheonix Dvar End
+
 	addDvar( "shopbuttons_allowchange", "int", 1, 0, 1 ); // Allow the player do decide which buttons to use to navigate hardpoint shop ( 1-W/S ; 0-F/V )
 	addDvar( "shopbuttons_default", "int", 0, 0, 1 ); // If above is set to 0, the players will be forced to use this buttons ( 1-W/S ; 0-F/V )
 	addDvar( "shopXP", "int", 1, 0, 1 ); // Show shop $ gain instead of kill XP on kills

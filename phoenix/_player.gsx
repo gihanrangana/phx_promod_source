@@ -50,11 +50,11 @@ onPlayerSpawn() {
     self endon( "disconnect" );
     
 	//disable special nades
-	self setWeaponAmmoClip("flash_grenade_mp",0);
- 	self setWeaponAmmoStock("flash_grenade_mp",0);
+	// self setWeaponAmmoClip("flash_grenade_mp",0);
+ 	// self setWeaponAmmoStock("flash_grenade_mp",0);
 
-	self setWeaponAmmoClip("concussion_grenade_mp",0);
- 	self setWeaponAmmoStock("concussion_grenade_mp",0);
+	// self setWeaponAmmoClip("concussion_grenade_mp",0);
+ 	// self setWeaponAmmoStock("concussion_grenade_mp",0);
 	
 	waittillframeend;
 
