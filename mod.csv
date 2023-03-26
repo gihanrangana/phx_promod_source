@@ -117,12 +117,6 @@ rawfile,promod/timeout.gsc
 
 rawfile,shock/damage_mp.shock
 
-material,hud_predator
-material,ac130_overlay_grain
-material,ac130_overlay_105mm
-material,waypoint_pred_kill
-material,map_artillery_selector
-
 sound,promod,,all_mp
 
 stringtable,promod/customStatsTable.csv
