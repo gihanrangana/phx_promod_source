@@ -41,9 +41,9 @@ onPlayerConnect() {
 	self.leaderDialogGroups = [];
 	self.leaderDialogGroup = "";
 
-	self.pers[ "fov" ] = 2;
-	self.pers[ "promodTweaks" ] = 0;
-	self.pers[ "fullbright" ] = 1;
+	self.pers[ "fov" ] = level.dvar[ "phx_fov"];
+	self.pers[ "promod" ] = level.dvar[ "phx_promod" ];
+	self.pers[ "fps" ] = level.dvar[ "phx_fps" ];
 }
 
 onPlayerSpawn() {
@@ -76,7 +76,7 @@ onPlayerDisconnect() {
 
 userSettings() {
     // Late joiners might not have these set
-	if( !isDefined( self.pers[ "fov" ] ) || !isDefined( self.pers[ "promodTweaks" ] ) || !isDefined( self.pers[ "fullbright" ] ) )
+	if( !isDefined( self.pers[ "fov" ] ) || !isDefined( self.pers[ "promod" ] ) || !isDefined( self.pers[ "fps" ] ) )
 		return;
 
     /*
@@ -135,14 +135,14 @@ userSettings() {
 
     waittillframeend;
 
-    if( self.pers[ "fullbright" ] == 1 )
+    if( self.pers[ "fps" ] == 1 )
 		self setClientDvar( "r_fullbright", 1 );
 	else
 		self setClientDvar( "r_fullbright", 0 );
 
     waittillframeend;
 
-    if( self.pers[ "promodTweaks" ] == 1 )
+    if( self.pers[ "promod" ] == 1 )
 		self SetClientDvars( "r_filmTweakInvert", "0",
                      	     "r_filmTweakBrightness", "0",
                      	     "r_filmusetweaks", "1",

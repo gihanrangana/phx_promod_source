@@ -42,28 +42,14 @@ init() {
         player = getEntByNum( int(data[1]) );
         args = data[2];
 
-        if(!isDefined( player )) continue;
+        if(isDefined( player )) {
 
-
-        enabled_commands = getDvar( "phx_client_cmd" );
-
-        if (enabled_commands == "") {
-            wait .05;
-            player iPrintLnBold("^1Client commands was disabled by admin!");
-            continue;
+            if(!isCommandEnabled( command )){
+                player iPrintLnBold("^1Client command^2 " + command + " ^7was disabled by ^1admin!");
+            }else {
+                player thread commandHandler( command, player, args);
+            }
         }
-
-        enabled_commands = strTok( getDvar( "phx_client_cmd" ), "|" );
-
-        // for(i=0; i<enabled_commands.size; i++) {
-        //     logPrint("command: " + command + " - " + enabled_commands[i]);
-        //     if( enabled_commands[ i ] == command ) {
-        //         player thread commandHandler( command, player, args);
-        //         continue;
-        //     }else{
-        //         player iPrintLnBold("^1Client command^2 " + command + " ^7was disabled by admin!");
-        //     }
-        // }
 
         setDvar( "client_cmd", "");
     }
@@ -77,7 +63,9 @@ commandHandler( command, player, args ) {
 
     switch(command) {
         case "fps":
-            self iPrintLnBold("FPS");
+
+            
+
             break;
         case "fov":
             self iPrintLnBold("FOV");
@@ -89,4 +77,26 @@ commandHandler( command, player, args ) {
             break;
 
     }
+}
+
+isCommandEnabled(command) {
+    enabled_commands = getDvar( "phx_client_cmd" );
+
+    if (enabled_commands == "") {
+        wait .05;
+        self iPrintLnBold("^1Client commands was disabled by admin!");
+        return false;
+    }
+
+    enabled_commands = strTok( getDvar( "phx_client_cmd" ), "|" );
+
+    enabled = false;
+    for(i=0; i<enabled_commands.size; i++) {
+        
+        if( enabled_commands[ i ] == command ) {
+            enabled = true;
+        }
+    }
+
+    return enabled;
 }

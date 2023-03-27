@@ -41,6 +41,7 @@ fx_cache() {
     precacheModel( "projectile_hellfire_missile" );
 	precacheModel( "projectile_cbu97_clusterbomb" );
 	precacheModel( "projectile_m203grenade" );
+	precacheModel( "projectile_rpg7" );
 
 	preCacheShellShock( "radiation_low" );
 	preCacheShellShock( "radiation_med" );

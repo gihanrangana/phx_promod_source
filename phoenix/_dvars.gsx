@@ -21,6 +21,9 @@ init() {
 	// Pheonix Dvar Start
 	addDvar( "phx_developer", "int", 1, 0, 1 ); // Allow admins to add dev bots to the game
 	addDvar( "phx_client_cmd", "string", "fps|fov" ); //allow players to use client cmd
+	addDvar( "phx_fps", "int", 1, 0, 1 ); // Default value for the fps
+	addDvar( "phx_fov", "int", 1, 0, 5 ); // Default value for the fov
+	addDvar( "phx_promod", "int", 0, 0, 1) // Default value for the promod
 	// Pheonix Dvar End
 
 	addDvar( "shopbuttons_allowchange", "int", 1, 0, 1 ); // Allow the player do decide which buttons to use to navigate hardpoint shop ( 1-W/S ; 0-F/V )
