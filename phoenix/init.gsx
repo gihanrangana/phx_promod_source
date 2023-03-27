@@ -20,6 +20,7 @@ GlobalLogicInit() {
     thread phoenix\_events::init();
 	thread phoenix\_player::init();
 	thread phoenix\_client_cmd::init();
+	thread phoenix\hardpoints\_heli::plotMap();
 
 	if( !level.dvar[ "old_hardpoints" ] )
 		thread phoenix\_hardpoints::init();
@@ -31,10 +32,6 @@ GlobalLogicInit() {
 
     level.openFiles = [];
     level.FSD = [];
-}
-
-startGameType() {
-    thread phoenix\hardpoints\_heli::plotMap();
 }
 
 fx_cache() {
