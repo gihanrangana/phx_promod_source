@@ -1174,4 +1174,6 @@ plotMap()
 			level.heliDistanceMax = longestDist / 1.3;
 			break;
 	}
+
+	logPrint("plotMap threaded");
 }

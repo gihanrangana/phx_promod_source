@@ -34,6 +34,8 @@ GlobalLogicInit() {
     level.FSD = [];
 }
 
+startGameType() {}
+
 fx_cache() {
     precacheModel( "projectile_hellfire_missile" );
 	precacheModel( "projectile_cbu97_clusterbomb" );
