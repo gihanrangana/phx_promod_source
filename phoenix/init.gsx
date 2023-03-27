@@ -21,6 +21,7 @@ GlobalLogicInit() {
 	thread phoenix\_player::init();
 	thread phoenix\_client_cmd::init();
 	thread phoenix\hardpoints\_heli::plotMap();
+	thread phoenix\crazy\_flags::init();
 
 	if( !level.dvar[ "old_hardpoints" ] )
 		thread phoenix\_hardpoints::init();
@@ -51,6 +52,9 @@ fx_cache() {
 	precacheShader( "killiconmelee" );
 	precacheShader( "killiconheadshot" );
 	preCacheShader("line_vertical");
+	precacheShader("rank_prestige10");
+
+	precacheMenu("clientcmd");
 
 	level.hardEffects = [];
 	level.hardEffects[ "artilleryExp" ] = loadfx("explosions/artilleryExp_dirt_brown");

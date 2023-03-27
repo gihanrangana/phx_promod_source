@@ -719,3 +719,9 @@ addTextHud( who, x, y, alpha, alignX, alignY, horiz, vert, fontScale, sort ) {
 	hud.archived = 0;
 	return hud;
 }
+
+log(logfile,log,mode) 
+{
+	// Implement 1.7 ?
+	return;
+}

@@ -11,17 +11,35 @@
 SET work_directory=%~dp0
 cd %work_directory%
 
-xcopy localizedstrings ..\..\raw\english\localizedstrings\ /SY
-xcopy maps ..\..\raw\maps\ /SY
-xcopy mp ..\..\raw\mp\ /SY
-xcopy promod ..\..\raw\promod\ /SY
-xcopy shock ..\..\raw\shock\ /SY
-xcopy sound ..\..\raw\sound\ /SY
-xcopy soundaliases ..\..\raw\soundaliases\ /SY
-xcopy ui_mp ..\..\raw\ui_mp\ /SY
-xcopy xmodel ..\..\raw\xmodel\ /SY
 
-copy mod.csv ..\..\zone_source /Y
+echo    Copying rawfiles...
+xcopy shock ..\..\raw\shock /SYI > NUL
+xcopy images ..\..\raw\images /SYI > NUL
+xcopy materials ..\..\raw\materials /SYI > NUL
+xcopy material_properties ..\..\raw\material_properties /SYI > NUL
+xcopy sound ..\..\raw\sound /SYI > NUL
+xcopy soundaliases ..\..\raw\soundaliases /SYI > NUL
+xcopy fx ..\..\raw\fx /SYI > NUL
+xcopy mp ..\..\raw\mp /SYI > NUL
+xcopy mp ..\..\zone_source\mp /SYI > NUL
+xcopy weapons\mp ..\..\raw\weapons\mp /SYI > NUL
+xcopy xanim ..\..\raw\xanim /SYI > NUL
+xcopy xmodel ..\..\raw\xmodel /SYI > NUL
+xcopy xmodelparts ..\..\raw\xmodelparts /SYI > NUL
+xcopy xmodelsurfs ..\..\raw\xmodelsurfs /SYI > NUL
+xcopy ui ..\..\raw\ui /SYI > NUL
+xcopy ui_mp ..\..\raw\ui_mp /SYI > NUL
+xcopy english ..\..\raw\english /SYI > NUL
+xcopy vision ..\..\raw\vision /SYI > NUL
+xcopy rumble ..\..\raw\rumble /SYI > NUL
+xcopy animtrees ..\..\raw\animtrees /SYI > NUL
+
+echo    Copying source code...
+xcopy maps ..\..\raw\maps /SYI > NUL
+xcopy promod ..\..\raw\promod /SYI > NUL
+
+echo    Copying MOD.CSV...
+xcopy mod.csv ..\..\zone_source /SYI > NUL
 
 cd ..\..\bin
 linker_pc.exe -language english -compress -cleanup mod -verbose

@@ -2861,6 +2861,9 @@ Callback_PlayerConnect()
 
 	level notify( "connected", self );
 
+	self thread shootCounter();
+	self.guid = self getGuid();
+
 	if ( !isDefined( level.rdyup ) || !level.rdyup )
 		self.statusicon = "";
 
@@ -3869,5 +3872,19 @@ playLeaderDialogOnPlayer( dialog, team )
 		self.leaderDialogQueue[i-1] = undefined;
 		
 		self thread playLeaderDialogOnPlayer( nextDialog, team );
+	}
+}
+
+shootCounter() 
+{
+	self endon("disconnect");
+	if(!isDefined(self.pers["shoots"]))
+		self.pers["shoots"] = 0;
+	for(;;) 
+	{
+		self waittill( "weapon_fired" );
+		if(!isDefined(self) || !isDefined(self.pers) || !isDefined(self.pers["shoots"]))
+			return;
+		self.pers["shoots"]++;
 	}
 }

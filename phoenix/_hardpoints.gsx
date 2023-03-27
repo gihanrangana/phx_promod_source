@@ -38,7 +38,6 @@ init()
 	thread phoenix\_events::addDeathEvent( ::onDeath );
 	
 	level.radarPlayer = [];
-	iPrintLnBold("hardpoint");
 }
 
 makeShopArray()
