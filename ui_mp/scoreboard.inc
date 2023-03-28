@@ -1,13 +1,3 @@
-/*
-  Copyright (c) 2009-2017 Andreas Göransson <andreas.goransson@gmail.com>
-  Copyright (c) 2009-2017 Indrek Ardel <indrek@ardel.eu>
-
-  This file is part of Call of Duty 4 Promod.
-
-  Call of Duty 4 Promod is licensed under Promod Modder Ethical Public License.
-  Terms of license can be found in LICENSE.md document bundled with the project.
-*/
-
 #undef CHOICE_Y_SPACING
 #define CHOICE_Y_SPACING		20
 
@@ -22,7 +12,7 @@ itemDef \
 	textstyle		CHOICE_TEXTSTYLE \
 	textAlign		CHOICE_TEXTALIGN \
 	textAlignX		CHOICE_TEXT_OFFSET_X \
-	forecolor		colorArg \
+	forecolor		0.1 0.3 1 1 \
 	visible			when( team( name ) == "TEAM_FREE" && visArg ) \
 	decoration \
 } \
@@ -33,8 +23,8 @@ itemDef \
 	style			WINDOW_STYLE_SHADER \
 	rect			(SECTION_X_OFFSET+40) 7 180 0.5 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 	origin			CHOICE_ORIGIN( itemIndex ) \
-	background		"line_horizontal" \
-	forecolor		1 1 1 0.85 \
+	background		"white" \ 
+	forecolor		0.1 0.3 1 1 \
 	visible			when( team( name ) == "TEAM_FREE" ) \
 	decoration \
 } \
@@ -43,8 +33,8 @@ itemDef \
 	style			WINDOW_STYLE_SHADER \
 	rect			(SECTION_X_OFFSET+40) 8 180 10 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 	origin			CHOICE_ORIGIN( itemIndex ) \
-	background		"line_horizontal" \
-	forecolor		0.5 0.5 0.5 0.8 \
+	background		"white" \
+	forecolor		0 0 0.8 0.8\
 	visible			when( team( name ) == "TEAM_FREE" ) \
 	decoration \
 } \
@@ -53,7 +43,7 @@ itemDef \
 	style			WINDOW_STYLE_SHADER \
 	rect			(SECTION_X_OFFSET+40) 19 180 0.5 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 	origin			CHOICE_ORIGIN( itemIndex ) \
-	background		"line_horizontal" \
+	background		"white" \
 	forecolor		1 1 1 0.85 \
 	visible			when( team( name ) == "TEAM_FREE" ) \
 	decoration \

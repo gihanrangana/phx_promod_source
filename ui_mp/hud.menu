@@ -304,12 +304,105 @@
 		soundloop		"weap_ak47_fire_plr"
 	}
 
+	// Full Screen Map for location selection
+	#define FULL_SCREEN_MAP_WIDTH 400
+	#define FULL_SCREEN_MAP_HEIGHT 400
 	menuDef
 	{
 		name			"FullScreenMap"
-		fullScreen		0
-		visible			when( dvarString( self_ready ) != "" && !ui_active() );
+ 	   	rect			-100 -100 FULL_SCREEN_MAP_WIDTH FULL_SCREEN_MAP_HEIGHT HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+ 	   	fullScreen		0
+  	   	visible			1
+		
+		#define READYUP_VISIBILITY			(dvarString( self_ready ) != "" && !ui_active() )
+		#define LOCATIONSELECTOR_VISIBILITY	(selecting_location() && NOT_SPECTATING)
+		
+		/* CoD4 Location Selector */
+		itemDef
+ 	   	{
+			name			"map_map"
+			rect			0 0 FULL_SCREEN_MAP_WIDTH FULL_SCREEN_MAP_HEIGHT
+			forecolor		1 1 1 1
+			background		"compass_map_default"
+			ownerdraw		CG_PLAYER_FULLMAP_MAP
+			visible			when( LOCATIONSELECTOR_VISIBILITY );
+			decoration
+ 	   	}
+		itemDef
+ 	   	{
+			name			"map_locator"
+			rect			0 0 FULL_SCREEN_MAP_WIDTH FULL_SCREEN_MAP_HEIGHT
+			forecolor		1 1 1 1
+			background		"compass_map_default"
+			ownerdraw		CG_PLAYER_FULLMAP_LOCATION_SELECTOR
+			visible			when( LOCATIONSELECTOR_VISIBILITY );
+			decoration
+ 	   	}
+		// Objective pointers
+		itemDef
+		{
+			name			"mappointers"
+			rect			0 0 FULL_SCREEN_MAP_WIDTH FULL_SCREEN_MAP_HEIGHT
+			forecolor		1 1 1 1
+			background		"objective_line"
+			ownerdraw		CG_PLAYER_FULLMAP_POINTERS
+			visible			when( LOCATIONSELECTOR_VISIBILITY );
+			decoration
+		}
+ 	   	// Friendlies pointers
+		itemDef
+		{
+			name			"mapfriendlies"
+			rect			0 0 FULL_SCREEN_MAP_WIDTH FULL_SCREEN_MAP_HEIGHT
+			forecolor		1 1 1 1
+			ownerdraw		CG_PLAYER_FULLMAP_FRIENDS
+			visible			when( LOCATIONSELECTOR_VISIBILITY );
+		}
+ 	   	// Enemies pointers
+		itemDef
+		{
+			name			"mapenemies"
+			rect			0 0 FULL_SCREEN_MAP_WIDTH FULL_SCREEN_MAP_HEIGHT
+			forecolor		1 1 1 1
+			ownerdraw		CG_PLAYER_FULLMAP_ENEMIES
+			visible			when( LOCATIONSELECTOR_VISIBILITY );
+		}
+		// Player direction indicator
+		itemDef
+		{
+			name			"mapplayer"
+			rect			0 0 FULL_SCREEN_MAP_WIDTH FULL_SCREEN_MAP_HEIGHT
+			forecolor		1 1 1 1
+			background		"compassping_player"
+			ownerdraw		CG_PLAYER_FULLMAP_PLAYER
+			visible			when( LOCATIONSELECTOR_VISIBILITY );
+		}
+		// border
+		itemDef
+		{
+			name			"mapborder"
+			rect			0 0 FULL_SCREEN_MAP_WIDTH FULL_SCREEN_MAP_HEIGHT
+			forecolor		1 1 1 1
+			background		"map_border"
+			ownerdraw		CG_PLAYER_FULLMAP_BORDER
+			visible			when( LOCATIONSELECTOR_VISIBILITY );
+			decoration
+		}
+		// instruction
+		itemDef
+		{
+			name			"airstrikeinstruction"
+			rect			100 -60 20 20
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_CENTER
+			textscale		0.4
+			forecolor		1 1 1 1
+			text			"@PLATFORM_PRESS_TO_SET_AIRSTRIKE"
+			visible			when( LOCATIONSELECTOR_VISIBILITY );
+			decoration
+		}
 
+		/* PROMOD READY UP */
 		itemDef
 		{
 			rect			-37 88 2 1 HORIZONTAL_ALIGN_RIGHT VERTICAL_ALIGN_TOP
@@ -319,7 +412,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		0.8 1 1 1
-			visible			1
+			visible			when( READYUP_VISIBILITY );
 			decoration
 		}
 		itemDef
@@ -331,7 +424,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		0.98 0.98 0.6 1
-			visible			1
+			visible			when( READYUP_VISIBILITY );
 			decoration
 		}
 		itemDef
@@ -343,7 +436,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		0.8 1 1 1
-			visible			when( dvarInt( waiting_on ) > 1 )
+			visible			when( READYUP_VISIBILITY && dvarInt( waiting_on ) > 1 )
 			decoration
 		}
 		itemDef
@@ -355,7 +448,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		0.8 1 1 1
-			visible			when( dvarInt( waiting_on ) < 2 )
+			visible			when( READYUP_VISIBILITY && dvarInt( waiting_on ) < 2 )
 			decoration
 		}
 		itemDef
@@ -367,7 +460,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		0.8 1 1 1
-			visible			1
+			visible			when( READYUP_VISIBILITY );
 			decoration
 		}
 		itemDef
@@ -379,7 +472,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		0.73 0.99 0.73 1
-			visible			when ( dvarInt( self_ready ) )
+			visible			when( READYUP_VISIBILITY && dvarInt( self_ready ) )
 			decoration
 		}
 		itemDef
@@ -391,7 +484,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		1 0.66 0.66 1
-			visible			when ( !dvarInt( self_ready ) )
+			visible			when( READYUP_VISIBILITY && !dvarInt( self_ready ) )
 			decoration
 		}
 		itemDef
@@ -403,7 +496,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		0.8 1 1 1
-			visible			when ( dvarString( self_kills ) == "" && team( name ) != "TEAM_SPECTATOR" )
+			visible			when( READYUP_VISIBILITY && dvarString( self_kills ) == "" && team( name ) != "TEAM_SPECTATOR" )
 			decoration
 		}
 		itemDef
@@ -415,7 +508,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		1 0.66 0.66 1
-			visible			when ( dvarString( self_kills ) == "" && team( name ) != "TEAM_SPECTATOR" )
+			visible			when( READYUP_VISIBILITY && dvarString( self_kills ) == "" && team( name ) != "TEAM_SPECTATOR" )
 			decoration
 		}
 		itemDef
@@ -427,7 +520,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		0.8 1 1 1
-			visible			when ( dvarString( self_kills ) != "" && team( name ) != "TEAM_SPECTATOR" )
+			visible			when( READYUP_VISIBILITY && dvarString( self_kills ) != "" && team( name ) != "TEAM_SPECTATOR" )
 			decoration
 		}
 		itemDef
@@ -439,7 +532,7 @@
 			textscale		0.35
 			textfont		UI_FONT_DEFAULT
 			forecolor		1 0.66 0.66 1
-			visible			when ( dvarString( self_kills ) != "" && team( name ) != "TEAM_SPECTATOR" )
+			visible			when( READYUP_VISIBILITY && dvarString( self_kills ) != "" && team( name ) != "TEAM_SPECTATOR" )
 			decoration
 		}
 	}
