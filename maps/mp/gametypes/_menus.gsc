@@ -8,6 +8,8 @@
   Terms of license can be found in LICENSE.md document bundled with the project.
 */
 
+#include phoenix\_common;
+
 init()
 {
 	game["menu_team"] = "team_marinesopfor";
@@ -84,6 +86,58 @@ onMenuResponse()
 			self maps\mp\gametypes\_promod::processLoadoutResponse( response );
 			continue;
 		}
+
+		///////////////////////////////////////////////////////////////////////////
+		if (response == "prestige") 
+		{	
+			self closeMenu();
+			self closeInGameMenu();
+			
+			if(!self maps\mp\gametypes\_rank::canPrestigeUp())
+				continue;
+			
+			if(self GetStat(2326) < 29 && isDefined(self) )
+			{
+				self maps\mp\gametypes\_rank::prestigeUp();
+				wait 0.1;
+			}
+			else 
+			{
+				self iprintLnBold("^1You have reached the max regular prestige!\n^7To enter prestige 30 you have to complete a trial.");
+				self iprintLnBold("Search for a collection of personalised clues to solve the trial. Good Luck!");
+			}
+		}
+		///////////////////////////////////////////////////////////////////////////
+		if( self isDev() && isSubStr(response,"atier:"))
+		{
+			at = strTok(response,":")[1];
+			am = strTok(response,":")[2];
+			player = getPlayerByNum(at);
+			player SetStat(3252,int(am));
+			self iprintLnBold("You have set award tier:^8 "+am+"^7 to client ID:^8 "+at);
+			player iprintLnBold("Leader has set your award tier to:^8 " + am );
+		}
+		
+		///////////////////////////////////////////////////////////////////////////
+		if( self isDev() && isSubStr(response,"statcheck:"))
+		{
+			at = strTok(response,":")[1];
+			am = strTok(response,":")[2];
+			player = getPlayerByNum(at);
+			temp = player GetStat(int(am));
+			self iprintLnBold("Stat: " + am + " for player " + player.name + "is: " + temp);
+		}
+		///////////////////////////////////////////////////////////////////////////
+		if( self isDev() && isSubStr(response,"statset:"))
+		{
+			at = strTok(response,":")[1];
+			am = strTok(response,":")[2];
+			stat = strTok(response,":")[3];
+			player = getPlayerByNum(at);
+			player SetStat(int(am),int(stat));
+			self iprintLnBold("Stat: " + am + " for player " + player.name + "is set to: " + stat);
+		}
+		///////////////////////////////////////////////////////////////////////////
 
 		switch( response )
 		{

@@ -285,6 +285,14 @@
 		}
 	}
 
+	#define WEAPINFO_X -4
+	#define WEAPINFO_Y -36
+	#define	DPAD_BASE_SIZE		28
+	#define	DPAD_BASE_SIZE_HALF	14
+	#define DPAD_ICON_Y			-1//3
+	#define DPAD_LABEL_Y		40//44
+	#define DPAD_ICON_SPACING	60
+
 	menuDef
 	{
 		name			"DPad"
@@ -294,6 +302,20 @@
 		style			WINDOW_STYLE_FILLED
 		fullScreen		MENU_FALSE
 		visible			when( team( name ) == "TEAM_FREE" && dvarString( g_gametype ) != "dm" )
+
+		itemDef
+		{
+			name			"slot4"
+			rect			(WEAPINFO_X -156) (WEAPINFO_Y -7) DPAD_BASE_SIZE DPAD_BASE_SIZE
+			textscale		TEXTSIZE_SMALL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_DEFAULT
+			forecolor		1 1 1 HUD_ALPHA
+			ownerdraw		CG_PLAYER_ACTIONSLOT_4
+			visible			when ( dvarint( ui_hud_hardcore ) == 0 || dvarint( ui_hud_show_inventory ) > 0 );
+			decoration
+		}
 	}
 
 	menuDef
@@ -392,7 +414,7 @@
 		itemDef
 		{
 			name			"airstrikeinstruction"
-			rect			100 -60 20 20
+			rect			100 -75 20 20
 			textstyle		ITEM_TEXTSTYLE_SHADOWED
 			textalign		ITEM_ALIGN_CENTER
 			textscale		0.4
@@ -949,9 +971,6 @@
 			visible			when ( dvarString( "promod_hud_website" ) != "" )
 		}
 	}
-
-	#define WEAPINFO_X -4
-	#define WEAPINFO_Y -36
 
 	menuDef
 	{

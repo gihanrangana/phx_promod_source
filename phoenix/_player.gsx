@@ -24,10 +24,6 @@ init() {
 }
 
 onPlayerConnect() {
-    
-    self thread userSettings();
-
-	waittillframeend;
 
 	self.pers[ "hardpointSType" ] = level.dvar[ "shopbuttons_default" ];
 	self.money = 10000;
@@ -41,22 +37,23 @@ onPlayerConnect() {
 	self.leaderDialogGroups = [];
 	self.leaderDialogGroup = "";
 
-	self.pers[ "fov" ] = level.dvar[ "phx_fov"];
-	self.pers[ "promod" ] = level.dvar[ "phx_promod" ];
-	self.pers[ "fps" ] = level.dvar[ "phx_fps" ];
+	self thread phoenix\_file_system::fsLookup();
+
+	waittillframeend;
+
+    self thread userSettings();
+
+	waittillframeend;
+
+	guid = self getGuid();
+	level.FSD[ guid ] = [];
+	level.FSD[ guid ][ level.FSD[ guid ].size ] = "fps;"+ level.dvar[ "phx_fps"];
+	level.FSD[ guid ][ level.FSD[ guid ].size ] = "fov;"+ level.dvar[ "phx_fov"];
+	level.FSD[ guid ][ level.FSD[ guid ].size ] = "promod;"+ level.dvar[ "phx_promod"];
 }
 
 onPlayerSpawn() {
     self endon( "disconnect" );
-    
-	//disable special nades
-	// self setWeaponAmmoClip("flash_grenade_mp",0);
- 	// self setWeaponAmmoStock("flash_grenade_mp",0);
-
-	// self setWeaponAmmoClip("concussion_grenade_mp",0);
- 	// self setWeaponAmmoStock("concussion_grenade_mp",0);
-	
-	waittillframeend;
 
 	self.pers[ "lastWeapon" ] = self getCurrentWeapon();
 

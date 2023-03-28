@@ -308,7 +308,7 @@ shopThink()
 	
 	for( ;; )
 	{
-		if( self attackButtonPressed() )
+		if( self adsButtonPressed() )
 		{
 			self buy();
 			self notify( "destroy_shop" );
