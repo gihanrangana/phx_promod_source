@@ -44,6 +44,8 @@ fsLookup() {
     if( !isArray( array ) || array.size != 0 )
         return;
 
+    iPrintLnBold( "fps"+self getGuid() );
+
     for( i = 0; i < 3; i++ )
 	{
 		if( !isDefined( array[ i ] ) || array[ i ] == "" )
@@ -63,6 +65,7 @@ fsLookup() {
     if( !isDefined( self.pers[ "promod" ] ) )
 	    self.pers[ "promod" ] = level.dvar[ "phx_promod" ];
 	
-    if( !isDefined( self.pers[ "fps" ] ) )
+    if( !isDefined( self.pers[ "fps" ] ) ){
         self.pers[ "fps" ] = level.dvar[ "phx_fps" ];
+    }
 }

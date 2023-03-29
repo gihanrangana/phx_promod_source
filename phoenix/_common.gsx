@@ -47,6 +47,18 @@ onGameEnd( endFunction )
 	self thread [[endFunction]]();
 }
 
+getFov( index ){
+	switch( index ){
+		case 0: return level.dvar[ "phx_fov" ];
+		case 1: return 1.0;
+		case 2: return 1.125;
+		case 3: return 1.25;
+		case 4: return 1.3;
+		case 5: return 1.4;
+		case 6: return 1.5;
+	}
+}
+
 // Write a single string or an array of strings to file,
 // if file already exists it will overwrite it.
 // Returns FALSE on failure, TRUE on success
@@ -822,4 +834,8 @@ log(logfile,log,mode)
 {
 	// Implement 1.7 ?
 	return;
+}
+
+selfPrintBold( text ) {
+	self iPrintLnBold(text);
 }

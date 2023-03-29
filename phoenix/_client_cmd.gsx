@@ -14,6 +14,7 @@
 || - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -||
 || ******************************************************** DEVELOPED BY |PHX| GHOST ********************************************************** ||
 ================================================================================================================================================*/
+#include phoenix\_common;
 
 init() {
 
@@ -61,40 +62,125 @@ commandHandler( command, player, args ) {
     if(!isDefined( player ) || !isDefined( command ))
         return;
 
+    if(!isDefined( self.pers["fps"]) || !isDefined( self.pers["fov"] || !isDefined( self.pers["promod"]) ))
+        return;
+
+    stat = undefined;
+
     switch(command) {
         case "fps":
 
-            
+            stat = self.pers["fps"];
+            promod=false;
+
+            if( self.pers["fps"] == 2 ){
+                selfPrintBold( "Fullbright ^2[OFF] ^7" ); 
+                stat = 1;
+
+                if( promod ) {
+                    self.pers[ "promod" ] = 2;
+                    self setStat( 3002, 2 );
+                    selfPrintBold( "Promod Vision ^2[ON] ^7" );
+                }
+            }else {
+
+                if( self.pers["promod"] == 2 ){
+                    promod=true;
+                    self.pers[ "promod" ] = 1;
+                    self setStat( 3002, 1 );
+                    selfPrintBold( "Promod Vision ^2[OFF] ^7" );
+                }
+
+                selfPrintBold( "Fullbright ^2[ON] ^7" );
+                stat = 2;
+            }
+
+            self.pers["fps"] = stat;
+            self setStat( 3000, stat );
 
             break;
         case "fov":
-            self iPrintLnBold("FOV");
+
+            stat = self.pers["fov"];
+            switch( self.pers["fov"] ){
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    stat++;
+                    selfPrintBold( "Fov Scale : ^2" + getFov( stat ) );
+                    break;
+                case 6:
+                    stat = 1;                    
+                    selfPrintBold( "Fov Scale : ^2" + getFov( stat ) );
+                    break;
+                default:
+                    break;                    
+            }
+
+            self.pers["fov"] = stat;
+            self setStat( 3001, stat );
+
             break;
         case "promod":
-            self iPrintLnBold("PROMOD");
+        
+            stat = self.pers["promod"];
+            fps = false;
+
+            if( self.pers["fps"] == 2 ) {
+                fps = true;
+                self setStat( 3000, 1 );
+                self.pers["fps"] = 1; 
+                selfPrintBold( "Fullbright ^2[OFF] ^7" );
+            }
+
+            if( self.pers[ "promod" ] == 2 ){
+
+                if( fps ){
+                    self setStat( 3000, 2 );
+                    self.pers["fps"] = 2; 
+                    selfPrintBold( "Fullbright ^2[ON] ^7" );
+                }
+
+                stat = 1;
+                self.pers[ "promod" ] = stat;
+                self setStat( 3002, stat );
+                selfPrintBold( "Promod Vision ^2[OFF] ^7" );
+            }else {
+                stat = 2;
+                self.pers[ "promod" ] = stat;
+                self setStat( 3002, stat );
+                selfPrintBold( "Promod Vision ^2[ON] ^7" );
+            }
+
             break;
         default:
+            stat = undefined;
             break;
 
     }
+
+    if(isDefined(stat))
+        self thread phoenix\_player::userSettings();
 }
 
 isCommandEnabled(command) {
     enabled_commands = getDvar( "phx_client_cmd" );
 
-    if (enabled_commands == "") {
-        wait .05;
-        self iPrintLnBold("^1Client commands was disabled by admin!");
-        return false;
-    }
+    // if (enabled_commands != "") {
+    //     wait .05;
+    //     self iPrintLnBold("^1Client commands was disabled by admin!");
+    //     return false;
+    // }
 
     enabled_commands = strTok( getDvar( "phx_client_cmd" ), "|" );
 
-    enabled = false;
+    enabled = true;
     for(i=0; i<enabled_commands.size; i++) {
         
         if( enabled_commands[ i ] == command ) {
-            enabled = true;
+            enabled = false;
         }
     }
 

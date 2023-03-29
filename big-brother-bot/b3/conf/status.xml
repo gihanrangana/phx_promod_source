@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<B3Status Time="Wed Mar 29 01:37:00 2023">
-        <Game CaptureLimit="" FragLimit="" Ip="127.0.0.1" Map="mp_killhouse" MapTime="919" Name="cod4" OnlinePlayers="1" Port="28960" RoundTime="102" Rounds="12" TimeLimit="" Type="war">
+<B3Status Time="Wed Mar 29 22:10:01 2023">
+        <Game CaptureLimit="" FragLimit="" Ip="127.0.0.1" Map="mp_killhouse" MapTime="3089" Name="cod4" OnlinePlayers="1" Port="28960" RoundTime="82" Rounds="24" TimeLimit="" Type="war">
                 <Data Name="protocol" Value="21"/>
                 <Data Name="gameName" Value="cod4"/>
                 <Data Name="sv_privateClients" Value="0"/>
-                <Data Name="sv_maxRate" Value="100000"/>
-                <Data Name="_mapTimeStart" Value="1680033101"/>
-                <Data Name="rounds" Value="12"/>
+                <Data Name="sv_maxRate" Value="25000"/>
+                <Data Name="_mapTimeStart" Value="1680104912"/>
+                <Data Name="rounds" Value="24"/>
                 <Data Name="_mapName" Value="mp_killhouse"/>
                 <Data Name="sv_disableClientConsole" Value="0"/>
-                <Data Name="uptime" Value="61 minutes"/>
-                <Data Name="console" Value="&lt;b3.parsers.cod4x18.Cod4X18Parser object at 0x0000000004164148&gt;"/>
+                <Data Name="uptime" Value="7 minutes"/>
+                <Data Name="console" Value="&lt;b3.parsers.cod4x18.Cod4X18Parser object at 0x0000000003EA7288&gt;"/>
                 <Data Name="gamename" Value="Call of Duty 4"/>
                 <Data Name="version" Value="CoD4 X - win_mingw-x86 build 1153 May  1 2022"/>
                 <Data Name="build" Value="1153"/>
                 <Data Name="branch" Value="master"/>
                 <Data Name="sv_pure" Value="1"/>
-                <Data Name="_roundTimeStart" Value="1680033918"/>
+                <Data Name="_roundTimeStart" Value="1680107919"/>
                 <Data Name="_CoD4 X Site" Value="http://cod4x.ovh"/>
                 <Data Name="revision" Value="54db3b9c742a86eb594f47fd0caa98f7d8921aec"/>
                 <Data Name="sv_voice" Value="0"/>
@@ -26,14 +26,14 @@
                 <Data Name="sv_hostname" Value="Another Promod ^1LIVE ^7V2.20 ^7Server is Born"/>
                 <Data Name="sv_floodprotect" Value="4"/>
                 <Data Name="g_compassShowEnemies" Value="0"/>
-                <Data Name="g_mapStartTime" Value="Wed Mar 29 01:35:16 2023"/>
+                <Data Name="g_mapStartTime" Value="Wed Mar 29 22:08:37 2023"/>
                 <Data Name="gameType" Value="war"/>
                 <Data Name="shortversion" Value="-"/>
                 <Data Name="g_logTimeStampInSeconds" Value="0"/>
                 <Data Name="sv_maxPing" Value="0"/>
         </Game>
         <Clients Total="1">
-                <Client CID="0" ColorName="Gihan^7" Connections="12" DBID="1" GUID="2310346614882407203" IP="192.168.0.101" Joined="Sun Mar 26 13:50:50 2023" Level="100" Name="Gihan" PBID="" Score="0" State="2" Team="-1" Updated="Wed Mar 29 01:35:30 2023">
+                <Client CID="0" ColorName="Gihan^7" Connections="25" DBID="1" GUID="2310346614882407203" IP="192.168.0.101" Joined="Sun Mar 26 13:50:50 2023" Level="100" Name="Gihan" PBID="" Score="0" State="2" Team="-1" Updated="Wed Mar 29 22:04:40 2023">
                         <Data Name="codguid" Value="2310346614882407203"/>
                 </Client>
         </Clients>
