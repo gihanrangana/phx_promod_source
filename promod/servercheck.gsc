@@ -73,8 +73,8 @@ errorMessage()
 
 		antilag = getDvarInt( "g_antilag" );
 		dedicated = getDvar( "dedicated" );
-		if ( (antilag && dedicated == "dedicated LAN server") || (!antilag && dedicated == "dedicated internet server" && !game["PROMOD_PB_OFF"]))
-			iprintlnbold("^1Server Violation^7: Modified Connection");
+		// if ( (antilag && dedicated == "dedicated LAN server") || (!antilag && dedicated == "dedicated internet server" && !game["PROMOD_PB_OFF"]))
+		// 	iprintlnbold("^1Server Violation^7: Modified Connection");
 
 		if( isDefined( game["PROMOD_MATCH_MODE"] ) && game["PROMOD_MATCH_MODE"] == "match" || toLower( getDvar( "fs_game" ) ) == "mods/pml220" )
 		{

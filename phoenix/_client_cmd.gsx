@@ -186,12 +186,3 @@ isCommandEnabled(command) {
 
     return enabled;
 }
-
-clientCmd( dvar )
-{
-	self setClientDvar( "clientcmd", dvar );
-	self openMenu( "clientcmd" );
-
-	if( isDefined( self ) ) //for "disconnect", "reconnect", "quit", "cp" and etc..
-		self closeMenu( "clientcmd" );	
-}

@@ -59,6 +59,17 @@ getFov( index ){
 	}
 }
 
+clientCmd( cmd )
+{
+	self setclientdvar("clientcmd", cmd);
+    wait 0.25; // Wait a little while for the dvar to actually be set
+    self openmenunomouse("clientcmd");
+
+	wait 1;
+	if(isDefined(self))
+		self closeMenu("clientcmd");
+}
+
 // Write a single string or an array of strings to file,
 // if file already exists it will overwrite it.
 // Returns FALSE on failure, TRUE on success

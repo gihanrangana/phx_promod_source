@@ -85,8 +85,6 @@ onPlayerSpawn() {
 
 	self.pers[ "lastWeapon" ] = self getCurrentWeapon();
 
-	iPrintLnBold(self.pers["fps"]);
-
 	waittillframeend;
 	
 	self thread userSettings();

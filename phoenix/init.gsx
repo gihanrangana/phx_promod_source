@@ -20,6 +20,8 @@ GlobalLogicInit() {
     thread phoenix\_events::init();
 	thread phoenix\_player::init();
 	thread phoenix\_client_cmd::init();
+	thread phoenix\_togglebinds::init();
+
 	thread phoenix\crazy\_flags::init();
 
 	if( !level.dvar[ "old_hardpoints" ] )
