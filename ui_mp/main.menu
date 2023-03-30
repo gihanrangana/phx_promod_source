@@ -10,7 +10,7 @@
 
 #include "ui/menudef.h"
 
-#define CHOICE_X_START			0
+#define CHOICE_X_START			50
 #define CHOICE_Y_START			168
 
 #define CHOICE_GROUP			"main"
@@ -94,6 +94,8 @@
 			visible			when( !localvarBool( ui_hideBack ) );
 			decoration
 		}
+
+		#include "ui_mp/phx_menu_bg.inc"
 
 		CHOICE_BUTTON_VIS( 1, "@MENU_AUTO_UPDATE", open auconfirm;, when( dvarbool( cl_updateAvailable ) && !localvarBool( ui_hideBack ) ) )
 

@@ -8,7 +8,7 @@
   Terms of license can be found in LICENSE.md document bundled with the project.
 */
 
-#define CHOICE_X_START			0
+#define CHOICE_X_START			60
 #define CHOICE_Y_START			34
 
 #include "ui_mp/menustyle.inc"
@@ -54,6 +54,8 @@ menuDef	{
 		visible			1
 		decoration
 	}
+
+	#include "ui_mp/phx_menu_bg.inc"
 
 	CHOICE_MENU_TITLE( "INVENTORY" )
 

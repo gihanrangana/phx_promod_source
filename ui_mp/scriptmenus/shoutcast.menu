@@ -60,13 +60,15 @@
 			decoration
 		}
 
+		#include "ui_mp/phx_menu_bg.inc"
+
 		CHOICE_MENU_TITLE( "Shoutcast" )
 
 		#define BACK_OPEN;
 		#include "ui_mp/navcontrols.inc";
 
 		#undef CHOICE_X_START
-		#define CHOICE_X_START	-320
+		#define CHOICE_X_START	-260
 
 		#undef	CHOICE_HORIZONTAL_ALIGN
 		#define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_CENTER

@@ -13,7 +13,7 @@
 #define CHOICE_SIZE_X
 #define CHOICE_SIZE_Y			22
 
-#define CHOICE_X_START			0
+#define CHOICE_X_START			50
 #define CHOICE_Y_START			34
 
 #define CHOICE_SEP_OFFSET_Y		-2
@@ -75,6 +75,8 @@
 			visible			1
 			decoration
 		}
+
+		#include "ui_mp/phx_menu_bg.inc"
 
 		CHOICE_MENU_TITLE( "@MPUI_CHOOSE_CLASS_CAP" )
 
