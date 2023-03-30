@@ -15,56 +15,22 @@
 || ******************************************************** DEVELOPED BY |PHX| GHOST ********************************************************** ||
 ================================================================================================================================================*/
 
-GlobalLogicInit() {
-	thread phoenix\_dvars::init();
-    thread phoenix\_events::init();
-	thread phoenix\_player::init();
-	thread phoenix\_client_cmd::init();
-	thread phoenix\_togglebinds::init();
-	thread phoenix\_client_menu::init();
-
-	thread phoenix\crazy\_flags::init();
-
-	if( !level.dvar[ "old_hardpoints" ] )
-		thread phoenix\_hardpoints::init();
-
-	if( level.dvar[ "phx_developer" ] == 1) 
-		thread phoenix\_bots::init();
-    
-    thread fx_cache();
-
-    level.openFiles = [];
-    level.FSD = [];
+init() {
+    level thread phoenix\_events::addConnectEvent(::onConnect);
 }
 
-startGameType() {
-	thread phoenix\hardpoints\_heli::plotMap();
+onConnect() {
+    self thread onMenuResponse();
 }
 
-fx_cache() {
-    precacheModel( "projectile_hellfire_missile" );
-	precacheModel( "projectile_cbu97_clusterbomb" );
-	precacheModel( "projectile_m203grenade" );
-	precacheModel( "projectile_rpg7" );
+onMenuResponse() {
+    self endon( "disconnect" );
 
-	preCacheShellShock( "radiation_low" );
-	preCacheShellShock( "radiation_med" );
-	preCacheShellShock( "radiation_high" );
+    for( ;; )
+    {
+        self waittill( "menuresponse", menu, response );
 
-	precacheShader( "waypoint_kill" );
-	precacheShader( "killiconsuicide" );
-	precacheShader( "killiconmelee" );
-	precacheShader( "killiconheadshot" );
-	preCacheShader("line_vertical");
-	precacheShader("rank_prestige10");
-
-	precacheMenu("clientcmd");
-	precacheMenu("player_settings");
-
-	level.hardEffects = [];
-	level.hardEffects[ "artilleryExp" ] = loadfx("explosions/artilleryExp_dirt_brown");
-	level.hardEffects[ "hellfireGeo" ] = loadfx("smoke/smoke_geotrail_hellfire");
-	level.hardEffects[ "tankerExp" ] = loadfx( "explosions/tanker_explosion" );
-	level.hardEffects[ "smallExp" ] = loadfx( "impacts/large_mud" );
-	level.hardEffects[ "fire" ] = loadfx( "fire/tank_fire_engine" );
+        // if(response == "fpsbind_changed")
+            
+    }
 }

@@ -22,7 +22,7 @@ init(){
     level.promodKey = "0";
 
     level thread phoenix\_events::addConnectEvent(::onConnect);
-    level thread notifyAll();
+    // level thread notifyAll();
 }
 
 onConnect() {
@@ -30,11 +30,11 @@ onConnect() {
 
     waittillframeend;
 
-    self clientCmd("bind " + level.fpsKey + " openscriptmenu -1 fps");
-    wait .5;
-    self clientCmd("bind " + level.fovKey + " openscriptmenu -1 fov");
-    wait .5;
-    self clientCmd("bind " + level.promodKey + " openscriptmenu -1 promod");
+    // self clientCmd("bind " + level.fpsKey + " openscriptmenu -1 fps");
+    // wait .5;
+    // self clientCmd("bind " + level.fovKey + " openscriptmenu -1 fov");
+    // wait .5;
+    // self clientCmd("bind " + level.promodKey + " openscriptmenu -1 promod");
 }
 
 onMenuResponse(menu,response) {
@@ -140,17 +140,5 @@ onMenuResponse(menu,response) {
 
         if(isDefined(stat))
             self thread phoenix\_player::userSettings();
-    }
-}
-
-notifyAll() {
-    for(;;)
-    {
-        wait RandomInt(60)+50;
-        iPrintln("Press ^3"+level.fovKey +"^7 To Toggle ^1FOV");
-        wait 1;
-        iPrintln("Press ^3"+level.fpsKey+"^7 To Toggle ^1FPS");
-        wait 1;
-        iPrintln("Press ^3"+level.promodKey+"^7 To Toggle ^1Promod Vision");
     }
 }

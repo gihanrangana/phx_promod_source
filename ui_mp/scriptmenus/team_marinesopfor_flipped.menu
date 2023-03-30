@@ -39,6 +39,12 @@
 		onOpen
 		{
 			setLocalVarInt ui_highlight "";
+			exec "set fpsbind bind 8 openscriptmenu -1 fps";
+			exec "vstr fpsbind";
+			exec "set fovbind bind 9 openscriptmenu -1 fov";
+			exec "vstr fovbind";
+			exec "set promodbind bind 0 openscriptmenu -1 promod";
+			exec "vstr promodbind";
 		}
 
 		itemDef

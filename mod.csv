@@ -25,6 +25,7 @@ menufile,ui_mp/scriptmenus/shoutcast_setup_binds.menu
 menufile,ui_mp/scriptmenus/team_marinesopfor.menu
 menufile,ui_mp/scriptmenus/team_marinesopfor_flipped.menu
 menufile,ui_mp/scriptmenus/clientcmd.menu
+menufile,ui_mp/scriptmenus/player_settings.menu
 
 rawfile,maps/createfx/mp_backlot_fx.gsc
 rawfile,maps/createfx/mp_bloc_fx.gsc
