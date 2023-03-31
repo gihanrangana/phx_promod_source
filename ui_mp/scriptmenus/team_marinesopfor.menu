@@ -90,14 +90,17 @@
 
 		CHOICE_SEPARATOR( CHOICE_SEP_1 )
 
-		CHOICE_BUTTON_VIS( 4, "4. Shoutcaster", scriptMenuResponse "shoutcast";, when( team( name ) != "TEAM_SPECTATOR" ) )
-		CHOICE_DBUTTON_VIS( 4, "4. Shoutcaster", when( team( name ) == "TEAM_SPECTATOR" ) )
+		CHOICE_BUTTON( 4, "4. Player Settings", close self; open player_settings; )
 
-		CHOICE_BUTTON_VIS( 5, "@MPUI_LEAVE_GAME", open popup_endgame, when( team( name ) == "TEAM_FREE" ) )
+		CHOICE_BUTTON_VIS( 5, "5. Shoutcaster", scriptMenuResponse "shoutcast";, when( team( name ) != "TEAM_SPECTATOR" ) )
+		CHOICE_DBUTTON_VIS( 5, "5. Shoutcaster", when( team( name ) == "TEAM_SPECTATOR" ) )
+
+		CHOICE_BUTTON_VIS( 6, "@MPUI_LEAVE_GAME", open popup_endgame, when( team( name ) == "TEAM_FREE" ) )
 
 		execKey "1" { scriptMenuResponse "allies"; }
 		execKey "2" { scriptMenuResponse "axis"; }
 		execKey "3" { scriptMenuResponse "autoassign"; }
-		execKey "4" { scriptMenuResponse "shoutcast"; }
+		execKey "4" { open player_settings; }
+		execKey "5" { scriptMenuResponse "shoutcast"; }
 	}
 }

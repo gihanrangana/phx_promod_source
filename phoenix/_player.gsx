@@ -17,6 +17,13 @@
 
 #include phoenix\_common;
 
+/*
+	fps : 3000
+	fov : 3001
+	promod : 3002
+	cgFov : 3003
+*/
+
 init() {
     phoenix\_events::addConnectEvent(::onPlayerConnect);
     phoenix\_events::addSpawnEvent(::onPlayerSpawn);
@@ -38,46 +45,39 @@ onPlayerConnect() {
 	self.leaderDialogGroups = [];
 	self.leaderDialogGroup = "";
 
-	// self setState( 3000, level.dvar[ "phx_fps" ] );
-	// self setState( 3001, level.dvar[ "phx_fov" ] );
-	// self setState( 3002, level.dvar[ "phx_promod" ] );
-	// self thread phoenix\_file_system::fsLookup();
-
-	// guid = self getGuid();
-	// if( !isDefined( level.FSD[ guid ] ) ){
-	// 	level.FSD[ guid ] = [];
-	// 	level.FSD[ guid ][ level.FSD[ guid ].size ] = "fps;"+ level.dvar[ "phx_fps"];
-	// 	level.FSD[ guid ][ level.FSD[ guid ].size ] = "fov;"+ level.dvar[ "phx_fov"];
-	// 	level.FSD[ guid ][ level.FSD[ guid ].size ] = "promod;"+ level.dvar[ "phx_promod"];
-	// }
-	
-
 	waittillframeend;
 
 	if( !isDefined( self.pers[ "fps" ] ) && self getStat( 3000 ) == 0  )
-        {
-			self.pers[ "fps" ] = level.dvar[ "phx_fps" ];
-			self setStat( 3000, level.dvar[ "phx_fps" ]);
-		}
+	{
+		self.pers[ "fps" ] = level.dvar[ "phx_fps" ];
+		self setStat( 3000, level.dvar[ "phx_fps" ]);
+	}
 	else
 		self.pers[ "fps" ] = self getStat( 3000 );
 
 	if( !isDefined( self.pers[ "fov" ] ) && self getStat( 3001 ) == 0  )
-       {
-			self.pers[ "fov" ] = level.dvar[ "phx_fov"];
-			self setStat( 3001, level.dvar[ "phx_fov"] );
-	   }	
+	{
+		self.pers[ "fov" ] = level.dvar[ "phx_fov"];
+		self setStat( 3001, level.dvar[ "phx_fov"] );
+	}	
 	else
 		self.pers[ "fov" ] = self getStat( 3001 );
 	
     if( !isDefined( self.pers[ "promod" ] ) && self getStat( 3002 ) == 0 )
-	    {
-			self.pers[ "promod" ] = level.dvar[ "phx_promod" ];
-			self setStat( 3002, level.dvar[ "phx_promod" ] );
-		}
+	{
+		self.pers[ "promod" ] = level.dvar[ "phx_promod" ];
+		self setStat( 3002, level.dvar[ "phx_promod" ] );
+	}
 	else 
-		self.pers[ "promod" ] = self getStat( 3102 );
-    
+		self.pers[ "promod" ] = self getStat( 3002 );
+
+	if( !isDefined( self.pers[ "cgFov" ] ) && self getStat( 3003 ) == 0)
+	{
+		self.pers[ "cgFov" ] = level.dvar[ "phx_cgFov"];
+		self setStat( 3003, level.dvar[ "phx_cgFov"] );
+	}	
+	else
+		self.pers[ "cgFov" ] = self getStat( 3003 );
 }
 
 onPlayerSpawn() {
@@ -102,7 +102,7 @@ onPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon,
 
 userSettings() {
     // Late joiners might not have these set
-	if( !isDefined( self.pers[ "fov" ] ) || !isDefined( self.pers[ "promod" ] ) || !isDefined( self.pers[ "fps" ] ) )
+	if( !isDefined( self.pers[ "fov" ] ) || !isDefined( self.pers[ "promod" ] ) || !isDefined( self.pers[ "fps" ] ) || !isDefined( self.pers[ "cgFov" ] ) )
 		return;
 
     /*
@@ -116,56 +116,8 @@ userSettings() {
     */
 	self setClientDvars(
 		"cg_fovscale", getFov( self.pers[ "fov" ] ),
-		"cg_fov", 80
+		"cg_fov", self.pers[ "cgFov" ]
 	);
-    // switch( self.pers[ "fov" ] )
-	// {
-	// 	case 1:
-	// 		self setClientDvars( 
-	// 							"cg_fovscale", 1.0,
-	// 							"cg_fov", 80
-	// 							);
-	// 		break;
-	// 	case 2:
-	// 		self setClientDvars( 
-	// 							"cg_fovscale", 1.125,
-	// 							"cg_fov", 80
-	// 							);
-	// 		break;
-	// 	case 3:
-	// 		self setClientDvars( 
-	// 								"cg_fovscale", 1.25,
-	// 								"cg_fov", 80
-	// 								);
-	// 		break;
-	// 	case 4:
-	// 		self setClientDvars( 
-	// 								"cg_fovscale", 1.3,
-	// 								"cg_fov", 80
-	// 								);
-	// 		break;
-	// 	case 5:
-	// 		self setClientDvars( 
-	// 								"cg_fovscale", 1.4,
-	// 								"cg_fov", 80
-	// 								);
-	// 		break;
-	// 	case 6:
-	// 		self setClientDvars( 
-	// 								"cg_fovscale", 1.5,
-	// 								"cg_fov", 80
-	// 								);
-	// 		break;
-	// 	default:
-	// 		self setClientDvars( 
-	// 							"cg_fovscale", 1.125,
-	// 							"cg_fov", 80
-	// 							);
-
-	// 		self setStat( 3001, 2);
-	// 		self.pers["fov"] = self getStat( 3001 );
-	// 		break;
-	// }
 
     waittillframeend;
 
@@ -190,4 +142,9 @@ userSettings() {
 	else
 		self SetClientDvars( "r_filmusetweaks", "0",
 							 "r_filmTweakenable", "0" );
+
+
+	waittillframeend;
+	
+	self setClientDvar( "cg_fov", self.pers[ "cgFov" ] );
 }
