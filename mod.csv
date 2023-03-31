@@ -408,6 +408,26 @@ material,rank_prestige_28
 material,rank_prestige_29
 material,rank_prestige_30
 
+material,mtl_police_arms
+material,mtl_police_patches
+material,mtl_police_glasseshandles
+material,mtl_police_watch
+material,mtl_police_pants
+material,mtl_police_gear
+material,mtl_police_gear
+material,mtl_police_glasses
+material,mtl_police_ears
+material,mtl_police_earpiece
+material,mtl_police_torso
+material,mtl_plr_counter_terrorists_gign
+material,mtl_plr_counter_terrorists_gign_backpack
+material,mtl_character_gign
+
+xmodel,plr_terry_police
+xmodel,plr_counter_terrorists_gign
+xmodel,plr_mrh_djskully
+xmodel,viewhands_dnf_duke
+
 stringtable,promod/customStatsTable.csv
 stringtable,promod/destructible.csv
 

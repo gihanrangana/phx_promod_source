@@ -52,6 +52,8 @@ init()
 	precacheString( &"MP_SWITCHING_SIDES" );
 	precacheString( &"MP_CONNECTED" );
 
+	// precacheModel("viewmodel_hands_cloth");
+
 	level.halftimeType = "halftime";
 	level.halftimeSubCaption = &"MP_SWITCHING_SIDES";
 

@@ -24,7 +24,8 @@ init() {
 	addDvar( "phx_fps", "int", 2, 1, 2 ); // Default value for the fps (1:off/2:on)
 	addDvar( "phx_fov", "int", 1, 1, 6 ); // Default value for the fov
 	addDvar( "phx_promod", "int", 1, 1, 2); // Default value for the promod (1:off/2:on)
-	addDvar( "phx_cgFov", "int", 2, 1, 4); // Default value for the promod
+	addDvar( "phx_cgFov", "int", 2, 1, 4); // Default value for the g_fov
+	addDvar( "phx_tps", "int", 1, 1, 2); // Default value for the third person view (1:off/2:on)
 	// Pheonix Dvar End
 
 	addDvar( "shopbuttons_allowchange", "int", 1, 0, 1 ); // Allow the player do decide which buttons to use to navigate hardpoint shop ( 1-W/S ; 0-F/V )

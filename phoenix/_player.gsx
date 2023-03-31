@@ -78,6 +78,18 @@ onPlayerConnect() {
 	}	
 	else
 		self.pers[ "cgFov" ] = self getStat( 3003 );
+
+	if( !isDefined( self.pers[ "tps" ] ) && self getStat( 3004 ) == 0)
+	{
+		self.pers[ "tps" ] = level.dvar[ "phx_tps"];
+		self setStat( 3004, level.dvar[ "phx_tps"] );
+	}	
+	else
+		self.pers[ "tps" ] = self getStat( 3004 );
+
+	waittillframeend;
+
+	self thread setPlayerModel();	
 }
 
 onPlayerSpawn() {
@@ -102,7 +114,7 @@ onPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon,
 
 userSettings() {
     // Late joiners might not have these set
-	if( !isDefined( self.pers[ "fov" ] ) || !isDefined( self.pers[ "promod" ] ) || !isDefined( self.pers[ "fps" ] ) || !isDefined( self.pers[ "cgFov" ] ) )
+	if( !isDefined( self.pers[ "fov" ] ) || !isDefined( self.pers[ "promod" ] ) || !isDefined( self.pers[ "fps" ] ) || !isDefined( self.pers[ "cgFov" ] ) || !isDefined( self.pers[ "tps" ] ) )
 		return;
 
     /*
@@ -116,7 +128,7 @@ userSettings() {
     */
 	self setClientDvars(
 		"cg_fovscale", getFov( self.pers[ "fov" ] ),
-		"cg_fov", self.pers[ "cgFov" ]
+		"cg_fov", getCgFov( self.pers[ "cgFov" ] )
 	);
 
     waittillframeend;
@@ -146,5 +158,43 @@ userSettings() {
 
 	waittillframeend;
 	
-	self setClientDvar( "cg_fov", self.pers[ "cgFov" ] );
+	self setClientDvar( "cg_fov", getCgFov( self.pers["cgFov"] ) );
+
+	waittillframeend;
+	
+	if( self.pers[ "tps" ] == 1 )
+		self setClientDvar( "cg_thirdPerson", 0 );
+	else
+		self setClientDvar( "cg_thirdPerson", 1 );
+}
+
+setPlayerModel() {
+	self endon( "disconnect" );
+
+	for( ;; )
+	{
+		self waittill( "joined_team" );
+		
+		if( !isDefined( self.pers["team"] ) || self.pers[ "team" ] == "spectator" || self.pers[ "team" ] == "none" )
+			continue;
+
+		if(self.pers["team"] == "allies"){
+			// set alias model here
+			self detachAll();
+			self setModel("plr_counter_terrorists_gign");
+			
+		}
+		else if( self.pers[ "team" ] == "axis" ){
+			// set axis model here
+			self detachAll();
+			self setModel("plr_mrh_djskully");
+			self setViewModel( "viewhands_marines");
+			// self setViewModel( "viewmodel_hands_cloth");
+		}
+
+	}
+		
+	// self detachAll();
+	// self setModel("plr_terry_police");
+	// self setViewModel( "viewmodel_hands_cloth");
 }

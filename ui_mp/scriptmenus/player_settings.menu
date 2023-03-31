@@ -148,11 +148,13 @@
         CHOICE_SEPARATOR( CHOICE_SEP_1 )
 
         // CHOICE_BUTTON( 5, "Third Person View (TPS)", "scriptMenuResponse "tps";");
-        CHOICE_SETTING_DVAR_PHX(6, "Max FPS", "com_maxfps", {"100" 100 "125" 125 "200" 200 "250" 250 "333" 333}, ';')
-        CHOICE_SETTING_DVAR_PHX(7, "Fullbright", "r_fullbright", {"OFF" 0 "ON" 1}, exec "openscriptmenu -1 fps";)
-        CHOICE_SETTING_DVAR_PHX(8, "FOV Scale", "cg_fovScale", {"1" 1 "1.125" 1.125 "1.25" 1.25 "1.3" 1.3 "1.4" 1.4 "1.5" 1.5}, exec "openscriptmenu -1 fov";)
-        CHOICE_SETTING_DVAR_PHX(9, "FOV", "cg_fov", {"75" 75 "80" 80 "85" 85 "90" 90}, exec "openscriptmenu -1 cgFov";)
-        CHOICE_SETTING_DVAR_PHX(10, "Third Person View", "cg_thirdPerson", {"OFF" 0 "ON" 1}, exec "openscriptmenu -1 tps";)
+        CHOICE_SETTING_DVAR_PHX_INT(6, "Max FPS", "com_maxfps", {"100" 100 "125" 125 "200" 200 "250" 250 "333" 333}, ';')
+        CHOICE_SETTING_DVAR_PHX_INT(7, "Fullbright", "r_fullbright", {"OFF" 0 "ON" 1}, exec "openscriptmenu -1 fps";)
+        CHOICE_SETTING_DVAR_PHX_INT(8, "FOV Scale", "cg_fovScale", {"1" 1 "1.125" 1.125 "1.25" 1.25 "1.3" 1.3 "1.4" 1.4 "1.5" 1.5}, exec "openscriptmenu -1 fov";)
+        CHOICE_SETTING_DVAR_PHX_INT(9, "FOV", "cg_fov", {"75" 75 "80" 80 "85" 85 "90" 90}, exec "openscriptmenu -1 cgFov";)
+        CHOICE_SETTING_DVAR_PHX_INT(10, "Third Person View", "cg_thirdPerson", {"OFF" 0 "ON" 1}, exec "openscriptmenu -1 tps";)
+        CHOICE_SETTING_DVAR_PHX_INT(11, "Lago Meter", "cg_drawLagometer", {"OFF" 0 "ON" 1}, ;)
+        // CHOICE_SETTING_DVAR_PHX_STR(12, "FPS Counter", "cg_drawFps", { "Off" Off "Simple" Simple "Simple+Ranges" SimpleRanges "Verbose" Verbose }, ;)
 
 	}
 }
