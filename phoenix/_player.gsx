@@ -22,6 +22,7 @@
 	fov : 3001
 	promod : 3002
 	cgFov : 3003
+	tps : 3004
 */
 
 init() {
@@ -34,7 +35,7 @@ init() {
 onPlayerConnect() {
 
 	self.pers[ "hardpointSType" ] = level.dvar[ "shopbuttons_default" ];
-	self.money = 10000;
+	// self.money = 10000;
 
 	self.killedPlayers = [];
 	self.killedPlayersCurrent = [];

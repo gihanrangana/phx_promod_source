@@ -870,3 +870,22 @@ log(logfile,log,mode)
 selfPrintBold( text ) {
 	self iPrintLnBold(text);
 }
+
+Explode() {
+	if(!isDefined(self))
+		return;
+	earthquake (0.4, 1, self.origin, 1000);
+	playfx(level.chopper_fx["explode"]["medium"],self.origin);
+	level thread SoundOnOrigin("detpack_explo_main",self.origin);
+	if(isPlayer(self))
+		if(isReallyAlive(self))
+			self Suicide();
+	else
+		self delete();
+}
+SoundOnOrigin(alias,origin) {
+	soundPlayer = spawn( "script_origin", origin );
+	soundPlayer playsound( alias );
+	wait 10;
+	soundPlayer delete();
+}
