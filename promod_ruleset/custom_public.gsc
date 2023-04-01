@@ -111,6 +111,7 @@ main()
 	// sniper
 	setDvar( "weap_allow_m40a3", 1 );
 	setDvar( "weap_allow_remington700", 1 );
+	setDvar( "weap_allow_m21", 1 );
 
 	// pistol
 	setDvar( "weap_allow_beretta", 1 );

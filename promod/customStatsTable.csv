@@ -59,23 +59,24 @@
 
 43,m40a3
 44,remington700
+45,m21
 
-45,none
-46,silencer
+46,none
+47,silencer
 
-47,deserteaglegold
-48,deserteagle
-49,colt45
-50,usp
-51,beretta
+48,deserteaglegold
+49,deserteagle
+50,colt45
+51,usp
+52,beretta
 
-52,flash_grenade
-53,smoke_grenade
+53,flash_grenade
+54,smoke_grenade
 
-54,camo_none
-55,camo_brockhaurd
-56,camo_bushdweller
-57,camo_blackwhitemarpat
-58,camo_tigerred
-59,camo_stagger
-60,camo_gold
+55,camo_none
+56,camo_brockhaurd
+57,camo_bushdweller
+58,camo_blackwhitemarpat
+59,camo_tigerred
+60,camo_stagger
+61,camo_gold

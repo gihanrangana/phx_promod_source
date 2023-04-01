@@ -53,6 +53,7 @@ init()
 	precacheString( &"MP_CONNECTED" );
 
 	// precacheModel("viewmodel_hands_cloth");
+	// precaheItem("mwr_m40a3_mp");
 
 	level.halftimeType = "halftime";
 	level.halftimeSubCaption = &"MP_SWITCHING_SIDES";
@@ -79,6 +80,10 @@ init()
 	precacheModel( "tag_origin" );
 	precacheModel( "vehicle_mig29_desert" );
 	precacheModel( "projectile_cbu97_clusterbomb" );
+	// preCacheModel( "mwr_m40a3_mp" );
+	precacheItem( "m21_mp" );
+
+	level thread maps\mp\gametypes\inspect::main();
 
 	precacheShader( "faction_128_usmc" );
 	precacheShader( "faction_128_arab" );

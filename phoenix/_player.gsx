@@ -101,6 +101,11 @@ onPlayerSpawn() {
 	
 	self thread userSettings();
 
+	// self takeAllWeapons();
+	// self giveWeapon("mwr_m40a3_mp", 1);
+	// wait 0.05;
+	// self switchToWeapon("mwr_m40a3_mp");
+
 }
 
 onPlayerKilled( eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration ) {

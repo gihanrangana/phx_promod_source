@@ -27,81 +27,6 @@ menufile,ui_mp/scriptmenus/team_marinesopfor_flipped.menu
 menufile,ui_mp/scriptmenus/clientcmd.menu
 menufile,ui_mp/scriptmenus/player_settings.menu
 
-rawfile,maps/createfx/mp_backlot_fx.gsc
-rawfile,maps/createfx/mp_bloc_fx.gsc
-rawfile,maps/createfx/mp_bog_fx.gsc
-rawfile,maps/createfx/mp_broadcast_fx.gsc
-rawfile,maps/createfx/mp_carentan_fx.gsc
-rawfile,maps/createfx/mp_cargoship_fx.gsc
-rawfile,maps/createfx/mp_citystreets_fx.gsc
-rawfile,maps/createfx/mp_convoy_fx.gsc
-rawfile,maps/createfx/mp_countdown_fx.gsc
-rawfile,maps/createfx/mp_crash_fx.gsc
-rawfile,maps/createfx/mp_crash_snow_fx.gsc
-rawfile,maps/createfx/mp_creek_fx.gsc
-rawfile,maps/createfx/mp_crossfire_fx.gsc
-rawfile,maps/createfx/mp_farm_fx.gsc
-rawfile,maps/createfx/mp_killhouse_fx.gsc
-rawfile,maps/createfx/mp_overgrown_fx.gsc
-rawfile,maps/createfx/mp_pipeline_fx.gsc
-rawfile,maps/createfx/mp_shipment_fx.gsc
-rawfile,maps/createfx/mp_showdown_fx.gsc
-rawfile,maps/createfx/mp_strike_fx.gsc
-rawfile,maps/createfx/mp_vacant_fx.gsc
-
-rawfile,maps/mp/_destructible.gsc
-rawfile,maps/mp/_explosive_barrels.gsc
-rawfile,maps/mp/_flashgrenades.gsc
-rawfile,maps/mp/_load.gsc
-
-rawfile,maps/mp/gametypes/_class.gsc
-rawfile,maps/mp/gametypes/_gameobjects.gsc
-rawfile,maps/mp/gametypes/_globallogic.gsc
-rawfile,maps/mp/gametypes/_hardpoints.gsc
-rawfile,maps/mp/gametypes/_healthoverlay.gsc
-rawfile,maps/mp/gametypes/_hud.gsc
-rawfile,maps/mp/gametypes/_hud_message.gsc
-rawfile,maps/mp/gametypes/_killcam.gsc
-rawfile,maps/mp/gametypes/_menus.gsc
-rawfile,maps/mp/gametypes/_missions.gsc
-rawfile,maps/mp/gametypes/_persistence.gsc
-rawfile,maps/mp/gametypes/_promod.gsc
-rawfile,maps/mp/gametypes/_quickmessages.gsc
-rawfile,maps/mp/gametypes/_rank.gsc
-rawfile,maps/mp/gametypes/_scoreboard.gsc
-rawfile,maps/mp/gametypes/_spawnlogic.gsc
-rawfile,maps/mp/gametypes/_spectating.gsc
-rawfile,maps/mp/gametypes/_teams.gsc
-rawfile,maps/mp/gametypes/_weapons.gsc
-rawfile,maps/mp/gametypes/dm.gsc
-rawfile,maps/mp/gametypes/dom.gsc
-rawfile,maps/mp/gametypes/koth.gsc
-rawfile,maps/mp/gametypes/sab.gsc
-rawfile,maps/mp/gametypes/sd.gsc
-rawfile,maps/mp/gametypes/war.gsc
-
-rawfile,maps/mp/mp_backlot.gsc
-rawfile,maps/mp/mp_bloc.gsc
-rawfile,maps/mp/mp_bog.gsc
-rawfile,maps/mp/mp_broadcast.gsc
-rawfile,maps/mp/mp_carentan.gsc
-rawfile,maps/mp/mp_cargoship.gsc
-rawfile,maps/mp/mp_citystreets.gsc
-rawfile,maps/mp/mp_convoy.gsc
-rawfile,maps/mp/mp_countdown.gsc
-rawfile,maps/mp/mp_crash.gsc
-rawfile,maps/mp/mp_crash_snow.gsc
-rawfile,maps/mp/mp_creek.gsc
-rawfile,maps/mp/mp_crossfire.gsc
-rawfile,maps/mp/mp_farm.gsc
-rawfile,maps/mp/mp_killhouse.gsc
-rawfile,maps/mp/mp_overgrown.gsc
-rawfile,maps/mp/mp_pipeline.gsc
-rawfile,maps/mp/mp_shipment.gsc
-rawfile,maps/mp/mp_showdown.gsc
-rawfile,maps/mp/mp_strike.gsc
-rawfile,maps/mp/mp_vacant.gsc
-
 rawfile,character/character_mp_arab_regular_assault.gsc
 rawfile,character/character_mp_arab_regular_cqb.gsc
 rawfile,character/character_mp_arab_regular_engineer.gsc
@@ -446,27 +371,27 @@ material,rank_prestige_28
 material,rank_prestige_29
 material,rank_prestige_30
 
-/*
-material,mtl_police_arms
-material,mtl_police_patches
-material,mtl_police_glasseshandles
-material,mtl_police_watch
-material,mtl_police_pants
-material,mtl_police_gear
-material,mtl_police_gear
-material,mtl_police_glasses
-material,mtl_police_ears
-material,mtl_police_earpiece
-material,mtl_police_torso
-*/
+
+# material,mtl_police_arms
+# material,mtl_police_patches
+# material,mtl_police_glasseshandles
+# material,mtl_police_watch
+# material,mtl_police_pants
+# material,mtl_police_gear
+# material,mtl_police_gear
+# material,mtl_police_glasses
+# material,mtl_police_ears
+# material,mtl_police_earpiece
+# material,mtl_police_torso
+
 material,mtl_plr_counter_terrorists_gign
 material,mtl_plr_counter_terrorists_gign_backpack
 material,mtl_character_gign
 
-/*xmodel,plr_terry_police*/
+#xmodel,plr_terry_police
 xmodel,plr_counter_terrorists_gign
 xmodel,plr_mrh_djskully
-/*xmodel,viewhands_dnf_duke*/
+#xmodel,viewhands_dnf_duke
 
 stringtable,promod/customStatsTable.csv
 stringtable,promod/destructible.csv
@@ -474,16 +399,16 @@ stringtable,promod/destructible.csv
 xmodel,com_floodlight_on
 material,mtl_mrh_skully_body
 material,mtl_mrh_skully_head
-/*material,mtl_plr_big_smoke
-material,mtl_plr_carl_johnson_head
-material,mtl_plr_carl_johnson_jeans
-material,mtl_plr_carl_johnson_sneaker
-material,mtl_plr_carl_johnson_torso
-material,mtl_plr_dnf_duke_body
-material,mtl_plr_dnf_duke_glasses
-material,mtl_plr_dnf_duke_glasses_lens
-material,mtl_plr_dnf_duke_head
-material,mtl_plr_dnf_duke_hand*/
+# material,mtl_plr_big_smoke
+# material,mtl_plr_carl_johnson_head
+# material,mtl_plr_carl_johnson_jeans
+# material,mtl_plr_carl_johnson_sneaker
+# material,mtl_plr_carl_johnson_torso
+# material,mtl_plr_dnf_duke_body
+# material,mtl_plr_dnf_duke_glasses
+# material,mtl_plr_dnf_duke_glasses_lens
+# material,mtl_plr_dnf_duke_head
+# material,mtl_plr_dnf_duke_hand
 
 # AIRBORNE HANDS 
 xmodel,viewhands_mw2_airborne
@@ -495,3 +420,32 @@ xmodel,viewhands_mw2_winter
 material,mtl_mw2_winter_glove
 material,mtl_mw2_winter_sleeve
 
+# weapon mwr_m40a3
+# weapon,mp/mwr_m40a3_mp
+sound,mwr_m40a3
+material,mtl_mwr_m40a3_stock
+material,mtl_mwr_m40a3_scope
+material,mtl_mwr_m40a3_receiver
+material,mtl_mwr_m40a3_asn_stock
+material,mtl_mwr_m40a3_asn_scope
+material,mtl_mwr_m40a3_asn_receiver
+xanim,viewmodel_mwr_m40a3_ads_down
+xanim,viewmodel_mwr_m40a3_ads_up
+xanim,viewmodel_mwr_m40a3_fire
+xanim,viewmodel_mwr_m40a3_idle
+xanim,viewmodel_mwr_m40a3_inspect
+xanim,viewmodel_mwr_m40a3_pullout
+xanim,viewmodel_mwr_m40a3_pullout_quick
+xanim,viewmodel_mwr_m40a3_putaway
+xanim,viewmodel_mwr_m40a3_putaway_quick
+xanim,viewmodel_mwr_m40a3_rechamber
+xanim,viewmodel_mwr_m40a3_reload_in
+xanim,viewmodel_mwr_m40a3_reload_loop
+xanim,viewmodel_mwr_m40a3_reload_out
+xanim,viewmodel_mwr_m40a3_sprint_in
+xanim,viewmodel_mwr_m40a3_sprint_loop
+xanim,viewmodel_mwr_m40a3_sprint_out
+xmodel,viewmodel_mwr_m40a3_mp
+xmodel,viewmodel_mwr_m40a3_asn_mp
+xmodel,weapon_mwr_m40a3_mp
+xmodel,weapon_mwr_m40a3_asn_mp

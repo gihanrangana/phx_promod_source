@@ -230,8 +230,10 @@ menuDef	{\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
 	LOCAL_WEAPON_ITEM( suffix, 1, "1. M40A3", "sniper", REF_M40A3 )\
 	LOCAL_WEAPON_ITEM( suffix, 2, "2. R700", "sniper", REF_REMINGTON700 )\
+	LOCAL_WEAPON_ITEM( suffix, 3, "3. MWR M40A3", "sniper", REF_M21 )\
 	execKey "1" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "sniper", REF_M40A3 ); }\
 	execKey "2" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "sniper", REF_REMINGTON700 ); }\
+	execKey "3" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "sniper", REF_M21 ); }\
 }
 
 LOCAL_MASTER_WEAPON_GROUP( "", 1, 0 )
