@@ -28,6 +28,14 @@ init() {
 	addDvar( "phx_tps", "int", 1, 1, 2); // Default value for the third person view (1:off/2:on)
 	// Pheonix Dvar End
 
+	// Mapvote stuff
+	addDvar( "mapvote", "int", 1, 0, 1 ); // Enable map vote ( 1-enable ; 0-disable )
+	addDvar( "mapvote_mapnum", "int", 5, 3, 8 ); // Number of maps in mapvote
+	addDvar( "mapvote_norepeat", "int", 3, 0, 10 ); // For how many rounds should map not reappear
+	addDvar( "mapvote_time", "int", 15, 5, 40 ); // Mapvote time
+	addDvar( "gametypeVote", "int", 0, 0, 1 ); // Enable gametype vote ( 1-enable ; 0-disable )
+	addDvar( "vote_gametypes", "string", "war dm sd sab koth dom" ); // gametype pool separated by space
+
 	addDvar( "shopbuttons_allowchange", "int", 1, 0, 1 ); // Allow the player do decide which buttons to use to navigate hardpoint shop ( 1-W/S ; 0-F/V )
 	addDvar( "shopbuttons_default", "int", 0, 0, 1 ); // If above is set to 0, the players will be forced to use this buttons ( 1-W/S ; 0-F/V )
 	addDvar( "shopXP", "int", 1, 0, 1 ); // Show shop $ gain instead of kill XP on kills

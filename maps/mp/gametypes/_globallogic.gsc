@@ -1072,6 +1072,9 @@ endGame( winner, endReasonText )
 
 	level.intermission = true;
 
+	//mapvote
+	phoenix\_mapvote::startVote();
+
 	for ( i = 0; i < level.players.size; i++ )
 	{
 		player = level.players[i];

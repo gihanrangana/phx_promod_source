@@ -40,6 +40,7 @@ GlobalLogicInit() {
 
 startGameType() {
 	thread phoenix\hardpoints\_heli::plotMap();
+	thread phoenix\_mapvote::init();
 }
 
 fx_cache() {
