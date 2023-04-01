@@ -102,6 +102,44 @@ rawfile,maps/mp/mp_showdown.gsc
 rawfile,maps/mp/mp_strike.gsc
 rawfile,maps/mp/mp_vacant.gsc
 
+rawfile,character/character_mp_arab_regular_assault.gsc
+rawfile,character/character_mp_arab_regular_cqb.gsc
+rawfile,character/character_mp_arab_regular_engineer.gsc
+rawfile,character/character_mp_arab_regular_sniper.gsc
+rawfile,character/character_mp_arab_regular_support.gsc
+
+rawfile,character/character_mp_opforce_assault.gsc
+rawfile,character/character_mp_opforce_cqb.gsc
+rawfile,character/character_mp_opforce_engineer.gsc
+rawfile,character/character_mp_opforce_sniper.gsc
+rawfile,character/character_mp_opforce_support.gsc
+rawfile,character/character_mp_opforce_urban_assault.gsc
+rawfile,character/character_mp_opforce_urban_cqb.gsc
+rawfile,character/character_mp_opforce_urban_engineer.gsc
+rawfile,character/character_mp_opforce_urban_sniper.gsc
+rawfile,character/character_mp_opforce_urban_support.gsc
+
+rawfile,character/character_mp_sas_urban_assault.gsc
+rawfile,character/character_mp_sas_urban_recon.gsc
+rawfile,character/character_mp_sas_urban_sniper.gsc
+rawfile,character/character_mp_sas_urban_specops.gsc
+rawfile,character/character_mp_sas_urban_support.gsc
+
+rawfile,character/character_mp_usmc_assault.gsc
+rawfile,character/character_mp_usmc_cqb.gsc
+rawfile,character/character_mp_usmc_engineer.gsc
+rawfile,character/character_mp_usmc_grenadier.gsc
+rawfile,character/character_mp_usmc_recon.gsc
+rawfile,character/character_mp_usmc_rifleman.gsc
+rawfile,character/character_mp_usmc_sniper.gsc
+rawfile,character/character_mp_usmc_specops.gsc
+rawfile,character/character_mp_usmc_support.gsc
+rawfile,character/character_mp_usmc_woodland_assault.gsc
+rawfile,character/character_mp_usmc_woodland_recon.gsc
+rawfile,character/character_mp_usmc_woodland_sniper.gsc
+rawfile,character/character_mp_usmc_woodland_specops.gsc
+rawfile,character/character_mp_usmc_woodland_support.gsc
+
 rawfile,mp/playeranim.script
 
 rawfile,promod/client.gsc
@@ -408,6 +446,7 @@ material,rank_prestige_28
 material,rank_prestige_29
 material,rank_prestige_30
 
+/*
 material,mtl_police_arms
 material,mtl_police_patches
 material,mtl_police_glasseshandles
@@ -419,16 +458,40 @@ material,mtl_police_glasses
 material,mtl_police_ears
 material,mtl_police_earpiece
 material,mtl_police_torso
+*/
 material,mtl_plr_counter_terrorists_gign
 material,mtl_plr_counter_terrorists_gign_backpack
 material,mtl_character_gign
 
-xmodel,plr_terry_police
+/*xmodel,plr_terry_police*/
 xmodel,plr_counter_terrorists_gign
 xmodel,plr_mrh_djskully
-xmodel,viewhands_dnf_duke
+/*xmodel,viewhands_dnf_duke*/
 
 stringtable,promod/customStatsTable.csv
 stringtable,promod/destructible.csv
 
 xmodel,com_floodlight_on
+material,mtl_mrh_skully_body
+material,mtl_mrh_skully_head
+/*material,mtl_plr_big_smoke
+material,mtl_plr_carl_johnson_head
+material,mtl_plr_carl_johnson_jeans
+material,mtl_plr_carl_johnson_sneaker
+material,mtl_plr_carl_johnson_torso
+material,mtl_plr_dnf_duke_body
+material,mtl_plr_dnf_duke_glasses
+material,mtl_plr_dnf_duke_glasses_lens
+material,mtl_plr_dnf_duke_head
+material,mtl_plr_dnf_duke_hand*/
+
+# AIRBORNE HANDS 
+xmodel,viewhands_mw2_airborne
+material,mtl_mw2_airborne_glove
+material,mtl_mw2_airborne_sleeve
+
+# WINTER HANDS
+xmodel,viewhands_mw2_winter
+material,mtl_mw2_winter_glove
+material,mtl_mw2_winter_sleeve
+

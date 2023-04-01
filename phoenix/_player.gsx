@@ -171,28 +171,28 @@ userSettings() {
 setPlayerModel() {
 	self endon( "disconnect" );
 
-	for( ;; )
-	{
-		self waittill( "joined_team" );
+	// for( ;; )
+	// {
+	// 	// self waittill( "joined_team" );
 		
-		if( !isDefined( self.pers["team"] ) || self.pers[ "team" ] == "spectator" || self.pers[ "team" ] == "none" )
-			continue;
+	// 	// if( !isDefined( self.pers["team"] ) || self.pers[ "team" ] == "spectator" || self.pers[ "team" ] == "none" )
+	// 	// 	continue;
 
-		if(self.pers["team"] == "allies"){
-			// set alias model here
-			self detachAll();
-			self setModel("plr_counter_terrorists_gign");
+	// 	// if(self.pers["team"] == "allies"){
+	// 	// 	// set alias model here
+	// 	// 	self detachAll();
+	// 	// 	self setModel("plr_counter_terrorists_gign");
 			
-		}
-		else if( self.pers[ "team" ] == "axis" ){
-			// set axis model here
-			self detachAll();
-			self setModel("plr_mrh_djskully");
-			self setViewModel( "viewhands_marines");
-			// self setViewModel( "viewmodel_hands_cloth");
-		}
+	// 	// }
+	// 	// else if( self.pers[ "team" ] == "axis" ){
+	// 	// 	// set axis model here
+	// 	// 	self detachAll();
+	// 	// 	self setModel("plr_mrh_djskully");
+	// 	// 	self setViewModel( "viewhands_marines");
+	// 	// 	// self setViewModel( "viewmodel_hands_cloth");
+	// 	// }
 
-	}
+	// }
 		
 	// self detachAll();
 	// self setModel("plr_terry_police");
