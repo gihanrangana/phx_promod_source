@@ -1,6 +1,6 @@
 itemDef
 {
-    rect                      0 0 280 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+    rect                      0 0 290 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
     style                     WINDOW_STYLE_FILLED
     borderSize                1
     foreColor                 1 1 1 1

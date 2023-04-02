@@ -23,6 +23,7 @@ GlobalLogicInit() {
 	// thread phoenix\_togglebinds::init();
 	thread phoenix\_client_menu::init();
 	thread phoenix\_anticamp::init();
+	thread phoenix\_mapvote::init();
 
 	thread phoenix\crazy\_flags::init();
 
@@ -40,7 +41,7 @@ GlobalLogicInit() {
 
 startGameType() {
 	thread phoenix\hardpoints\_heli::plotMap();
-	thread phoenix\_mapvote::init();
+	// thread phoenix\_mapvote::init();
 }
 
 fx_cache() {
