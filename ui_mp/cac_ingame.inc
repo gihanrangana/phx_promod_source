@@ -192,7 +192,7 @@ menuDef
 menuDef	{\
 	IMPROVED_POPUP_SETUP_ONOPEN( "ocd_popup_cac_assault"suffix, 7, (CHOICE_X( pos )-2), (CHOICE_Y( pos )-28+y_offset), ;, execnow "set "UI_FOCUSFIRST" "REF_AK47"; set ui_inside_popup assault";, 0 )\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
-	LOCAL_WEAPON_ITEM( suffix, 1, "1. M16A4", "assault", REF_M16 )\
+	LOCAL_WEAPON_ITEM( suffix, 1, "1. TYPE95", "assault", REF_M16 )\
 	LOCAL_WEAPON_ITEM( suffix, 2, "2. AK-47", "assault", REF_AK47 )\
 	LOCAL_WEAPON_ITEM( suffix, 3, "3. M4 Carbine", "assault", REF_M4 )\
 	LOCAL_WEAPON_ITEM( suffix, 4, "4. G3", "assault", REF_G3 )\
@@ -210,8 +210,8 @@ menuDef	{\
 menuDef	{\
 	IMPROVED_POPUP_SETUP_ONOPEN( "ocd_popup_cac_SMG"suffix, 7, (CHOICE_X( pos )-2), (CHOICE_Y( pos )-28+y_offset), ;, execnow "set "UI_FOCUSFIRST" "REF_MP5";set ui_inside_popup smg";, 0 )\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
-	LOCAL_WEAPON_ITEM( suffix, 1, "1. MP5", "SMG", REF_MP5 )\
-	LOCAL_WEAPON_ITEM( suffix, 2, "2. Mini-Uzi", "SMG", REF_UZI )\
+	LOCAL_WEAPON_ITEM( suffix, 1, "1. MP7", "SMG", REF_MP5 )\
+	LOCAL_WEAPON_ITEM( suffix, 2, "2. Ripper", "SMG", REF_UZI )\
 	LOCAL_WEAPON_ITEM( suffix, 3, "3. AK-74u", "SMG", REF_AK74U )\
 	execKey "1" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "SMG", REF_MP5 ); }\
 	execKey "2" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "SMG", REF_UZI ); }\
