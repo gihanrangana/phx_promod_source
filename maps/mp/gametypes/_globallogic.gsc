@@ -1072,6 +1072,23 @@ endGame( winner, endReasonText )
 
 	level.intermission = true;
 
+	//	Credits & Mapvote
+	players = getEntArray( "player", "classname" );
+	for( i = 0; i < players.size; i++ )
+	{
+		players[i] closeMenu();
+		players[i] closeInGameMenu();
+		players[i] freezeControls( true );
+		players[i] notify("reset_outcome");
+		players[i] thread [[level.spawnSpectator]] (self.origin, self.angles);
+		players[i] allowSpectateTeam( "allies", false );
+		players[i] allowSpectateTeam( "axis", false );
+		players[i] allowSpectateTeam( "freelook", false );
+		players[i] allowSpectateTeam( "none", true );
+	}
+
+	phoenix\_mapvote::startMapVote();
+	
 	// level notify("start_mapvote"); //start the mapvote
 	// level waittill("end_mapvote"); //wait for its end
 
@@ -1085,22 +1102,7 @@ endGame( winner, endReasonText )
         player setClientDvar("ui_hud_hardcore", 0);
     }
 
-	// wait 4;
-	//	Credits & Mapvote
-	players = getEntArray( "player", "classname" );
-	for( i = 0; i < players.size; i++ )
-	{
-		players[i] closeMenu();
-		players[i] closeInGameMenu();
-		players[i] freezeControls( true );
-		players[i] thread [[level.spawnSpectator]] (self.origin, self.angles);
-		players[i] allowSpectateTeam( "allies", false );
-		players[i] allowSpectateTeam( "axis", false );
-		players[i] allowSpectateTeam( "freelook", false );
-		players[i] allowSpectateTeam( "none", true );
-	}
-
-	phoenix\_mapvote::startMapVote();
+	wait 4;
 
 	if ( isDefined( game["PROMOD_MATCH_MODE"] ) && game["PROMOD_MATCH_MODE"] == "match" )
 	{
