@@ -84,6 +84,12 @@
 		#include "ui_mp/navcontrols.inc"
 		#include "ui_mp/teamicon.inc"
 
+		#undef CHOICE_X_START
+		#define CHOICE_X_START	-260
+
+		#undef	CHOICE_HORIZONTAL_ALIGN
+		#define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_CENTER
+
 		CHOICE_BUTTON_VIS( 1, "1. Assault", scriptMenuResponse "assault";, when( dvarBool( axis_allow_assault ) || dvarString( loadout_curclass ) == "assault" ) )
 		CHOICE_DBUTTON_VIS( 1, "1. Assault", when( !dvarBool( axis_allow_assault ) && dvarString( loadout_curclass ) != "assault" ) )
 
