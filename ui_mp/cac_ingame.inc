@@ -228,7 +228,7 @@ menuDef	{\
 menuDef	{\
 	IMPROVED_POPUP_SETUP_ONOPEN( "ocd_popup_cac_sniper"suffix, 7, (CHOICE_X( pos )-2), (CHOICE_Y( pos )-28+y_offset), ;, execnow "set "UI_FOCUSFIRST" "REF_M40A3"; set ui_inside_popup sniper";, 0 )\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
-	LOCAL_WEAPON_ITEM( suffix, 1, "1. M40A3", "sniper", REF_M40A3 )\
+	LOCAL_WEAPON_ITEM( suffix, 1, "1. AWM", "sniper", REF_M40A3 )\
 	LOCAL_WEAPON_ITEM( suffix, 2, "2. R700", "sniper", REF_REMINGTON700 )\
 	LOCAL_WEAPON_ITEM( suffix, 3, "3. MWR M40A3", "sniper", REF_M21 )\
 	execKey "1" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "sniper", REF_M40A3 ); }\
