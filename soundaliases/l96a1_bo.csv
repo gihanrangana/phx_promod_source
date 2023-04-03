@@ -1,0 +1,36 @@
+name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max,channel,type,probability,loop,masterslave,loadspec,subtitle,compression,secondaryaliasname,volumefalloffcurve,startdelay,speakermap,reverb,lfe percentage,center percentage,platform,envelop_min,envelop_max,envelop percentage,conversion
+
+
+,AWM (L96A1) BLACK OPS
+
+weap_bo_l96a1_reload_bolt_out_plr,,weps/l96a1_bo/weap_bo_l96a1_reload_bolt_out.wav,0.65,0.75,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
+weap_bo_l96a1_reload_clip_out_plr,,weps/l96a1_bo/weap_bo_l96a1_reload_clip_out.wav,0.65,0.75,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
+weap_bo_l96a1_reload_clip_in_plr,,weps/l96a1_bo/weap_bo_l96a1_reload_clip_in.wav,0.65,0.75,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
+weap_bo_l96a1_reload_bolt_in_plr,,weps/l96a1_bo/weap_bo_l96a1_reload_bolt_in.wav,0.65,0.75,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
+
+
+weap_bo_l96a1_pullout_1st_plr,,weps/l96a1_bo/weap_bo_l96a1_pullout_1st.wav,0.65,0.75,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
+weap_bo_l96a1_rechamber_plr,,weps/l96a1_bo/weap_bo_l96a1_rechamber.wav,0.65,0.75,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
+
+
+weap_bo_l96a1_fire_plr,,weps/l96a1_bo/weap_bo_l96a1_fire.wav,1,1,wpnplyr,1,1,500000,,local,,,,0.85,,,,,weapon2,,,,
+
+weap_bo_l96a1_fire_npc,,weps/l96a1_bo/weap_bo_l96a1_fire.wav,0.84,0.9,wpnai,1,1,35,8400,weapon,,,,0.7,!ac130 all_mp,,,,weapon4
+weap_bo_l96a1_fire_npc,,weps/l96a1_bo/weap_bo_l96a1_fire.wav,0.84,0.9,wpnai,1,1,35,10920,weapon,,,,0.7,all_mp,,,,weapon4
+
+
+
+weap_bo_l96a1_fire_sil_plr,,weps/l96a1_bo/weap_bo_l96a1_fire_sil.wav,1,1,wpnplyr,1,1,500000,,local,,,,0.85,,,,,weapon2,,,,
+
+weap_bo_l96a1_fire_sil_npc,,weps/l96a1_bo/weap_bo_l96a1_fire_sil.wav,0.66,0.8,wpnai,1,1,35,8400,weapon,,,,0.7,!ac130 all_mp,,,,weapon4
+weap_bo_l96a1_fire_sil_npc,,weps/l96a1_bo/weap_bo_l96a1_fire_sil.wav,0.66,0.8,wpnai,1,1,35,10920,weapon,,,,0.7,all_mp,,,,weapon4
+
+
+
+
+,weap_bo_l96a1_lift_plr,,foley/wpfoly_m4_reload_lift.wav,0.55,0.6,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
+
+
+,NOT_USED
+,weap_bo_l96a1_bolt_out_plr,,weps/l96a1_bo/weap_bo_l96a1_bolt_out.wav,0.65,0.75,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
+,weap_bo_l96a1_bolt_in_plr,,weps/l96a1_bo/weap_bo_l96a1_bolt_in.wav,0.65,0.75,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
