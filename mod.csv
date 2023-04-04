@@ -394,6 +394,14 @@ xmodel,plr_counter_terrorists_gign
 xmodel,plr_mrh_djskully
 #xmodel,viewhands_dnf_duke
 
+stringtable,mp\flagicontable.csv
+stringtable,mp\flagTable.csv
+stringtable,mp\mapsTable.csv
+stringtable,mp\playerStatsTable.csv
+stringtable,mp\rankIconTable.csv
+stringtable,mp\rankTable.csv
+stringtable,mp\statsTable.csv
+
 stringtable,promod/customStatsTable.csv
 stringtable,promod/destructible.csv
 

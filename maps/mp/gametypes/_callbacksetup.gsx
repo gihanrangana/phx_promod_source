@@ -19,10 +19,10 @@ CodeCallback_StartGameType()
 
 		level.gametypestarted = true; // so we know that the gametype has been started up
 		
-		level thread maps\mp\bots\_bot::init();
-		level thread maps\mp\bots\_bot_chat::init();
-		level thread maps\mp\bots\_menu::init();
-		level thread maps\mp\bots\_wp_editor::init();
+		// level thread maps\mp\bots\_bot::init();
+		// level thread maps\mp\bots\_bot_chat::init();
+		// level thread maps\mp\bots\_menu::init();
+		// level thread maps\mp\bots\_wp_editor::init();
 	}
 }
 
@@ -148,12 +148,12 @@ callbackVoid()
 /*================
 Called by code when a script defined command has been invoked.
 ================*/
-CodeCallback_ScriptCommand(command, arguments)
-{
-	self thread code\scriptcommands::commandHandler( command, arguments );
+// CodeCallback_ScriptCommand(command, arguments)
+// {
+// 	self thread code\scriptcommands::commandHandler( command, arguments );
 
-	self thread matrix\_cmd::adminCommands( command, arguments );
+// 	self thread matrix\_cmd::adminCommands( command, arguments );
 
-	iprintlnbold(command);
-}
+// 	iprintlnbold(command);
+// }
 //=============================================================================
