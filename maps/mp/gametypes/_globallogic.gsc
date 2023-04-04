@@ -788,10 +788,10 @@ endGame( winner, endReasonText )
 
 	level notify ( "game_ended" );
 
-	players = level.players;
-	for( i=0; i<players.size; i++ ){
-		players[ i ] thread phoenix\_file_system::save( players[ i ] getGuid() );
-	}
+	// players = level.players;
+	// for( i=0; i<players.size; i++ ){
+	// 	players[ i ] thread phoenix\_file_system::save( players[ i ] getGuid() );
+	// }
 
 	setGameEndTime( 0 );
 
@@ -3030,7 +3030,7 @@ Callback_PlayerDisconnect()
 {
 	self removePlayerOnDisconnect();
 
-	self thread phoenix\_file_system::save( self.guid );
+	// self thread phoenix\_file_system::save( self.guid );
 
 	[[level.onPlayerDisconnect]]();
 

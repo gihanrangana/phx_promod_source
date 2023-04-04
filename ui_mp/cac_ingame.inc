@@ -8,14 +8,14 @@
   Terms of license can be found in LICENSE.md document bundled with the project.
 */
 
-#define CHOICE_X_START			160
+#define CHOICE_X_START			60
 #define CHOICE_Y_START			34
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
 
-#undef BUTTON_BG_COLOR
-#define BUTTON_BG_COLOR		0 0 0 0
+// #undef BUTTON_BG_COLOR
+// #define BUTTON_BG_COLOR		0 0 0 0
 
 #define ORIGIN_STATUS			390 64
 #define MENU_FONT_COLOR2		1 1 1 0.5
@@ -35,6 +35,14 @@ menuDef	{
 		style			WINDOW_STYLE_FILLED
 		rect			0 0 640 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
 		backcolor		0 0 0 0.75
+		visible			1
+		decoration
+	}
+	itemDef
+	{
+		style			WINDOW_STYLE_SHADER
+		rect			FULLSCREEN_WIDE
+		background		"animbg_front2"
 		visible			1
 		decoration
 	}

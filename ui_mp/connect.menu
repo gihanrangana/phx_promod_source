@@ -24,7 +24,7 @@
 		itemDef
 		{
 			style			WINDOW_STYLE_FILLED
-			rect			-128 -40 260 4 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
+			rect			-297 -40 598 4 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
 			origin			107 0
 			backcolor		0 0 0 0.8
 			visible			1
@@ -34,11 +34,118 @@
 		{
 			name			"loadbar"
 			style			WINDOW_STYLE_LOADBAR
-			rect			-127 -39 258 2 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
+			rect			-298 -39 600 2 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
 			origin			107 0
 			background		"white"
 			visible			1
 			decoration
 		}
+        itemDef
+        {
+            rect                      0 0 854 50 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            borderSize                1
+            foreColor                 1 1 1 1
+            backColor                 0 0 0 0
+            borderColor               0 0 0 0
+            outlineColor              0 0 0 0
+            background                "gradient_top"
+            textScale                 0.55
+            visible 1                 
+            decoration                
+        }
+        itemDef
+        {
+            rect                      0 405 854 75 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            borderSize                1
+            foreColor                 1 1 1 1
+            backColor                 0 0 0 0
+            borderColor               0 0 0 0
+            outlineColor              0 0 0 0
+            background                "gradient_bottom"
+            textScale                 0.55
+            visible 1                 
+            decoration                
+        }
+		itemDef
+        {
+            rect                      90 20 1 1 HORIZONTAL_ALIGN_RIGHT VERTICAL_ALIGN_TOP
+            borderSize                1
+            foreColor                 1 1 1 1
+            backColor                 0 0 0 0
+            borderColor               0 0 0 0
+            outlineColor              0 0 0 0
+            textAlign                 ITEM_ALIGN_LEGACY_RIGHT
+            textScale                 0.5
+            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            text                      "^5Develped By: ^7|PHX| GHOST "
+            visible 1                 
+            decoration                
+        }
+		itemDef
+        {
+            rect                      90 31 2 2 HORIZONTAL_ALIGN_RIGHT VERTICAL_ALIGN_TOP
+            borderSize                1
+            foreColor                 1 1 1 1
+            backColor                 0 0 0 0
+            borderColor               0 0 0 0
+            outlineColor              0 0 0 0
+            textAlign                 ITEM_ALIGN_LEGACY_RIGHT
+            textScale                 0.30
+            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            text                      "^5[^7Founders-  |PHX| GHOST ^1| ^7|PHX| UVT[K]K ^1| ^7|PHX| RAIKO^5]"
+            visible 1                 
+            decoration                
+        }
+		itemDef
+        {
+            rect                      -193 -18 10 100 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
+            borderSize                1
+            foreColor                 1 0 0 1
+            backColor                 0 0 0 0
+            borderColor               0 0 0 0
+            outlineColor              0 0 0 0
+            textFont                  UI_FONT_OBJECTIVE
+            textScale                 0.2
+            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            text                      "v1.0"
+            visible 1                 
+            decoration                
+        }
+        itemDef
+        {
+            rect                      392 -18 10 100 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
+            borderSize                1
+            foreColor                 1 0 0 1
+            backColor                 0 0 0 0
+            borderColor               0 0 0 0
+            outlineColor              0 0 0 0
+            textFont                  UI_FONT_OBJECTIVE
+            textAlign                 ITEM_ALIGN_LEGACY_RIGHT
+            textScale                 0.2
+            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            text                      "(C) 2023"
+            visible 1                 
+            decoration                
+        }
+        itemDef
+        {
+            rect                      107 -16 10 100 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
+            borderSize                1
+            foreColor                 1 1 1 1
+            backColor                 0 0 0 0
+            borderColor               0 0 0 0
+            outlineColor              0 0 0 0
+            textAlign                 ITEM_ALIGN_LEGACY_CENTER
+            textScale                 0.2
+            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            text                      "PHOENIX Promod"
+            visible 1                 
+            decoration                
+        }
+		
+		#include "ui/safearea.menu"
+		
 	}
 }

@@ -226,7 +226,7 @@
 #endif
 
 #ifndef BUTTON_BG_COLOR
-#define BUTTON_BG_COLOR		0 0 0 0.25  // Main Menu Button Color // Multiplyer Buttons
+#define BUTTON_BG_COLOR		1 0 0 0.25  // Main Menu Button Color // Multiplyer Buttons
 #endif
 
 // -----------------------------------------

@@ -60,7 +60,7 @@ main()
 	setDvar( "scr_war_roundlimit", 1 ); // [0->] (points)
 	setDvar( "scr_war_scorelimit", 0 ); // [0->] (points)
 	setDvar( "scr_war_roundswitch", 0 ); // [0->] (points)
-	setDvar( "scr_war_timelimit", 1 ); // [0->] (minutes)
+	setDvar( "scr_war_timelimit", 13 ); // [0->] (minutes)
 	setDvar( "scr_war_waverespawndelay", 0 ); // [0->] (seconds)
 
 	// dm
