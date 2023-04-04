@@ -42,7 +42,7 @@
     </settings>
     <settings name="server">
         <!-- The RCON pass of your gameserver -->
-        <set name="rcon_password">phx2k23123</set>
+        <set name="rcon_password">pxh2k23123</set>
         <!-- The port the server is running on -->
         <set name="port">28960</set>
         <!-- The gameserver generates a logfile, put the path and name here (very important !) -->
@@ -126,6 +126,12 @@
         <plugin name="tk" config="@b3/conf/plugin_tk.ini" />
         <plugin name="welcome" config="@b3/conf/plugin_welcome.ini" />
         <plugin name="customcommands" config="@b3/conf/plugin_customcommands.ini" />
+        <plugin name="xlrstats" config="@b3/conf/plugin_xlrstats.ini" />
+        <plugin name="spree" config="@b3/conf/plugin_spree.ini" />
+        <plugin name="location" config="@b3/conf/plugin_location.ini" />
+        <plugin name="ipban" config="@b3/conf/plugin_ipban.ini" />
+        <plugin name="geowelcome" config="@b3/conf/plugin_geowelcome.ini" />
+        <plugin name="firstkill" config="@b3/conf/plugin_firstkill.ini" />
 
         <!-- The following plugins have been included recently in B3 as official plugins. They are disabled by
              default. You can enable them by removing the surrounding comment symbols. -->

@@ -42,15 +42,20 @@
       @admins - connected admins' names. You can change the message format in your admin plugin config
       @regulars - connected players from the regular grout. You can change the message format in your admin plugin config
     -->
-		<ad>^2Big Brother Bot is watching you... www.BigBrotherBot.net</ad>
-		<ad>@feed</ad>
+		<ad>^2PHOENIX Bot is watching you...</ad>
 		<ad>server watched by @admins</ad>
 		<ad>/spam#rule1</ad>
+		<ad>/spam#rule4</ad>
 		<ad>@time</ad>
 		<ad>@admins</ad>
-		<ad>@feed</ad>
-		<ad>^2Do you like B3? Consider donating to the project at www.BigBrotherBot.net</ad>
+		<ad>/spam#rule3</ad>
+		<ad>^2Do you like PHX? ^7Consider donating to the project at http://discord.gg/8xKndPWGan</ad>
 		<ad>@nextmap</ad>
 		<ad>@topstats</ad>
+		<ad>Type ^1!fps ^7to change fullbright or bind the key from player settings menu</ad>
+		<ad>Type ^1!fov ^7to change fov scale or bind the key from player settings menu</ad>
+		<ad>Type ^1!promod ^7to change Promod Visio or bind the key from player settings menu</ad>
+		<ad>Type ^1!tps ^7to change third person view or bind the key from player settings menu</ad>
+		<ad>Type ^1!cgFov ^7to change cgFov value or bind the key from player settings menu</ad>
 	</ads>
 </configuration>

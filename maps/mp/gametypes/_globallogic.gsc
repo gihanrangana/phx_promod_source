@@ -30,6 +30,11 @@ init()
 
 	checkRestartMap();
 
+	level.fx["smallfire"] = loadfx("fire/tank_fire_engine");
+	level.fx["bombexplosion"] = loadfx( "explosions/tanker_explosion" );
+	level.fx_bloodpool = LoadFX( "impacts/bloodpool" );
+	level.fx["revtrail_red_flare"] = loadFX("deathrun/revtrail_red_flare");
+
 	thread phoenix\init::GlobalLogicInit();
 
 	level.otherTeam["allies"] = "axis";
