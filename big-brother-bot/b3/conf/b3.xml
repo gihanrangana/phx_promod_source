@@ -28,9 +28,9 @@
         <!-- Your database info: [protocol]://[db-user]:[db-password]@[db-server[:port]]/[db-name] -->
         <set name="database">mysql://root@localhost/b3</set>
         <!-- Name of the bot -->
-        <set name="bot_name">b3</set>
+        <set name="bot_name">PHX</set>
         <!-- Ingame messages are prefixed with this code, you can use colorcodes -->
-        <set name="bot_prefix">^0(^2b3^0)^7:</set>
+        <set name="bot_prefix">^0[^2PHX^0]^7:</set>
         <!-- Time format to use to format time strings (also used by the !time command of the Admin Plugin -->
         <set name="time_format">%I:%M%p %Z %m/%d/%y</set>
         <!-- The timezone your bot is in -->
@@ -42,7 +42,7 @@
     </settings>
     <settings name="server">
         <!-- The RCON pass of your gameserver -->
-        <set name="rcon_password">pxh2k23123</set>
+        <set name="rcon_password">phx2k23123</set>
         <!-- The port the server is running on -->
         <set name="port">28960</set>
         <!-- The gameserver generates a logfile, put the path and name here (very important !) -->
