@@ -1,18 +1,7 @@
-/*
-  Copyright (c) 2009-2017 Andreas Göransson <andreas.goransson@gmail.com>
-  Copyright (c) 2009-2017 Indrek Ardel <indrek@ardel.eu>
-
-  This file is part of Call of Duty 4 Promod.
-
-  Call of Duty 4 Promod is licensed under Promod Modder Ethical Public License.
-  Terms of license can be found in LICENSE.md document bundled with the project.
-*/
-
 init()
 {
 	level.spectateOverride["allies"] = spawnstruct();
 	level.spectateOverride["axis"] = spawnstruct();
-
 	level thread onPlayerConnect();
 }
 
@@ -21,7 +10,6 @@ onPlayerConnect()
 	for(;;)
 	{
 		level waittill("connecting", player);
-
 		player thread onJoinedTeam();
 		player thread onJoinedSpectators();
 		player thread onPlayerSpawned();
@@ -31,7 +19,6 @@ onPlayerConnect()
 onPlayerSpawned()
 {
 	self endon("disconnect");
-
 	for(;;)
 	{
 		self waittill("spawned_player");
@@ -42,7 +29,6 @@ onPlayerSpawned()
 onJoinedTeam()
 {
 	self endon("disconnect");
-
 	for(;;)
 	{
 		self waittill("joined_team");
@@ -53,7 +39,6 @@ onJoinedTeam()
 onJoinedSpectators()
 {
 	self endon("disconnect");
-
 	for(;;)
 	{
 		self waittill("joined_spectators");
@@ -64,7 +49,6 @@ onJoinedSpectators()
 updateSpectateSettings()
 {
 	level endon ( "game_ended" );
-
 	for ( i = 0; i < level.players.size; i++ )
 		level.players[i] setSpectatePermissions();
 }
@@ -83,7 +67,6 @@ setSpectatePermissions()
 {
 	team = self.sessionteam;
 	spectateType = maps\mp\gametypes\_tweakables::getTweakableValue( "game", "spectatetype" );
-
 	switch( spectateType )
 	{
 		case 0:

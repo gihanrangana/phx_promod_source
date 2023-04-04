@@ -1,21 +1,11 @@
-/*
-  Copyright (c) 2009-2017 Andreas Göransson <andreas.goransson@gmail.com>
-  Copyright (c) 2009-2017 Indrek Ardel <indrek@ardel.eu>
-
-  This file is part of Call of Duty 4 Promod.
-
-  Call of Duty 4 Promod is licensed under Promod Modder Ethical Public License.
-  Terms of license can be found in LICENSE.md document bundled with the project.
-*/
-
 #include "ui/menudef.h"
 #include "ui_mp/common_macro.inc"
 
 #define CHOICE_SIZE_X			150
 #define CHOICE_SIZE_Y			22
 
-#define CHOICE_X_START			50
-#define CHOICE_Y_START			204
+#define CHOICE_X_START			0
+#define CHOICE_Y_START			210
 
 #define CHOICE_GROUP			"class"
 #define CHOICE_SEP_1			4
@@ -23,8 +13,10 @@
 #include "ui_mp/menustyle.inc"
 #include "ui_mp/choices_setup_teams.menu"
 
-// #undef BUTTON_BG_COLOR
-// #define BUTTON_BG_COLOR		1 0 0 0.25
+#undef BUTTON_BG_COLOR
+#define BUTTON_BG_COLOR		0 0 0 0.2
+
+#define OBJECTIVE_COLOR_CUSTOM 0.1 0.1 1 0.8
 
 #define ORIGIN_DESCRIPTION		(CHOICE_X_START + 15) 190
 
@@ -53,16 +45,8 @@
 			visible			1
 			decoration
 		}
-		itemDef
-		{
-			style			WINDOW_STYLE_SHADER
-			rect			FULLSCREEN_WIDE
-			background		"animbg_front2"
-			visible			1
-			decoration
-		}
 
-		itemDef
+		/*itemDef
 		{
 			style			WINDOW_STYLE_SHADER
 			rect			0 0 854 75 HORIZONTAL_ALIGN_FULLSCREEN 0
@@ -78,52 +62,56 @@
 			background		"gradient_bottom"
 			visible			1
 			decoration
-		}
+		}*/
 
-		#include "ui_mp/phx_menu_bg.inc";
-
-		#include "ui_mp/tactical_map.inc";
+		#include "ui_mp/player_info.inc";
 		#define ORIGIN_BANNER		108 48
 
-		itemDef	{
+		itemDef	
+		{
 			style			WINDOW_STYLE_SHADER
-			rect			ORIGIN_BANNER 400 0.5
+			rect			ORIGIN_BANNER 450 0.5
 			background		"line_horizontal"
-			forecolor		1 1 1 0.85
-			visible			1	decoration	}
-		itemDef	{
+			forecolor		0 0 0 0.85
+			visible			1	decoration	
+		}
+		itemDef	
+		{
 			style			WINDOW_STYLE_SHADER
 			rect			ORIGIN_BANNER 340 10
 			origin			30 1
 			background		"line_horizontal"
-			forecolor		OBJECTIVE_COLOR_MARINES
+			forecolor		OBJECTIVE_COLOR_CUSTOM
 			visible			1
 			decoration	
 		}
-		itemDef	{
+		itemDef	
+		{
 			style			WINDOW_STYLE_SHADER
 			rect			ORIGIN_BANNER 400 0.5
 			origin			0 12
 			background		"line_horizontal"
-			forecolor		1 1 1 0.85
-			visible			1	decoration	}
-
-		itemDef	{
+			forecolor		0 0 0 0.85
+			visible			1	decoration	
+		}
+		itemDef	
+		{
 			rect			-400 64 800 0 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_TOP
 			textstyle		ITEM_TEXTSTYLE_SHADOWED
 			textscale		TEXTSIZE_TITLE
 			textalign		ITEM_ALIGN_CENTER
-			forecolor		1 1 1 0.85
-			exp 			text ( gametypename() );
+			forecolor		OBJECTIVE_COLOR_CUSTOM
+			exp text 		( gametypename() );
 			visible			1	decoration	
 		}
-		itemDef	{
+		itemDef	
+		{
 			rect			-250 84 500 60 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_TOP
 			textstyle		ITEM_TEXTSTYLE_SHADOWED
 			textscale		TEXTSIZE_SMALL
 			textalign		ITEM_ALIGN_CENTER
 			forecolor		1 1 1 0.75
-			exp 			text( gametypedescription() );
+			exp text		( gametypedescription() );
 			autowrapped
 			visible			1	decoration	
 		}
@@ -135,10 +123,10 @@
 		#include "ui_mp/teamicon.inc"
 
 		#undef CHOICE_X_START
-		#define CHOICE_X_START	60
+		#define CHOICE_X_START	-320
 
 		#undef	CHOICE_HORIZONTAL_ALIGN
-		#define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_LEFT
+		#define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_CENTER
 
 		CHOICE_BUTTON_BG( 1, when( (TEAM_IS_MARINES || TEAM_IS_OPFOR) && MAY_CHOOSE_CLASS ) )
 		CHOICE_HIGHLIGHT( 1, (TEAM_IS_MARINES || TEAM_IS_OPFOR) && MAY_CHOOSE_CLASS )
@@ -152,6 +140,10 @@
 		CHOICE_BUTTON( 3, "@MENU_CONTROLS", close self; open main_controls )
 		CHOICE_BUTTON( 4, "@MENU_OPTIONS", close self; open main_options; execnow "set ui_allow_graphic_change 0"; )
 
+		CHOICE_BUTTON( 6, "@MENU_LEAVE_GAME", open popup_leavegame; )
+		
+		
+		
 		/////////////////////////////////////////////////////////////////////////////// PRESTIGE
 		#define SETUP_ACTION_PRESTIGEMODE \
 	 	exec "statset 267 1";\
@@ -167,16 +159,53 @@
 		CHOICE_NEWICON_VIS( 5, "specialty_locked", when( PRESTIGE_AVAIL == 0 && PRESTIGE_FINISH == 0 ) )
 		//CHOICE_BUTTON( 5, "@MENU_PRESTIGE_ENTER", play "enter_prestige"; )
 
+		#include "ui/safearea.menu"
+	}
+		#define PRESTIGE_RESET \
+		scriptmenuresponse "prestige" \
+		play "enter_prestige";
+	
+	#undef CHOICE_SIZE_X
+	#define CHOICE_SIZE_X			320
+	
+	#undef CHOICE_HORIZONTAL_ALIGN
+	#define CHOICE_HORIZONTAL_ALIGN	HORIZONTAL_ALIGN_CENTER
+	#undef CHOICE_VERTICAL_ALIGN
+	#define CHOICE_VERTICAL_ALIGN	VERTICAL_ALIGN_CENTER
+	
+	#define CHOICE_POPUP_TITLE_HEIGHT	24
+	#define CHOICE_POPUP_SUBTITLE_HEIGHT 142
+	
+	#include "ui_mp/popupstyle.inc"
+	#include "ui/choices_setup_popmenu.menu"
+	
+	menuDef
+	{
+		CENTER_POPUP_SETUP_ONOPEN( prestige_reset1, 2, ;, setfocus cancel_button, 1 )
 
-		CHOICE_BUTTON( 6, "Player Settings", close self; open player_settings; )
+		CHOICE_POPMENU_TITLE( "@MENU_PRESTIGE_RESET_TITLE1" )
+		CHOICE_POPMENU_SUBTITLE( "@MENU_PRESTIGE_RESET_WARNING1" )
+		CHOICE_BUTTON( 1, "@MENU_CONTINUE", close prestige_reset1; open prestige_reset3 )
+		CHOICE_BUTTON_EX( 2, "@MENU_CANCEL", close prestige_reset1, name cancel_button )
+	}
+	
+	/*menuDef
+	{
+		CENTER_POPUP_SETUP_ONOPEN( prestige_reset2, 2, ;, setfocus cancel_button, 1 )
 
+		CHOICE_POPMENU_TITLE( "@MENU_PRESTIGE_RESET_TITLE2" )
+		CHOICE_POPMENU_SUBTITLE( "@MENU_PRESTIGE_RESET_WARNING2" )
+		CHOICE_BUTTON( 1, "@MENU_CONTINUE", close prestige_reset2; open prestige_reset3 )
+		CHOICE_BUTTON_EX( 2, "@MENU_CANCEL", close prestige_reset2, name cancel_button )
+	}*/
+	
+	menuDef
+	{
+		CENTER_POPUP_SETUP_ONOPEN( prestige_reset3, 2, ;, setfocus cancel_button, 1 )
 
-		// CHOICE_BUTTON_VIS( 5, "@MPUI_CALL_VOTE", open callvote; close self;, when( dvarbool( ui_allowvote ) ); )
-		// CHOICE_DBUTTON_VIS( 5, "@MPUI_CALL_VOTE", when( !dvarbool( ui_allowvote ) ); )
-
-		// CHOICE_BUTTON( 7, "@MPUI_MUTE_PLAYERS", open muteplayer; close self; )
-
-		CHOICE_BUTTON( 7, "@MENU_LEAVE_GAME", open popup_leavegame; )
-
+		CHOICE_POPMENU_TITLE( "@MENU_PRESTIGE_RESET_TITLE3" )
+		CHOICE_POPMENU_SUBTITLE( "@MENU_PRESTIGE_RESET_WARNING3" )
+		CHOICE_BUTTON( 1, "@MENU_PRESTIGE_ENTER", PRESTIGE_RESET; close prestige_reset3; )
+		CHOICE_BUTTON_EX( 2, "@MENU_CANCEL", close prestige_reset3;, name cancel_button )
 	}
 }

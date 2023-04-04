@@ -1,21 +1,11 @@
-/*
-  Copyright (c) 2009-2017 Andreas Göransson <andreas.goransson@gmail.com>
-  Copyright (c) 2009-2017 Indrek Ardel <indrek@ardel.eu>
-
-  This file is part of Call of Duty 4 Promod.
-
-  Call of Duty 4 Promod is licensed under Promod Modder Ethical Public License.
-  Terms of license can be found in LICENSE.md document bundled with the project.
-*/
-
-#define CHOICE_X_START			60
+#define CHOICE_X_START			0
 #define CHOICE_Y_START			34
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
 
-// #undef BUTTON_BG_COLOR
-// #define BUTTON_BG_COLOR		0 0 0 0
+#undef BUTTON_BG_COLOR
+#define BUTTON_BG_COLOR		0 0 0 0.25
 
 #define ORIGIN_STATUS			390 64
 #define MENU_FONT_COLOR2		1 1 1 0.5
@@ -38,15 +28,7 @@ menuDef	{
 		visible			1
 		decoration
 	}
-	itemDef
-	{
-		style			WINDOW_STYLE_SHADER
-		rect			FULLSCREEN_WIDE
-		background		"animbg_front2"
-		visible			1
-		decoration
-	}
-	itemDef
+	/*itemDef
 	{
 		style			WINDOW_STYLE_SHADER
 		rect			0 0 854 75 HORIZONTAL_ALIGN_FULLSCREEN 0
@@ -61,9 +43,7 @@ menuDef	{
 		background		"gradient_bottom"
 		visible			1
 		decoration
-	}
-
-	#include "ui_mp/phx_menu_bg.inc"
+	}*/
 
 	CHOICE_MENU_TITLE( "INVENTORY" )
 
@@ -127,6 +107,7 @@ menuDef	{
 	#define STAT_CAC_CAMO					tableLookup("mp/attachmentTable.csv", 4, dvarString( loadout_camo ), 11)
 
 	#include "ui_mp/cac_loadout_ingame.inc"
+	//#include "ui_mp/cac_loadout.inc"
 }
 
 #define PREPROC_ATTACH_CLOSEALL \
@@ -155,9 +136,9 @@ close "ocd_popup_cac_camo"; \
 #define NEW_Y_OFFSET	(0-2)
 
 #define LOCAL_WEAPON_INFO_WINDOW( highlight_dvar ) \
-	PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH-6) -4 280 CHOICE_POPUP_HEIGHT( 7 ) CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "white", CHOICE_POPUP_BORDER_COLOR, 1, 2, CHOICE_POPUP_BORDER_COLOR visible when( dvarString(ui_inside_popup) != "attachment" && dvarString(ui_inside_popup) != "camo" ); ) \
+	PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH-6) -4 280 CHOICE_POPUP_HEIGHT( 7 ) CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "black", CHOICE_POPUP_BORDER_COLOR, 1, 2, CHOICE_POPUP_BORDER_COLOR visible when( dvarString(ui_inside_popup) != "attachment" && dvarString(ui_inside_popup) != "camo" ); ) \
 	LOADOUT_PLATING_RAW( CHOICE_POPUP_WIDTH 8, -2, 0, 280, (CHOICE_POPUP_HEIGHT( 7 )-4), CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN visible when( dvarString(ui_inside_popup) != "attachment" && dvarString(ui_inside_popup) != "camo" );, 0, 0 )\
-	PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH+6) 30 256 48 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "gradient_bottom", 1 1 1 0.3, 0, 2, CHOICE_POPUP_BORDER_COLOR visible when( dvarString(ui_inside_popup) != "attachment" && dvarString(ui_inside_popup) != "camo" ); ) \
+	PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH+6) 30 256 48 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "black", 1 1 1 0.3, 0, 2, CHOICE_POPUP_BORDER_COLOR visible when( dvarString(ui_inside_popup) != "attachment" && dvarString(ui_inside_popup) != "camo" ); ) \
 	PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH+72) -6 180 90 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, tablelookup("mp/statsTable.csv",4,dvarString(highlight_dvar),6), 1 1 1 1, 0, 2, CHOICE_POPUP_BORDER_COLOR visible when( dvarString(ui_inside_popup) != "attachment" && dvarString(ui_inside_popup) != "camo" ); ) \
 	PREPROC_TEXT_DRAW_ALIGNED_EXP( (CHOICE_POPUP_WIDTH+10) 58 256 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "@"+tablelookup("mp/statstable.csv",4,dvarString(highlight_dvar),3), TEXTSIZE_DEFAULT, 0, 0, ITEM_ALIGN_MIDDLE_LEFT, COLOR_TITLE visible when( dvarString(ui_inside_popup) != "attachment" && dvarString(ui_inside_popup) != "camo" ); ) \
 	PREPROC_TEXT_DRAW_ALIGNED_EXP( (CHOICE_POPUP_WIDTH+10) 80 256 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "@"+tablelookup("mp/statstable.csv",4,dvarString(highlight_dvar),7), TEXTSIZE_SMALL, 0, 0, ITEM_ALIGN_MIDDLE_LEFT, CHOICE_TEXTCOLOR ) \
@@ -200,9 +181,9 @@ menuDef
 menuDef	{\
 	IMPROVED_POPUP_SETUP_ONOPEN( "ocd_popup_cac_assault"suffix, 7, (CHOICE_X( pos )-2), (CHOICE_Y( pos )-28+y_offset), ;, execnow "set "UI_FOCUSFIRST" "REF_AK47"; set ui_inside_popup assault";, 0 )\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
-	LOCAL_WEAPON_ITEM( suffix, 1, "1. TYPE95", "assault", REF_M16 )\
+	LOCAL_WEAPON_ITEM( suffix, 1, "1. M16A4", "assault", REF_M16 )\
 	LOCAL_WEAPON_ITEM( suffix, 2, "2. AK-47", "assault", REF_AK47 )\
-	LOCAL_WEAPON_ITEM( suffix, 3, "3. M27 IAR", "assault", REF_M4 )\
+	LOCAL_WEAPON_ITEM( suffix, 3, "3. M4 Carbine", "assault", REF_M4 )\
 	LOCAL_WEAPON_ITEM( suffix, 4, "4. G3", "assault", REF_G3 )\
 	LOCAL_WEAPON_ITEM( suffix, 5, "5. G36C", "assault", REF_G36C )\
 	LOCAL_WEAPON_ITEM( suffix, 6, "6. M14", "assault", REF_M14 )\
@@ -218,8 +199,8 @@ menuDef	{\
 menuDef	{\
 	IMPROVED_POPUP_SETUP_ONOPEN( "ocd_popup_cac_SMG"suffix, 7, (CHOICE_X( pos )-2), (CHOICE_Y( pos )-28+y_offset), ;, execnow "set "UI_FOCUSFIRST" "REF_MP5";set ui_inside_popup smg";, 0 )\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
-	LOCAL_WEAPON_ITEM( suffix, 1, "1. MP7", "SMG", REF_MP5 )\
-	LOCAL_WEAPON_ITEM( suffix, 2, "2. Ripper", "SMG", REF_UZI )\
+	LOCAL_WEAPON_ITEM( suffix, 1, "1. MP5", "SMG", REF_MP5 )\
+	LOCAL_WEAPON_ITEM( suffix, 2, "2. Mini-Uzi", "SMG", REF_UZI )\
 	LOCAL_WEAPON_ITEM( suffix, 3, "3. AK-74u", "SMG", REF_AK74U )\
 	execKey "1" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "SMG", REF_MP5 ); }\
 	execKey "2" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "SMG", REF_UZI ); }\
@@ -236,21 +217,19 @@ menuDef	{\
 menuDef	{\
 	IMPROVED_POPUP_SETUP_ONOPEN( "ocd_popup_cac_sniper"suffix, 7, (CHOICE_X( pos )-2), (CHOICE_Y( pos )-28+y_offset), ;, execnow "set "UI_FOCUSFIRST" "REF_M40A3"; set ui_inside_popup sniper";, 0 )\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
-	LOCAL_WEAPON_ITEM( suffix, 1, "1. AWM", "sniper", REF_M40A3 )\
+	LOCAL_WEAPON_ITEM( suffix, 1, "1. M40A3", "sniper", REF_M40A3 )\
 	LOCAL_WEAPON_ITEM( suffix, 2, "2. R700", "sniper", REF_REMINGTON700 )\
-	LOCAL_WEAPON_ITEM( suffix, 3, "3. MWR M40A3", "sniper", REF_M21 )\
 	execKey "1" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "sniper", REF_M40A3 ); }\
 	execKey "2" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "sniper", REF_REMINGTON700 ); }\
-	execKey "3" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "sniper", REF_M21 ); }\
 }
 
 LOCAL_MASTER_WEAPON_GROUP( "", 1, 0 )
 
 #define LOCAL_ATTACHMENT_INFO_WINDOW( parentDvar ) \
 	\
-	PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH-6) -4 280 CHOICE_POPUP_HEIGHT( 6 ) CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "white", CHOICE_POPUP_BORDER_COLOR, 1, 2, CHOICE_POPUP_BORDER_COLOR visible when( dvarString(ui_inside_popup) != "camo" ); ) \
+	PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH-6) -4 280 CHOICE_POPUP_HEIGHT( 6 ) CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "black", CHOICE_POPUP_BORDER_COLOR, 1, 2, CHOICE_POPUP_BORDER_COLOR visible when( dvarString(ui_inside_popup) != "camo" ); ) \
 	LOADOUT_PLATING_RAW( CHOICE_POPUP_WIDTH 8, -2, 0, 280, (CHOICE_POPUP_HEIGHT( 6 )-4), CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN visible when( dvarString(ui_inside_popup) != "camo" );, 0, 0 ) \
-	PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH+6) 30 256 48 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "gradient_bottom", 1 1 1 0.3, 0, 2, CHOICE_POPUP_BORDER_COLOR visible when( dvarString(ui_inside_popup) != "camo" ); ) \
+	PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH+6) 30 256 48 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "black", 1 1 1 0.3, 0, 2, CHOICE_POPUP_BORDER_COLOR visible when( dvarString(ui_inside_popup) != "camo" ); ) \
 	PREPROC_SHADER_DRAW_ALIGNED( (CHOICE_POPUP_WIDTH+182) 6 64 64 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, tablelookup("mp/attachmentTable.csv",4,dvarString(ui_attachment_highlighted),6), 1 1 1 1, 0, 2, CHOICE_POPUP_BORDER_COLOR visible when( dvarString(ui_inside_popup) != "camo" ); ) \
 	PREPROC_TEXT_DRAW_ALIGNED_EXP( (CHOICE_POPUP_WIDTH+10) 58 256 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "@"+tablelookup("mp/attachmentTable.csv",4,dvarString(ui_attachment_highlighted),3), TEXTSIZE_DEFAULT, 0, 0, ITEM_ALIGN_MIDDLE_LEFT, COLOR_TITLE visible when( dvarString(ui_inside_popup) != "camo" ); ) \
 	PREPROC_TEXT_DRAW_ALIGNED_EXP( (CHOICE_POPUP_WIDTH+10) 80 256 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN, 0 0, "@"+tablelookup("mp/attachmentTable.csv",4,dvarString(ui_attachment_highlighted),7), TEXTSIZE_SMALL, 0, 0, ITEM_ALIGN_MIDDLE_LEFT, CHOICE_TEXTCOLOR )\

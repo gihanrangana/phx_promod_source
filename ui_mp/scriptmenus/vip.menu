@@ -1,0 +1,321 @@
+#include "ui/menudef.h"
+#include "ui_mp/vip_common.inc"	
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"	
+{
+	menuDef 
+	{
+		name 			"vip"
+		rect			0 25 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		3
+		visible			1
+	
+		itemDef
+		{
+			style			WINDOW_STYLE_FILLED
+			rect			-320 -175 660 320 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			backcolor		0 0 0 0.7
+			visible			1
+		}
+		itemDef
+		{
+			style			WINDOW_STYLE_FILLED
+			rect			-320 -204 660 29 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			backcolor		0 0 0 0.9
+			visible			1
+		}
+		itemDef
+		{
+			rect			50 57 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			style 			0
+			textfont 		UI_FONT_NORMAL
+			textscale 		0.315
+			textstyle  		1
+			text			"" 
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			rect 			7 84 645 1
+			style			WINDOW_STYLE_FILLED
+			backcolor		0.2 0.3 0.9 0.75
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			rect 			7 85 645 1
+			style			WINDOW_STYLE_FILLED
+			backcolor		0 0 0 1
+			visible			1
+			decoration
+		}
+		itemdef
+		{
+			rect			30 83 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textscale		0.29
+			exp text        ("Summer Season Prestige:^8 "+ stat(3251))     
+			visible         1
+			decoration
+		}
+		itemdef
+		{
+			rect			297 83 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textscale		0.29
+			exp text        ("Reward Tier:^8 "+ stat(3252))     
+			visible         1
+			decoration
+		}
+		//////////////////////////////////////////////////////////////////
+		itemdef
+		{
+			rect			515 83 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textscale		0.29
+			exp text        ("Donation Tier:^8 Regular")     
+			visible         when(stat(3253)==0)
+			decoration
+		}
+		itemdef
+		{
+			rect			515 83 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textscale		0.29
+			exp text        ("Donation Tier:^8 Bronze")     
+			visible         when(stat(3253)==1)
+			decoration
+		}
+		itemdef
+		{
+			rect			515 83 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textscale		0.29
+			exp text        ("Donation Tier:^8 Silver")     
+			visible         when(stat(3253)==2)
+			decoration
+		}
+		itemdef
+		{
+			rect			515 83 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textscale		0.29
+			exp text        ("Donation Tier:^8 GOLD")     
+			visible         when(stat(3253)==3)
+			decoration
+		}
+		//////////////////////////////////////////////////////////////
+		itemdef
+		{
+			rect			27 101 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			style 			4
+			textfont 		UI_FONT_NORMAL
+			textscale 		0.29
+			textstyle  		3
+			exp text        ("Summer season prestige awards can be selected below, choose it like you would your normal spray or skin from the unlockables menu")     
+			visible         1
+			decoration
+		}
+		///////////////////////////////////////////////////////////////
+	    RW_SPRAY( 1, 2, 1 )
+        RW_SPRAY( 3, 2, 2 )
+		RW_SPRAY( 5, 2, 3 )
+		RW_SPRAY( 7, 2, 4 )
+	    RW_SPRAY( 9, 2, 5 )
+		///////////////////
+        DR_SPRAY( 1, 5, 6 )
+		DR_SPRAY( 3, 5, 7 )
+		DR_SPRAY( 5, 5, 8 )
+		///////////////////////
+		itemDef
+		{
+			rect 			0 225.7 660 38
+			style			WINDOW_STYLE_FILLED
+			backcolor		0 0 0 0.6
+			visible			1
+			decoration
+		}
+		itemdef
+		{
+			rect			50 245 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			style 			4
+			textfont 		UI_FONT_NORMAL
+			textscale 		0.3
+			textstyle  		3
+			exp text        ("Donation perks can be selected below, choose it like you would your normal spray or skin from the unlockables menu.\n                                                                                       Thanks to everyone who contributed!")     
+			visible         1
+			decoration
+		}
+		///////////////////////
+		DR_CHARACTER( 1, 2, 10 ) 
+		DR_CHARACTER( 3, 2, 11 )
+		DR_CHARACTER( 5, 2, 12 )
+		////////////////////////
+		RW_CHARACTER( 2, -1, 13 ) 
+		RW_CHARACTER( 5, -1, 14 )
+		RW_CHARACTER( 8, -1, 15 )
+		////////////////////////
+		itemDef
+		{
+			style		WINDOW_STYLE_SHADER
+			rect		108 340 105 38 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+			forecolor	1 1 1 1
+			type		ITEM_TYPE_BUTTON
+			exp			material("playercard_emblem_1")
+			visible     1
+			mouseEnter
+			{
+				play "mouse_over";
+			}
+			action
+			{
+				scriptMenuResponse "emblem_1";
+				close self;
+			}
+		}
+		itemDef
+		{
+			rect			108 340 105 38 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+			style			WINDOW_STYLE_SHADER
+			background		"black"
+			forecolor		0 0 0 0.8
+			visible			when( dlevel < 1 )
+		}
+		/////
+		itemDef
+		{
+			style		WINDOW_STYLE_SHADER
+			rect		273 340 105 35 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+			forecolor	1 1 1 1
+			type		ITEM_TYPE_BUTTON
+			exp			material("playercard_emblem_2")
+			visible     1
+			mouseEnter
+			{
+				play "mouse_over";
+			}
+			action
+			{
+				scriptMenuResponse "emblem_2";
+				close self;
+			}
+		}
+		itemDef
+		{
+			rect			273 340 105 38 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+			style			WINDOW_STYLE_SHADER
+			background		"black"
+			forecolor		0 0 0 0.8
+			visible			when( dlevel < 2 )
+		}
+		//////
+		itemDef
+		{
+			style		WINDOW_STYLE_SHADER
+			rect		440 340 105 35 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+			forecolor	1 1 1 1
+			type		ITEM_TYPE_BUTTON
+			exp			material("playercard_emblem_3")
+			visible     1
+			mouseEnter
+			{
+				play "mouse_over";
+			}
+			action
+			{
+				scriptMenuResponse "emblem_3";
+				close self;
+			}
+		}
+		itemDef
+		{
+			rect			440 340 105 38 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+			style			WINDOW_STYLE_SHADER
+			background		"black"
+			forecolor		0 0 0 0.8
+			visible			when( dlevel < 3 )
+		}		
+		///////////////////////////////////////////
+		itemdef
+		{
+			rect			80 285 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textfont 		UI_FONT_NORMAL
+			textscale 		0.27
+			text        	"^1Bronze ^7Tier"
+			exp rect X      (80+(cos(milliseconds()/800) * 3))
+			visible         1
+			decoration
+		}
+		//////////////////////////////////////////
+		itemDef
+		{
+			rect 			28 288 600 0.8
+			style			WINDOW_STYLE_FILLED
+			backcolor		0.6 0.6 0.6 0.7
+			visible			1
+			decoration
+		}
+		//////////////////////////////////////////
+		itemdef
+		{
+			rect			313 285 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textfont 		UI_FONT_NORMAL
+			textscale 		0.27
+			text            "Silver Tier"
+			exp rect X      (313+(cos(milliseconds()/800) * 3))
+			visible         1
+			decoration
+		}
+		///////////////////////////////////////////
+		itemdef
+		{
+			rect			530 285 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textfont 		UI_FONT_NORMAL
+			textscale 		0.27
+			text        	"^3GOLD ^7Tier"
+			exp rect X      (530+(cos(milliseconds()/800) * 3))
+			visible         1
+			decoration
+		}
+		//////////////////////////////////////////
+		itemDef
+		{
+			rect 			220 294.8 1 84
+			style			WINDOW_STYLE_FILLED
+			backcolor		0.6 0.6 0.6 0.7
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			rect 			440 294.8 1 84
+			style			WINDOW_STYLE_FILLED
+			backcolor		0.6 0.6 0.6 0.7
+			visible			1
+			decoration
+		}
+		/////////////////////////////////////////
+	}
+}

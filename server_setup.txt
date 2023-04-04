@@ -1,5 +1,0 @@
-1. Change Mod name inside the compile.bat
-2. Change paths for mod folders inside the compile_fastfile.bat
-3. Change fa_game inside the start.bat
-4. Run compile.bat (it will automatically run the compile_fastfile.bat also)
-5. Run start.bat to start the game with compiled mod

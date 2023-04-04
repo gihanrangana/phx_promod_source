@@ -1,11 +1,3 @@
-# Copyright (c) 2009-2017 Andreas Göransson <andreas.goransson@gmail.com>
-# Copyright (c) 2009-2017 Indrek Ardel <indrek@ardel.eu>
-#
-# This file is part of Call of Duty 4 Promod.
-#
-# Call of Duty 4 Promod is licensed under Promod Modder Ethical Public License.
-# Terms of license can be found in LICENSE.md document bundled with the project.
-
 0,PROMOD_RECORD
 1,PROMOD_SUNLIGHT
 2,PROMOD_TEXTURE
@@ -59,24 +51,23 @@
 
 43,m40a3
 44,remington700
-45,m21
 
-46,none
-47,silencer
+45,none
+46,silencer
 
-48,deserteaglegold
-49,deserteagle
-50,colt45
-51,usp
-52,beretta
+47,deserteaglegold
+48,deserteagle
+49,colt45
+50,usp
+51,beretta
 
-53,flash_grenade
-54,smoke_grenade
+52,flash_grenade
+53,smoke_grenade
 
-55,camo_none
-56,camo_brockhaurd
-57,camo_bushdweller
-58,camo_blackwhitemarpat
-59,camo_tigerred
-60,camo_stagger
-61,camo_gold
+54,camo_none
+55,camo_brockhaurd
+56,camo_bushdweller
+57,camo_blackwhitemarpat
+58,camo_tigerred
+59,camo_stagger
+60,camo_gold

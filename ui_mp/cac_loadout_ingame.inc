@@ -1,32 +1,19 @@
-/*
-  Copyright (c) 2009-2017 Andreas Göransson <andreas.goransson@gmail.com>
-  Copyright (c) 2009-2017 Indrek Ardel <indrek@ardel.eu>
-
-  This file is part of Call of Duty 4 Promod.
-
-  Call of Duty 4 Promod is licensed under Promod Modder Ethical Public License.
-  Terms of license can be found in LICENSE.md document bundled with the project.
-*/
-
-#define LOADOUT_WIDTH 270
+#define LOADOUT_WIDTH 290
 #define ORIGIN_LOADOUT	((-(LOADOUT_WIDTH - RIGHTITEM_OFFSET))-80) 38
 #define LOADOUT_ALIGN	RIGHTITEM_ALIGN VERTICAL_ALIGN_TOP
 #define LOADOUT_PLATING( py, ph, vis_gradient_top, vis_gradient_bottom ) \
-		LOADOUT_PLATING_RAW( ORIGIN_LOADOUT, 0, py, (LOADOUT_WIDTH+8), ph, LOADOUT_ALIGN, vis_gradient_top, vis_gradient_bottom )
+LOADOUT_PLATING_RAW( ORIGIN_LOADOUT, 0, py, (LOADOUT_WIDTH+8), ph, LOADOUT_ALIGN, vis_gradient_top, vis_gradient_bottom )
 
-PREPROC_SHADER_DRAW_ALIGNED( -4 0 (LOADOUT_WIDTH+8) 210 LOADOUT_ALIGN, ORIGIN_LOADOUT, "gradient_center", 0.3 0.3 0.325 0.6, 0, 0, 0 0 0 0 )
-PREPROC_SHADER_DRAW_ALIGNED( 274 -4 20 222 LOADOUT_ALIGN, ORIGIN_LOADOUT, "gradient", 1 1 1 0.65, 0, 0, 0 0 0 0 )
-PREPROC_SHADER_DRAW_ALIGNED( -24 -4 -20 222 LOADOUT_ALIGN, ORIGIN_LOADOUT, "gradient", 1 1 1 0.65, 0, 0, 0 0 0 0 )
 
-PREPROC_SHADER_DRAW_ALIGNED( -4 4 ((LOADOUT_WIDTH+8)/4) 80 LOADOUT_ALIGN, ORIGIN_LOADOUT, tablelookup( "mp/attachmenttable.csv", 11, STAT_CAC_CAMO, 6 ), 1 1 1 0.5, 0, 1, 1 1 1 1)
-PREPROC_SHADER_DRAW_ALIGNED( (((LOADOUT_WIDTH+8)/4)-4) 4 ((LOADOUT_WIDTH+8)/4) 80 LOADOUT_ALIGN, ORIGIN_LOADOUT, tablelookup( "mp/attachmenttable.csv", 11, STAT_CAC_CAMO, 6 ), 1 1 1 0.5, 0, 1, 1 1 1 1)
-PREPROC_SHADER_DRAW_ALIGNED( (((LOADOUT_WIDTH+8)/2)-4) 4 ((LOADOUT_WIDTH+8)/4) 80 LOADOUT_ALIGN, ORIGIN_LOADOUT, tablelookup( "mp/attachmenttable.csv", 11, STAT_CAC_CAMO, 6 ), 1 1 1 0.5, 0, 1, 1 1 1 1)
-PREPROC_SHADER_DRAW_ALIGNED( ((((LOADOUT_WIDTH+8)/4)*3)-4) 4 ((LOADOUT_WIDTH+8)/4) 80 LOADOUT_ALIGN, ORIGIN_LOADOUT, tablelookup( "mp/attachmenttable.csv", 11, STAT_CAC_CAMO, 6 ), 1 1 1 0.5, 0, 1, 1 1 1 1)
+PREPROC_SHADER_DRAW_ALIGNED( -4 4 ((LOADOUT_WIDTH+8)/4) 80 LOADOUT_ALIGN, ORIGIN_LOADOUT, tablelookup( "mp/attachmenttable.csv", 11, STAT_CAC_CAMO, 6 ), 0.3 0.3 0.3 0.5, 0, 1, 0.3 0.3 0.3 0.5)
+PREPROC_SHADER_DRAW_ALIGNED( (((LOADOUT_WIDTH+8)/4)-4) 4 ((LOADOUT_WIDTH+8)/4) 80 LOADOUT_ALIGN, ORIGIN_LOADOUT, tablelookup( "mp/attachmenttable.csv", 11, STAT_CAC_CAMO, 6 ), 0.3 0.3 0.3 0.5, 0, 1, 0.3 0.3 0.3 1)
+PREPROC_SHADER_DRAW_ALIGNED( (((LOADOUT_WIDTH+8)/2)-4) 4 ((LOADOUT_WIDTH+8)/4) 80 LOADOUT_ALIGN, ORIGIN_LOADOUT, tablelookup( "mp/attachmenttable.csv", 11, STAT_CAC_CAMO, 6 ), 0.3 0.3 0.3 0.5, 0, 1, 0.3 0.3 0.3 1)
+PREPROC_SHADER_DRAW_ALIGNED( ((((LOADOUT_WIDTH+8)/4)*3)-4) 4 ((LOADOUT_WIDTH+8)/4) 80 LOADOUT_ALIGN, ORIGIN_LOADOUT, tablelookup( "mp/attachmenttable.csv", 11, STAT_CAC_CAMO, 6 ), 0.3 0.3 0.3 0.5, 0, 1, 0.3 0.3 0.3 1)
 
-LOADOUT_PLATING( 4, 8, 0, 1 )
-LOADOUT_PLATING( 218, 8, 1, 0 )
-LOADOUT_PLATING( 92, 8, 1, 1 )
-LOADOUT_PLATING( 180, 8, 1, 1 )
+LOADOUT_PLATING( 4, 4, 0, 1 ) //1
+LOADOUT_PLATING( 218, 4, 0, 1 ) //4
+LOADOUT_PLATING( 92, 4, 0, 1 ) //2
+LOADOUT_PLATING( 180, 4, 0, 0 ) //3
 
 PREPROC_TEXT_DRAW_ALIGNED_EXP( 0 8 (LOADOUT_WIDTH+8) 20 LOADOUT_ALIGN, ORIGIN_LOADOUT, "@"+tablelookup("mp/statstable.csv", 0, STAT_CAC_PRIMARY, 3), TEXTSIZE_DEFAULT, 0, 0, ITEM_ALIGN_MIDDLE_LEFT, COLOR_TITLE )
 

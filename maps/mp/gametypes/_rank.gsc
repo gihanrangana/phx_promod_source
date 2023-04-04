@@ -218,17 +218,11 @@ resetEverything()
 
 prfix()
 {
-	self endon("disconnect");
 	self.pers["rank"] = 0;
 	self.pers["rankxp"] = 0;
 	self setRank( self.pers["rank"], self.pers["prestige"] );
 	self setStat( 2350, self.pers["rank"] );
 	self setStat( 2301, self.pers["rankxp"] );
-	for( stat = 190; stat < 280; stat++ )
-	{
-		self setStat( stat, 0 );
-		wait 0.05;
-	}
 }
 
 updateRankScoreHUD( amount )
@@ -238,7 +232,7 @@ updateRankScoreHUD( amount )
 	self endon( "joined_spectators" );
 	
 	if ( !amount )
-	return;
+		return;
 	
 	self notify( "update_score" );
 	self endon( "update_score" );
@@ -340,10 +334,10 @@ incRankXP( amount )
 	{
 		xp = self getRankXP();
 		newXp = (xp + amount);
-	
+
 		if ( self.pers["rank"] == level.maxRank && newXp >= getRankInfoMaxXP( level.maxRank ) )
 			newXp = getRankInfoMaxXP( level.maxRank );
-	
+
 		self.pers["rankxp"] = newXp;
 		self maps\mp\gametypes\_persistence::statSet( "rankxp", newXp );
 		self setStat( 251, self getRank() );
@@ -448,11 +442,6 @@ updateRank()
 	oldRank = self.pers["rank"];
 	rankId = self.pers["rank"];
 	self.pers["rank"] = newRankId;
-
-	temp = self GetStat(252);
-	cur = getRealTime();
-	date = TimeToString(cur, 1, "%c");
-	thread phoenix\_common::log("level_track", self.name + " ("+self GetGuid()+") " + " entered level: " + temp + " at " + date );
 	
 	while ( rankId <= newRankId )
 	{	
@@ -484,7 +473,7 @@ isASprayUnlocked( num )
 		return true;
 	else if( upit == 2 && ( num >= 1 && num <= 2 ) )	
 		return true;
-	else if( upit == 1 && ( num == 1 ))
+	else if( upit == 1 && ( num == 1 ))		
 		return true;
 	else 
 		return false;
@@ -534,151 +523,4 @@ isDCharacterUnlocked( num )
 	else if ( dupit == 1 && num == 1)
 		return true;
 	else return false;
-}
-
-// End of game summary/unlock menu page setup
-// 0 = no unlocks, 1 = only page one, 2 = only page two, 3 = both pages
-unlockPage( in_page )
-{
-	if( in_page == 1 )
-	{
-		if( self.pers["unlocks"]["page"] == 0 )
-		{
-			self setClientDvar( "player_unlock_page", "1" );
-			self.pers["unlocks"]["page"] = 1;
-		}
-		if( self.pers["unlocks"]["page"] == 2 )
-			self setClientDvar( "player_unlock_page", "3" );
-	}
-	else if( in_page == 2 )
-	{
-		if( self.pers["unlocks"]["page"] == 0 )
-		{
-			self setClientDvar( "player_unlock_page", "2" );
-			self.pers["unlocks"]["page"] = 2;
-		}
-		if( self.pers["unlocks"]["page"] == 1 )
-			self setClientDvar( "player_unlock_page", "3" );	
-	}		
-}
-
-// unlocks weapon
-unlockWeapon( refString )
-{
-	assert( isDefined( refString ) && refString != "" );
-		
-	stat = int( tableLookup( "mp/statstable.csv", 4, refString, 1 ) );
-	
-	assertEx( stat > 0, "statsTable refstring " + refString + " has invalid stat number: " + stat );
-	
-	if( self getStat( stat ) > 0 )
-		return;
-
-	self setStat( stat, 65537 );	// 65537 is binary mask for newly unlocked weapon
-	self setClientDvar( "player_unlockWeapon" + self.pers["unlocks"]["weapon"], refString );
-	self.pers["unlocks"]["weapon"]++;
-	self setClientDvar( "player_unlockWeapons", self.pers["unlocks"]["weapon"] );
-	
-	self unlockPage( 1 );
-}
-
-// unlocks perk
-unlockPerk( refString )
-{
-	assert( isDefined( refString ) && refString != "" );
-
-	stat = int( tableLookup( "mp/statstable.csv", 4, refString, 1 ) );
-	
-	if( self getStat( stat ) > 0 )
-		return;
-
-	self setStat( stat, 2 );	// 2 is binary mask for newly unlocked perk
-	self setClientDvar( "player_unlockPerk" + self.pers["unlocks"]["perk"], refString );
-	self.pers["unlocks"]["perk"]++;
-	self setClientDvar( "player_unlockPerks", self.pers["unlocks"]["perk"] );
-	
-	self unlockPage( 2 );
-}
-
-// unlocks camo - multiple
-unlockCamo( refString )
-{
-	assert( isDefined( refString ) && refString != "" );
-
-	// tokenize reference string, accepting multiple camo unlocks in one call
-	Ref_Tok = strTok( refString, ";" );
-	assertex( Ref_Tok.size > 0, "Camo unlock specified in datatable ["+refString+"] is incomplete or empty" );
-	
-	for( i=0; i<Ref_Tok.size; i++ )
-		unlockCamoSingular( Ref_Tok[i] );
-}
-
-// unlocks camo - singular
-unlockCamoSingular( refString )
-{
-	// parsing for base weapon and camo skin reference strings
-	Tok = strTok( refString, " " );
-	assertex( Tok.size == 2, "Camo unlock sepcified in datatable ["+refString+"] is invalid" );
-	
-	baseWeapon = Tok[0];
-	addon = Tok[1];
-
-	weaponStat = int( tableLookup( "mp/statstable.csv", 4, baseWeapon, 1 ) );
-	addonMask = int( tableLookup( "mp/attachmenttable.csv", 4, addon, 10 ) );
-	
-	if ( self getStat( weaponStat ) & addonMask )
-		return;
-	
-	// ORs the camo/attachment's bitmask with weapon's current bits, thus switching the camo/attachment bit on
-	setstatto = ( self getStat( weaponStat ) | addonMask ) | (addonMask<<16) | (1<<16);
-	self setStat( weaponStat, setstatto );
-	
-	//fullName = tableLookup( "mp/statstable.csv", 4, baseWeapon, 3 ) + " " + tableLookup( "mp/attachmentTable.csv", 4, addon, 3 );
-	self setClientDvar( "player_unlockCamo" + self.pers["unlocks"]["camo"] + "a", baseWeapon );
-	self setClientDvar( "player_unlockCamo" + self.pers["unlocks"]["camo"] + "b", addon );
-	self.pers["unlocks"]["camo"]++;
-	self setClientDvar( "player_unlockCamos", self.pers["unlocks"]["camo"] );
-
-	self unlockPage( 1 );
-}
-
-unlockAttachment( refString )
-{
-	assert( isDefined( refString ) && refString != "" );
-
-	// tokenize reference string, accepting multiple camo unlocks in one call
-	Ref_Tok = strTok( refString, ";" );
-	assertex( Ref_Tok.size > 0, "Attachment unlock specified in datatable ["+refString+"] is incomplete or empty" );
-	
-	for( i=0; i<Ref_Tok.size; i++ )
-		unlockAttachmentSingular( Ref_Tok[i] );
-}
-
-// unlocks attachment - singular
-unlockAttachmentSingular( refString )
-{
-	Tok = strTok( refString, " " );
-	assertex( Tok.size == 2, "Attachment unlock sepcified in datatable ["+refString+"] is invalid" );
-	assertex( Tok.size == 2, "Attachment unlock sepcified in datatable ["+refString+"] is invalid" );
-	
-	baseWeapon = Tok[0];
-	addon = Tok[1];
-
-	weaponStat = int( tableLookup( "mp/statstable.csv", 4, baseWeapon, 1 ) );
-	addonMask = int( tableLookup( "mp/attachmenttable.csv", 4, addon, 10 ) );
-	
-	if ( self getStat( weaponStat ) & addonMask )
-		return;
-	
-	// ORs the camo/attachment's bitmask with weapon's current bits, thus switching the camo/attachment bit on
-	setstatto = ( self getStat( weaponStat ) | addonMask ) | (addonMask<<16) | (1<<16);
-	self setStat( weaponStat, setstatto );
-
-	//fullName = tableLookup( "mp/statstable.csv", 4, baseWeapon, 3 ) + " " + tableLookup( "mp/attachmentTable.csv", 4, addon, 3 );
-	self setClientDvar( "player_unlockAttachment" + self.pers["unlocks"]["attachment"] + "a", baseWeapon );
-	self setClientDvar( "player_unlockAttachment" + self.pers["unlocks"]["attachment"] + "b", addon );
-	self.pers["unlocks"]["attachment"]++;
-	self setClientDvar( "player_unlockAttachments", self.pers["unlocks"]["attachment"] );
-	
-	self unlockPage( 1 );
 }

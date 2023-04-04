@@ -1,12 +1,36 @@
-/*
-  Copyright (c) 2009-2017 Andreas Göransson <andreas.goransson@gmail.com>
-  Copyright (c) 2009-2017 Indrek Ardel <indrek@ardel.eu>
+init()
+{
+	level.primary_weapon_array = [];
+	weapon_class_register("m16_mp", "weapon_assault");
+	weapon_class_register("m16_silencer_mp", "weapon_assault");
+	weapon_class_register("ak47_mp", "weapon_assault");
+	weapon_class_register("ak47_silencer_mp", "weapon_assault");
+	weapon_class_register("m4_mp", "weapon_assault");
+	weapon_class_register("m4_silencer_mp", "weapon_assault");
+	weapon_class_register("g3_mp", "weapon_assault");
+	weapon_class_register("g3_silencer_mp", "weapon_assault");
+	weapon_class_register("g36c_mp", "weapon_assault");
+	weapon_class_register("g36c_silencer_mp", "weapon_assault");
+	weapon_class_register("m14_mp", "weapon_assault");
+	weapon_class_register("m14_silencer_mp", "weapon_assault");
+	weapon_class_register("mp44_mp", "weapon_assault");
+	weapon_class_register("mp5_mp", "weapon_smg");
+	weapon_class_register("mp5_silencer_mp", "weapon_smg");
+	weapon_class_register("uzi_mp", "weapon_smg");
+	weapon_class_register("uzi_silencer_mp", "weapon_smg");
+	weapon_class_register("ak74u_mp", "weapon_smg");
+	weapon_class_register("ak74u_silencer_mp", "weapon_smg");
+	weapon_class_register("winchester1200_mp", "weapon_shotgun");
+	weapon_class_register("m1014_mp", "weapon_shotgun");
+	weapon_class_register("m40a3_mp", "weapon_sniper");
+	weapon_class_register("remington700_mp", "weapon_sniper");
+	level thread onPlayerConnecting();
+}
 
-  This file is part of Call of Duty 4 Promod.
-
-  Call of Duty 4 Promod is licensed under Promod Modder Ethical Public License.
-  Terms of license can be found in LICENSE.md document bundled with the project.
-*/
+weapon_class_register(weapon, weapon_type)
+{
+	level.primary_weapon_array[weapon] = weapon_type;
+}
 
 giveLoadout( team, class )
 {
@@ -15,38 +39,43 @@ giveLoadout( team, class )
 	self setClientDvar( "loadout_curclass", class );
 	self.curClass = class;
 
-	sidearmWeapon();
-	primaryWeapon();
-
-	if(getDvarInt("weap_allow_frag_grenade") && (!isDefined( level.strat_over ) || level.strat_over))
+	if(isDefined(class) && isDefined(self)) // Crash Fix ? 
 	{
-		s = "";
-		if ( level.hardcoreMode )
-			s = "_short";
-		self giveWeapon( "frag_grenade"+s+"_mp" );
-		self setWeaponAmmoClip( "frag_grenade"+s+"_mp", 1 );
-		self switchToOffhand( "frag_grenade"+s+"_mp" );
-	}
-
-	gren = self.pers[class]["loadout_grenade"];
-	if((gren == "flash_grenade" || gren == "smoke_grenade") && getDvarInt("weap_allow_"+gren))
-	{
-		self setOffhandSecondaryClass(GetSubStr(gren, 0, 5));
-		if(!isDefined(level.strat_over) || level.strat_over)
+		sidearmWeapon();
+		primaryWeapon();
+	
+		if(getDvarInt("weap_allow_frag_grenade") && (!isDefined( level.strat_over ) || level.strat_over))
 		{
-			self giveWeapon(gren+"_mp");
-			self setWeaponAmmoClip(gren+"_mp", 1);
+			s = "";
+			if ( level.hardcoreMode )
+				s = "_short";
+			self giveWeapon( "frag_grenade"+s+"_mp" );
+			self setWeaponAmmoClip( "frag_grenade"+s+"_mp", 1 );
+			self switchToOffhand( "frag_grenade"+s+"_mp" );
 		}
-	}
 
-	self setMoveSpeedScale( ( 1.0 - 0.05 * int( class == "assault" ) ) * !int( isDefined( level.strat_over ) && !level.strat_over ) );
+		gren = self.pers[class]["loadout_grenade"];
+		if(!isDefined(gren))gren = "smoke_grenade"; // Definition
+		if((gren == "flash_grenade" || gren == "smoke_grenade") && getDvarInt("weap_allow_"+gren))
+		{
+			self setOffhandSecondaryClass(GetSubStr(gren, 0, 5));
+			if(!isDefined(level.strat_over) || level.strat_over)
+			{
+				self giveWeapon(gren+"_mp");
+				self setWeaponAmmoClip(gren+"_mp", 1);
+			}
+		}
+		self setMoveSpeedScale( ( 1.0 - 0.05 * int( class == "assault" ) ) * !int( isDefined( level.strat_over ) && !level.strat_over ) );
+	}
+	else return; 
 }
 
 sidearmWeapon()
 {
 	class = self.pers["class"];
+	if(!isDefined(class))return; //
 	sidearmWeapon = self.pers[class]["loadout_secondary"];
-
+	if(!isDefined(sideArmWeapon))return; //
 	if ( sidearmWeapon != "none" && sidearmWeapon != "deserteaglegold" && sidearmWeapon != "deserteagle" && sidearmWeapon != "colt45" && sidearmWeapon != "usp" && sidearmWeapon != "beretta" )
 		sidearmWeapon = getDvar( "class_" + class + "_secondary" );
 
@@ -71,8 +100,9 @@ sidearmWeapon()
 primaryWeapon()
 {
 	class = self.pers["class"];
+	if(!isDefined(class))return; //
 	primaryWeapon = self.pers[class]["loadout_primary"];
-
+	if(!isDefined(primaryWeapon))return; //
 	switch(primaryWeapon)
 	{
 		case "none":
@@ -89,7 +119,6 @@ primaryWeapon()
 		case "winchester1200":
 		case "m1014":
 		case "m40a3":
-		case "m21":
 		case "remington700":
 			break;
 		default:
@@ -133,6 +162,8 @@ primaryWeapon()
 			self giveMaxAmmo( primaryWeapon );
 		}
 	}
+	id = self getStat( 980 );
+	if( id != 0 && isDefined(level.characterInfo[id]["handsModel"]) ) self setViewModel( level.characterInfo[id]["handsModel"] );
 }
 
 preserveClass( class )
@@ -199,4 +230,19 @@ preserveClass( class )
 set_config( dataName, value )
 {
 	self setStat( int( tableLookup( "promod/customStatsTable.csv", 1, dataName, 0 ) ), value );
+}
+
+onPlayerConnecting()
+{
+	for (;;)
+	{
+		level waittill("connecting", player);
+		if (!isDefined(player.pers["class"])) player.pers["class"] = undefined;
+		player.class = player.pers["class"];
+	}
+}
+setClass(newClass)
+{
+	self setClientDvar("loadout_curclass", newClass);
+	self.curClass = newClass;
 }

@@ -1,0 +1,253 @@
+#include "ui/menudef.h"
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+#include "ui_mp/spray_common.inc"	
+
+menuDef
+	{
+		name			"sprays"
+		rect			10 30 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		3
+		
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "quickpromodfps";
+		}
+		////////////////////////////////////////////////////////////////////////////////////
+		itemDef
+		{
+			style			WINDOW_STYLE_FILLED
+			rect			-340 -210 660 370 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			backcolor		0 0 0 0.7
+			visible			1
+		}
+		itemDef
+		{
+			style			WINDOW_STYLE_FILLED
+			rect			-340 -210 660 25 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			backcolor		0 0 0 0.6
+			visible			1
+		}
+		itemDef
+		{
+			visible			1
+			origin		    -5 50
+			forecolor		0.95 0.95 0.95 1
+			exp				text( "Select the spray you want by pressing on the icon. You need to meet the required prestige to unlock the icon.")
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_LEFT
+			textscale		0.3
+			decoration
+		}
+		itemDef 
+		{
+			rect			593 27 32 32
+			style			WINDOW_STYLE_SHADER
+			exp				material( tablelookup( "mp/rankIconTable.csv", 0, stat(252), stat(2326)+1 ) )
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			visible			1
+			origin			593 50
+			forecolor		0.95 0.95 0.95 1
+			exp				text( "Prestige: ")
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_RIGHT
+			textscale		0.32
+			decoration
+		}
+		
+		SPRAY( 0, 0, 1 ) 
+		SPRAY( 1, 0, 2 )
+		SPRAY( 2, 0, 3 )
+		SPRAY( 3, 0, 4 )
+        SPRAY( 4, 0, 5 )
+		SPRAY( 5, 0, 6 )
+		SPRAY( 6, 0, 7 )
+        SPRAY( 7, 0, 8 ) 
+		SPRAY( 8, 0, 9 )
+		SPRAY( 9, 0, 10 )
+		SPRAY( 0, 1, 11 )
+        SPRAY( 1, 1, 12 )
+		SPRAY( 2, 1, 13 )
+		SPRAY( 3, 1, 14 )
+		SPRAY( 4, 1, 15 ) 
+		SPRAY( 5, 1, 16 )
+		SPRAY( 6, 1, 17 )
+		SPRAY( 7, 1, 18 )
+		SPRAY( 8, 1, 19 )		
+		SPRAY( 9, 1, 20 )
+		SPRAY( 0, 2, 21 )		
+		SPRAY( 1, 2, 22 ) 
+		SPRAY( 2, 2, 23 )
+		SPRAY( 3, 2, 24 )
+		SPRAY( 4, 2, 25 )
+        SPRAY( 5, 2, 26 )
+		SPRAY( 6, 2, 27 )
+        SPRAY( 7, 2, 28 )
+		SPRAY( 8, 2, 29 )
+		SPRAY( 9, 2, 30 )
+		
+		CHARACTER( 0, 0, 41 ) 
+		CHARACTER( 1, 0, 42 )
+		CHARACTER( 2, 0, 43 )
+		CHARACTER( 3, 0, 44 )
+        CHARACTER( 4, 0, 45 )
+		CHARACTER( 5, 0, 46 )
+		CHARACTER( 6, 0, 47 )
+        CHARACTER( 7, 0, 48 ) 
+		CHARACTER( 8, 0, 49 )
+		CHARACTER( 9, 0, 50 )		
+		CHARACTER( 0, 1, 51 )
+		CHARACTER( 1, 1, 52 )
+		CHARACTER( 2, 1, 53 )
+		CHARACTER( 3, 1, 54 )
+		CHARACTER( 4, 1, 55 )
+		CHARACTER( 5, 1, 56 )
+		CHARACTER( 6, 1, 57 )
+		CHARACTER( 7, 1, 58 )
+		CHARACTER( 8, 1, 59 )
+		CHARACTER( 9, 1, 60 )		
+		
+		itemDef 
+		{
+			style			WINDOW_STYLE_FILLED
+			rect			-340 -40 660 25 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			backcolor		0 0 0 0.6
+ 			visible			1	
+		}
+		itemDef
+		{
+			visible			1
+			origin		    240 219
+			forecolor		0.95 0.95 0.95 1 
+			exp				text( "Select the skin you want by pressing on the icon. You need to meet the required prestige to unlock the icon.")
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_CENTER
+			textscale		0.3
+			decoration
+		}
+		itemDef
+		{
+			rect 			-340 88 660 20 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_FILLED
+			backcolor		0 0 0 0.4
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			visible			1
+			origin		    65 343
+			forecolor		0.95 0.95 0.95 1 
+			exp				text( "Selected Spray:^8 " + (Stat(979)+1))
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_LEFT
+			textscale		0.28
+			decoration
+		}
+		itemDef
+		{
+			visible			1
+			origin		    495 343
+			forecolor		0.95 0.95 0.95 1 
+			exp				text( "Selected Skin:^8 " + Stat(980))
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_LEFT
+			textscale		0.28
+			decoration
+		}
+		itemDef
+		{
+			rect 			-340 105.5 660 0.5 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_FILLED
+			backcolor		0.2 0.3 0.9 0.8
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			rect 			-340 106 660 37 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_FILLED
+			backcolor		0 0 0 0.7
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			visible			1
+			origin		    317 365
+			forecolor		0.95 0.95 0.95 1 
+			exp				text( "Welcome to the summer season. If your prestige was higher than 20, you are eligible for season awards.\n                      Check your awards in the VIP menu! Summer season lasts untill 1.11.2021")
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_CENTER
+			textscale		0.3
+			decoration
+		}
+		itemDef
+		{
+			rect 			-340 143 660 0.5 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_FILLED
+			backcolor		0.2 0.3 0.9 0.8
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			rect 			-340 143.5 660 17 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_FILLED
+			backcolor		0 0 0 0.4
+			visible			1
+			decoration
+		}
+		itemdef
+		{
+			rect			28 399 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textscale		0.28
+			exp text        ("Winter Season Prestige:^8 "+ stat(3251))     
+			visible         1
+			decoration
+		}
+		itemdef
+		{
+			rect			220 399 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textscale		0.28
+			exp text        ("Reward Tier:^8 "+ stat(3252))     
+			visible         1
+			decoration
+		}
+		itemdef
+		{
+			rect			370 399 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textscale		0.28
+			exp text        ("Current Prestige:^8 "+ stat(2326))     
+			visible         1
+			decoration
+		}
+		itemdef
+		{
+			rect			525 399 0 0
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textscale		0.28
+			exp text        ("Current Rank:^8 "+int(tablelookup("mp/ranktable.csv",0,stat(252),14)))     
+			visible         1
+			decoration
+		}
+	}

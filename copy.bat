@@ -1,3 +1,0 @@
-@echo Coping gsx files...
-xcopy /E /I ..\phx_promod_source\phoenix\ ..\phx_promod\phoenix /Y
-xcopy /E /I ..\phx_promod_source\maps\ ..\phx_promod\maps /Y
