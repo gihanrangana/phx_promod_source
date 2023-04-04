@@ -194,7 +194,7 @@ menuDef	{\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
 	LOCAL_WEAPON_ITEM( suffix, 1, "1. TYPE95", "assault", REF_M16 )\
 	LOCAL_WEAPON_ITEM( suffix, 2, "2. AK-47", "assault", REF_AK47 )\
-	LOCAL_WEAPON_ITEM( suffix, 3, "3. M4 Carbine", "assault", REF_M4 )\
+	LOCAL_WEAPON_ITEM( suffix, 3, "3. M27 IAR", "assault", REF_M4 )\
 	LOCAL_WEAPON_ITEM( suffix, 4, "4. G3", "assault", REF_G3 )\
 	LOCAL_WEAPON_ITEM( suffix, 5, "5. G36C", "assault", REF_G36C )\
 	LOCAL_WEAPON_ITEM( suffix, 6, "6. M14", "assault", REF_M14 )\

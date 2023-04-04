@@ -24,8 +24,8 @@ x,x,x,x,x,x,x,x,x,x,x
 22,3022,weapon_assault,^2[PHX] ^7MP44,mp44,,weapon_mp44,PERKS_FULLY_AUTOMATIC_WITH6,,,PERKS_UNLOCKED_AT_LV52
 23,3023,weapon_assault,^2[PHX] ^7G3,g3,,weapon_g3,PERKS_SINGLEFIRE_WITH_A_HIGH,reflex silencer acog,,PERKS_UNLOCKED_AT_LV25
 24,3024,weapon_assault,^2[PHX] ^7G36C,g36c,,weapon_g36c,PERKS_FULLY_AUTOMATIC_WITH7,reflex silencer acog,,PERKS_UNLOCKED_AT_LV37
-25,3025,weapon_assault,W^2[PHX] ^7TYPE95,m16,,weapon_m16a4,PERKS_SEMIAUTOMATIC_WITH_THREE,reflex silencer acog,,
-26,3026,weapon_assault,^2[PHX] ^7M4,m4,,weapon_m4carbine,PERKS_FULLY_AUTOMATIC_WITH8,reflex silencer acog,,PERKS_UNLOCKED_AT_LV10
+25,3025,weapon_assault,^2[PHX] ^7TYPE95,m16,,weapon_m16a4,PERKS_SEMIAUTOMATIC_WITH_THREE,reflex silencer acog,,
+26,3026,weapon_assault,^2[PHX] ^7M27 IAR,m4,,weapon_m4carbine,PERKS_FULLY_AUTOMATIC_WITH8,reflex silencer acog,,PERKS_UNLOCKED_AT_LV10
 27,3027,weapon_assault,,,,,,,,
 28,3028,weapon_assault,,,,,,,,
 29,3029,weapon_assault,,,,,,,,
