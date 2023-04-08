@@ -15,62 +15,66 @@
 || ******************************************************** DEVELOPED BY |PHX| GHOST ********************************************************** ||
 ================================================================================================================================================*/
 
-GlobalLogicInit() {
-	thread phoenix\_dvars::init();
-    thread phoenix\_events::init();
-	thread phoenix\_player::init();
-	thread phoenix\_client_cmd::init();
-	// thread phoenix\_togglebinds::init();
-	thread phoenix\_client_menu::init();
-	thread phoenix\_admin_cmd::init();
-	thread phoenix\_anticamp::init();
+#include phoenix\_common;
 
-	thread phoenix\crazy\_flags::init();
+init() {
+   phoenix\_events::addSpawnEvent(::onSpawn);
+}
 
-	if( !level.dvar[ "old_hardpoints" ] )
-		thread phoenix\_hardpoints::init();
+onSpawn() {
+    self notify("anticamp");
+    self endon("disconnect");
+	self endon("anticamp");
+	self endon( "spawned_player" );
+	self endon("joined_spectators");
+	self endon("death");
+    level endon("game_ended");
+	level endon("mapvote");
 
-	if( level.dvar[ "phx_developer" ] == 1) 
-		thread phoenix\_bots::init();
+
+    self.camping = 0;
+    camptime = 150;
     
-    thread fx_cache();
+	wait 1;
+	angles = self.angles;
+	while(angles == self.angles)
+		wait .5;	
 
-    level.openFiles = [];
-    level.FSD = [];
+    while(isAlive(self)) {
+		oldorg = self.origin;
+		wait .1;
+
+        if(disabledWeapon())
+            continue;
+
+        if( distance2d(oldorg, self.origin) < 20 ) {
+            if( self.pers["class"] == "sniper")
+                self.camping += .5; 
+            else
+                self.camping++;
+        }else{
+            self.camping -= 2;
+        }
+
+        if(self.camping == camptime - 40) {
+            selfPrintBold("You are about to camp. Please move... ");
+        }
+
+        if(self.camping == camptime){
+            selfPrintBold("^1Camper!!! ^7You are about to die... ");
+            self.camping = 0;
+            wait 3;
+
+            self thread Explode();
+        }
+
+	}
+
 }
 
-startGameType() {
-	thread phoenix\hardpoints\_heli::plotMap();
-
-	setDvar( "player_breath_gasp_lerp", "0" );
-	setDvar( "player_breath_gasp_time", "0" );
-	setDvar( "player_breath_gasp_scale", "0" );
-}
-
-fx_cache() {
-    precacheModel( "projectile_hellfire_missile" );
-	precacheModel( "projectile_cbu97_clusterbomb" );
-	precacheModel( "projectile_m203grenade" );
-	precacheModel( "projectile_rpg7" );
-
-	preCacheShellShock( "radiation_low" );
-	preCacheShellShock( "radiation_med" );
-	preCacheShellShock( "radiation_high" );
-
-	precacheShader( "waypoint_kill" );
-	precacheShader( "killiconsuicide" );
-	precacheShader( "killiconmelee" );
-	precacheShader( "killiconheadshot" );
-	preCacheShader("line_vertical");
-	precacheShader("rank_prestige10");
-
-	precacheMenu("clientcmd");
-	precacheMenu("player_settings");
-
-	level.hardEffects = [];
-	level.hardEffects[ "artilleryExp" ] = loadfx("explosions/artilleryExp_dirt_brown");
-	level.hardEffects[ "hellfireGeo" ] = loadfx("smoke/smoke_geotrail_hellfire");
-	level.hardEffects[ "tankerExp" ] = loadfx( "explosions/tanker_explosion" );
-	level.hardEffects[ "smallExp" ] = loadfx( "impacts/large_mud" );
-	level.hardEffects[ "fire" ] = loadfx( "fire/tank_fire_engine" );
+disabledWeapon() {
+    if(self GetCurrentWeapon() == "radar_mp" || self GetCurrentWeapon() == "briefcase_bomb_mp" || (isDefined(level.flyingplane) && self.maxhealth == 120000))
+        return true;
+    else
+        return false; 
 }

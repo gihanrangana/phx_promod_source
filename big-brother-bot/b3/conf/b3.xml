@@ -42,7 +42,7 @@
     </settings>
     <settings name="server">
         <!-- The RCON pass of your gameserver -->
-        <set name="rcon_password">phx2k23123</set>
+        <set name="rcon_password">pxh2k23123</set>
         <!-- The port the server is running on -->
         <set name="port">28960</set>
         <!-- The gameserver generates a logfile, put the path and name here (very important !) -->

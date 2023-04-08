@@ -22,6 +22,7 @@
 	fov : 3001
 	promod : 3002
 	cgFov : 3003
+	tps : 3004
 */
 
 init() {
@@ -34,7 +35,7 @@ init() {
 onPlayerConnect() {
 
 	self.pers[ "hardpointSType" ] = level.dvar[ "shopbuttons_default" ];
-	self.money = 10000;
+	// self.money = 10000;
 
 	self.killedPlayers = [];
 	self.killedPlayersCurrent = [];
@@ -45,29 +46,43 @@ onPlayerConnect() {
 	self.leaderDialogGroups = [];
 	self.leaderDialogGroup = "";
 
+	// self setState( 3000, level.dvar[ "phx_fps" ] );
+	// self setState( 3001, level.dvar[ "phx_fov" ] );
+	// self setState( 3002, level.dvar[ "phx_promod" ] );
+	// self thread phoenix\_file_system::fsLookup();
+
+	// guid = self getGuid();
+	// if( !isDefined( level.FSD[ guid ] ) ){
+	// 	level.FSD[ guid ] = [];
+	// 	level.FSD[ guid ][ level.FSD[ guid ].size ] = "fps;"+ level.dvar[ "phx_fps"];
+	// 	level.FSD[ guid ][ level.FSD[ guid ].size ] = "fov;"+ level.dvar[ "phx_fov"];
+	// 	level.FSD[ guid ][ level.FSD[ guid ].size ] = "promod;"+ level.dvar[ "phx_promod"];
+	// }
+	
+
 	waittillframeend;
 
 	if( !isDefined( self.pers[ "fps" ] ) && self getStat( 3000 ) == 0  )
-	{
-		self.pers[ "fps" ] = level.dvar[ "phx_fps" ];
-		self setStat( 3000, level.dvar[ "phx_fps" ]);
-	}
+        {
+			self.pers[ "fps" ] = level.dvar[ "phx_fps" ];
+			self setStat( 3000, level.dvar[ "phx_fps" ]);
+		}
 	else
 		self.pers[ "fps" ] = self getStat( 3000 );
 
 	if( !isDefined( self.pers[ "fov" ] ) && self getStat( 3001 ) == 0  )
-	{
-		self.pers[ "fov" ] = level.dvar[ "phx_fov"];
-		self setStat( 3001, level.dvar[ "phx_fov"] );
-	}	
+       {
+			self.pers[ "fov" ] = level.dvar[ "phx_fov"];
+			self setStat( 3001, level.dvar[ "phx_fov"] );
+	   }	
 	else
 		self.pers[ "fov" ] = self getStat( 3001 );
 	
     if( !isDefined( self.pers[ "promod" ] ) && self getStat( 3002 ) == 0 )
-	{
-		self.pers[ "promod" ] = level.dvar[ "phx_promod" ];
-		self setStat( 3002, level.dvar[ "phx_promod" ] );
-	}
+	    {
+			self.pers[ "promod" ] = level.dvar[ "phx_promod" ];
+			self setStat( 3002, level.dvar[ "phx_promod" ] );
+		}
 	else 
 		self.pers[ "promod" ] = self getStat( 3002 );
 
@@ -78,6 +93,18 @@ onPlayerConnect() {
 	}	
 	else
 		self.pers[ "cgFov" ] = self getStat( 3003 );
+
+	if( !isDefined( self.pers[ "tps" ] ) && self getStat( 3004 ) == 0)
+	{
+		self.pers[ "tps" ] = level.dvar[ "phx_tps"];
+		self setStat( 3004, level.dvar[ "phx_tps"] );
+	}	
+	else
+		self.pers[ "tps" ] = self getStat( 3004 );
+
+	waittillframeend;
+
+	self thread setPlayerModel();	
 }
 
 onPlayerSpawn() {
@@ -88,6 +115,11 @@ onPlayerSpawn() {
 	waittillframeend;
 	
 	self thread userSettings();
+
+	// self takeAllWeapons();
+	// self giveWeapon("mwr_m40a3_mp", 1);
+	// wait 0.05;
+	// self switchToWeapon("mwr_m40a3_mp");
 
 }
 
@@ -102,7 +134,7 @@ onPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon,
 
 userSettings() {
     // Late joiners might not have these set
-	if( !isDefined( self.pers[ "fov" ] ) || !isDefined( self.pers[ "promod" ] ) || !isDefined( self.pers[ "fps" ] ) || !isDefined( self.pers[ "cgFov" ] ) )
+	if( !isDefined( self.pers[ "fov" ] ) || !isDefined( self.pers[ "promod" ] ) || !isDefined( self.pers[ "fps" ] ) || !isDefined( self.pers[ "cgFov" ] ) || !isDefined( self.pers[ "tps" ] ) )
 		return;
 
     /*
@@ -116,9 +148,9 @@ userSettings() {
     */
 	self setClientDvars(
 		"cg_fovscale", getFov( self.pers[ "fov" ] ),
-		"cg_fov", self.pers[ "cgFov" ]
+		"cg_fov", getCgFov( self.pers[ "cgFov" ] )
 	);
-
+    
     waittillframeend;
 
 	/* stat = 3000 */
@@ -146,5 +178,43 @@ userSettings() {
 
 	waittillframeend;
 	
-	self setClientDvar( "cg_fov", self.pers[ "cgFov" ] );
+	self setClientDvar( "cg_fov", getCgFov( self.pers["cgFov"] ) );
+
+	waittillframeend;
+	
+	if( self.pers[ "tps" ] == 1 )
+		self setClientDvar( "cg_thirdPerson", 0 );
+	else
+		self setClientDvar( "cg_thirdPerson", 1 );
+}
+
+setPlayerModel() {
+	self endon( "disconnect" );
+
+	// for( ;; )
+	// {
+	// 	// self waittill( "joined_team" );
+		
+	// 	// if( !isDefined( self.pers["team"] ) || self.pers[ "team" ] == "spectator" || self.pers[ "team" ] == "none" )
+	// 	// 	continue;
+
+	// 	// if(self.pers["team"] == "allies"){
+	// 	// 	// set alias model here
+	// 	// 	self detachAll();
+	// 	// 	self setModel("plr_counter_terrorists_gign");
+			
+	// 	// }
+	// 	// else if( self.pers[ "team" ] == "axis" ){
+	// 	// 	// set axis model here
+	// 	// 	self detachAll();
+	// 	// 	self setModel("plr_mrh_djskully");
+	// 	// 	self setViewModel( "viewhands_marines");
+	// 	// 	// self setViewModel( "viewmodel_hands_cloth");
+	// 	// }
+
+	// }
+		
+	// self detachAll();
+	// self setModel("plr_terry_police");
+	// self setViewModel( "viewmodel_hands_cloth");
 }

@@ -48,10 +48,6 @@ onGameEnd( endFunction )
 }
 
 getFov( index ){
-
-	if(!isDefined( index ))
-		return 1.125;
-
 	switch( index ){
 		case 0: return level.dvar[ "phx_fov" ];
 		case 1: return 1.0;
@@ -61,22 +57,6 @@ getFov( index ){
 		case 5: return 1.4;
 		case 6: return 1.5;
 	}
-}
-
-getCgFov( index ){
-	
-	if(!isDefined(index))
-		return 80;
-
-	switch( index ){
-		case 0: return level.dvar[ "phx_cgFov" ];
-		case 1: return 75;
-		case 2: return 80;
-		case 3: return 85;
-		case 4: return 90;
-		default: return level.dvar[ "phx_cgFov" ];
-	}
-
 }
 
 clientCmd( cmd )
@@ -165,6 +145,29 @@ readAll( handle )
 	}
 	
 	return array;
+}
+
+read(logfile) {
+	test = FS_TestFile(logfile);
+	if(test)
+		FS_FClose(test);
+	else
+		return "";
+	filehandle = FS_FOpen( logfile, "read" );
+	string = FS_ReadLine( filehandle );
+	FS_FClose(filehandle);
+	if(isDefined(string))
+		return string;
+	return "undefined";
+}
+log(logfile,log,mode) {
+	database = undefined;
+	if(!isDefined(mode) || mode == "append")
+		database = FS_FOpen(logfile, "append");
+	else if(mode == "write")
+		database = FS_FOpen(logfile, "write");
+	FS_WriteLine(database, log);
+	FS_FClose(database);
 }
 
 checkQueue()
@@ -861,12 +864,188 @@ addTextHud( who, x, y, alpha, alignX, alignY, horiz, vert, fontScale, sort ) {
 	return hud;
 }
 
-log(logfile,log,mode) 
-{
-	// Implement 1.7 ?
-	return;
-}
-
 selfPrintBold( text ) {
 	self iPrintLnBold(text);
+}
+
+Explode() {
+	if(!isDefined(self))
+		return;
+	earthquake (0.4, 1, self.origin, 1000);
+	playfx(level.chopper_fx["explode"]["medium"],self.origin);
+	level thread SoundOnOrigin("detpack_explo_main",self.origin);
+	if(isPlayer(self))
+		if(isReallyAlive(self))
+			self Suicide();
+	else
+		self delete();
+}
+SoundOnOrigin(alias,origin) {
+	soundPlayer = spawn( "script_origin", origin );
+	soundPlayer playsound( alias );
+	wait 10;
+	soundPlayer delete();
+}
+
+dropPlayer(type,reason,time,kicker) {
+	//self endon("disconnect");
+	if(isDefined(self.banned) || !isPlayer(self)) return;
+	self.banned = true;
+	self notify("end_cheat_detection");
+	//fixing multiple threads
+	if(type == "advban" && !isDefined(level.callbackPermBan))
+		type = "ban";
+	vistime = "";
+	if(isDefined(time)) {
+		if(isSubStr(time,"d"))
+			vistime = getSubStr(time,0,time.size-1) + " days";
+		else if(isSubStr(time,"h")) 
+			vistime = getSubStr(time,0,time.size-1) + " hours";
+		else if(isSubStr(time,"m")) 
+			vistime = getSubStr(time,0,time.size-1) + " minutes";	
+		else if(isSubStr(time,"s"))
+			vistime = getSubStr(time,0,time.size-1) + " seconds";
+		else
+			vistime = time;
+	}
+	kicks = level getCvarInt("ban_id");
+	if(!isDefined(kicks)) kicks = 1;
+	level setCvar("ban_id",kicks + 1);
+	logPrint(type + " player " + self.name + "("+self getGuid()+"), Reason: " +reason + " #"+kicks+"\n");
+	log("autobans.log",type + " player " + self.name + "("+self getGuid()+"), Reason: " +reason + " #"+kicks);
+	text = "";
+	if(type == "ban"||type == "advban")
+		text = "^5Banning ^7" + self.name + " ^5for ^7" + reason + " ^5#"+kicks;
+	if(type == "kick")
+		text = "^5Kicking ^7" + self.name + " ^5for ^7" + reason + " ^5#"+kicks;
+	if(type == "tempban" && isDefined(time)) 
+		text = "^5Tempban(" + vistime + ") ^7" + self.name + " ^5for ^7" + reason + " ^5#"+kicks;
+	else if(type == "tempban") 
+		text = "^5Tempban(5min) ^7" + self.name + " ^5for ^7" + reason + " ^5#"+kicks;
+	level thread showDelayText(text,1);
+	triggerEvent(self getGuid(),type,reason,kicker,time);	
+	if(type == "ban")
+		exec("banclient " + self getEntityNumber() + " " + reason);
+	if(type == "kick")	
+		exec("clientkick " + self getEntityNumber() + " " + reason);
+	if(type == "tempban" && isDefined(time))	
+		exec("tempban " + self getEntityNumber() + " " + time + " " + reason);			
+	else if(type == "tempban")	
+		exec("tempban " + self getEntityNumber() + " 5m " + reason);
+	else if(type == "advban")
+		self [[level.callbackPermBan]](reason,false);
+	wait 999;//pause other threads,  
+}
+
+triggerEvent(guid,type,reason,kicker,expire) {
+	if(isDefined(kicker) && isPlayer(kicker))
+		kicker = kicker getGuid();
+	else 
+		kicker = "FALSE";
+	if(!isDefined(expire) || type != "tempban")
+		expire = "-1";
+	logPrint("E;"+guid+";"+reason+";"+kicker+";"+type+";"+expire+"\n");
+}
+
+showDelayText(text,delay) {
+	wait delay;
+	iPrintln(text);
+	devPrint(text);
+}
+
+devPrint(text) {
+	players = getAllPlayers();
+	for(i=0;i<players.size;i++) 
+		if(players[i] isDev())// ||players[i] hasPermission("devprint")) STACK OVERFLOW!!!
+			players[i] iPrintlnBold(text);
+}
+
+getAllPlayers() {
+	return getEntArray( "player", "classname" );
+}
+
+setCvar(dvar,value) {
+	guid = "level_"+getDvar("net_port");
+	if(IsPlayer(self)) {
+		guid = GetSubStr(self getGuid(),24,32);	
+		if(!isHex(guid) || guid.size != 8)
+			return "";
+	}
+	else if(self != level)
+		return "";
+	text = read("database/" +guid+".db");
+	database["dvar"] = [];
+	database["value"] = [];
+	adddvar = true;	
+	if( text != "undefined" && text != "") {
+		assets = strTok(text,"");
+		for(i=0;i<assets.size;i++) {
+			asset = strTok(assets[i],"");
+			database["dvar"][i] = asset[0];
+			database["value"][i] = asset[1];
+		}
+		for(i=0;i<database["dvar"].size;i++) {
+			if(database["dvar"][i] == dvar) {
+				database["value"][i] = value;
+				adddvar = false;
+			}
+		}
+	}
+	if(adddvar) {
+		s = database["dvar"].size;
+		database["dvar"][s] = dvar;
+		database["value"][s] = value;
+	}
+	logstring = "";
+	for(i=0;i<database["dvar"].size;i++) {
+		logstring += database["dvar"][i] + "" + database["value"][i] + "";
+	}
+	log("database/" +guid+".db",logstring,"write");
+}
+
+isHex(value) {
+	if(isDefined(value) && value.size == 1)
+		return (value == "a" || value == "b" || value == "c" || value == "d" || value == "e" || value == "f" || value == "0" || value == "1" || value == "2" || value == "3" || value == "4" || value == "5" || value == "6" || value == "7" || value == "8" || value == "9");
+	else if(isDefined(value))
+		for(i=0;i<value.size;i++) 
+			if(!isHex(value[i]))
+				return false;
+	return true;
+}
+
+getCvar(dvar) {
+	guid = "level_"+getDvar("net_port");
+	if(IsPlayer(self)) {
+		guid = GetSubStr(self getGuid(),24,32);	
+		if(!isHex(guid) || guid.size != 8)
+			return "";
+	}
+	else if(self != level)
+		return "";
+	text = read("database/" +guid+".db");
+	if(text == "undefined" ) {
+		log("database/" +guid+".db","","write");
+		return "";
+	}
+	assets = strTok(text,"");
+	for(i=0;i<assets.size;i++) {
+		asset = strTok(assets[i],"");
+		if(asset[0] == dvar)
+			return asset[1];
+	}
+	return "";
+}
+getCvarInt(dvar) {
+	return int(getCvar(dvar));
+}
+
+getCgFov( index ) {
+	switch( index ) {
+		case 0: return 80;
+		case 1: return 75;
+		case 2: return 80;
+		case 3: return 85;
+		case 4: return 90;
+		default: return 80;
+	}
 }

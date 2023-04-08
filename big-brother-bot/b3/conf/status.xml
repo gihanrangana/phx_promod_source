@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<B3Status Time="Sat Apr  8 21:24:00 2023">
-        <Game CaptureLimit="" FragLimit="" Ip="127.0.0.1" Map="" MapTime="94" Name="cod4" OnlinePlayers="0" Port="28960" RoundTime="94" Rounds="1" TimeLimit="" Type="">
-                <Data Name="console" Value="&lt;b3.parsers.cod4x18.Cod4X18Parser object at 0x0000000003A57288&gt;"/>
+<B3Status Time="Sun Apr  9 00:28:01 2023">
+        <Game CaptureLimit="" FragLimit="" Ip="127.0.0.1" Map="mp_killhouse" MapTime="210" Name="cod4" OnlinePlayers="1" Port="28960" RoundTime="192" Rounds="2" TimeLimit="" Type="war">
+                <Data Name="protocol" Value="21"/>
                 <Data Name="gameName" Value="cod4"/>
-                <Data Name="_roundTimeStart" Value="1680969146"/>
-                <Data Name="_mapTimeStart" Value="1680969146"/>
-                <Data Name="rounds" Value="1"/>
-                <Data Name="_mapName" Value="None"/>
+                <Data Name="sv_privateClients" Value="0"/>
+                <Data Name="sv_maxRate" Value="25000"/>
+                <Data Name="_mapTimeStart" Value="1680980071"/>
+                <Data Name="rounds" Value="2"/>
+                <Data Name="_mapName" Value="mp_killhouse"/>
+                <Data Name="sv_disableClientConsole" Value="0"/>
+                <Data Name="uptime" Value="5 minutes"/>
+                <Data Name="console" Value="&lt;b3.parsers.cod4x18.Cod4X18Parser object at 0x0000000003C9A288&gt;"/>
+                <Data Name="gamename" Value="Call of Duty 4"/>
+                <Data Name="version" Value="CoD4 X - win_mingw-x86 build 1153 May  1 2022"/>
+                <Data Name="build" Value="1153"/>
+                <Data Name="branch" Value="master"/>
+                <Data Name="sv_pure" Value="1"/>
+                <Data Name="_roundTimeStart" Value="1680980089"/>
+                <Data Name="_CoD4 X Site" Value="http://cod4x.ovh"/>
+                <Data Name="revision" Value="54db3b9c742a86eb594f47fd0caa98f7d8921aec"/>
+                <Data Name="sv_voice" Value="0"/>
+                <Data Name="modName" Value="Mods/phx_promod"/>
+                <Data Name="sv_minPing" Value="0"/>
+                <Data Name="sv_maxclients" Value="32"/>
+                <Data Name="sv_hostname" Value="^5CoD4Host"/>
+                <Data Name="sv_floodprotect" Value="4"/>
+                <Data Name="g_compassShowEnemies" Value="0"/>
+                <Data Name="g_mapStartTime" Value="Sun Apr 09 00:23:23 2023"/>
+                <Data Name="gameType" Value="war"/>
+                <Data Name="shortversion" Value="-"/>
+                <Data Name="g_logTimeStampInSeconds" Value="0"/>
+                <Data Name="sv_maxPing" Value="0"/>
         </Game>
-        <Clients Total="0"/>
+        <Clients Total="1">
+                <Client CID="0" ColorName="|PHX| GHOST^7" Connections="28" DBID="1" GUID="2310346614882407203" IP="192.168.1.100" Joined="Sun Mar 26 13:50:50 2023" Level="100" Name="|PHX| GHOST" PBID="" Score="" State="2" Team="-1" Updated="Sun Apr  9 00:25:02 2023">
+                        <Data Name="codguid" Value="2310346614882407203"/>
+                </Client>
+        </Clients>
 </B3Status>
