@@ -33,7 +33,9 @@ init()
 	game["menu_quickpromod"] = "quickpromod";
 	game["menu_quickpromodgfx"] = "quickpromodgfx";
 	game["menu_demo"] = "demo";
+	// game["votemap"] = "votemap";
 
+	// precacheMenu("votemap");
 	precacheMenu("quickcommands");
 	precacheMenu("quickstatements");
 	precacheMenu("quickresponses");

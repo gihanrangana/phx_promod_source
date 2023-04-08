@@ -717,3 +717,55 @@ stow_inventory( inventories, current )
 		self attach( weapon_model, "tag_stowed_hip_rear", true );
 	}
 }
+
+
+isPistol( weapon )
+{
+	return isdefined( level.side_arm_array[ weapon ] );
+}
+
+hasScope( weapon )
+{
+	if ( isSubStr( weapon, "_acog_" ) )
+		return true;
+	if ( weapon == "m21_mp" )
+		return true;
+	if ( weapon == "aw50_mp" )
+		return true;
+	if ( weapon == "barrett_mp" )
+		return true;
+	if ( weapon == "dragunov_mp" )
+		return true;
+	if ( weapon == "m40a3_mp" )
+		return true;
+	if ( weapon == "remington700_mp" )
+		return true;
+	return false;
+}
+
+isHackWeapon( weapon )
+{
+	if ( weapon == "radar_mp" || weapon == "airstrike_mp" || weapon == "helicopter_mp" )
+		return true;
+	if ( weapon == "briefcase_bomb_mp" )
+		return true;
+	return false;
+}
+
+mayDropWeapon( weapon )
+{
+	if ( weapon == "none" )
+		return false;
+		
+	if ( isHackWeapon( weapon ) )
+		return false;
+	
+	invType = WeaponInventoryType( weapon );
+	if ( invType != "primary" )
+		return false;
+	
+	if ( weapon == "none" )
+		return false;
+	
+	return true;
+}

@@ -28,9 +28,9 @@
         <!-- Your database info: [protocol]://[db-user]:[db-password]@[db-server[:port]]/[db-name] -->
         <set name="database">mysql://root@localhost/b3</set>
         <!-- Name of the bot -->
-        <set name="bot_name">b3</set>
+        <set name="bot_name">PHX</set>
         <!-- Ingame messages are prefixed with this code, you can use colorcodes -->
-        <set name="bot_prefix">^0(^2b3^0)^7:</set>
+        <set name="bot_prefix">^0[^2PHX^0]^7:</set>
         <!-- Time format to use to format time strings (also used by the !time command of the Admin Plugin -->
         <set name="time_format">%I:%M%p %Z %m/%d/%y</set>
         <!-- The timezone your bot is in -->
@@ -126,6 +126,12 @@
         <plugin name="tk" config="@b3/conf/plugin_tk.ini" />
         <plugin name="welcome" config="@b3/conf/plugin_welcome.ini" />
         <plugin name="customcommands" config="@b3/conf/plugin_customcommands.ini" />
+        <plugin name="xlrstats" config="@b3/conf/plugin_xlrstats.ini" />
+        <plugin name="spree" config="@b3/conf/plugin_spree.ini" />
+        <plugin name="location" config="@b3/conf/plugin_location.ini" />
+        <plugin name="ipban" config="@b3/conf/plugin_ipban.ini" />
+        <plugin name="geowelcome" config="@b3/conf/plugin_geowelcome.ini" />
+        <plugin name="firstkill" config="@b3/conf/plugin_firstkill.ini" />
 
         <!-- The following plugins have been included recently in B3 as official plugins. They are disabled by
              default. You can enable them by removing the surrounding comment symbols. -->

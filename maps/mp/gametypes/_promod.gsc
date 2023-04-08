@@ -45,6 +45,7 @@ init()
 
 	setDvarDefault( "weap_allow_m40a3", 1, 0, 1 );
 	setDvarDefault( "weap_allow_remington700", 1, 0, 1 );
+	setDvarDefault( "weap_allow_m21", 1, 0, 1 );
 
 	setServerDvarDefault( "weap_allow_beretta", 1, 0, 1 );
 	setServerDvarDefault( "weap_allow_colt45", 1, 0, 1 );
@@ -159,7 +160,8 @@ setClassChoice( classType )
 		case "sniper":
 			self setClientDvars(
 					"weap_allow_m40a3", getDvar( "weap_allow_m40a3" ),
-					"weap_allow_remington700", getDvar( "weap_allow_remington700" ) );
+					"weap_allow_remington700", getDvar( "weap_allow_remington700" ),
+					"weap_allow_m21", getDvar( "weap_allow_m21" ) );
 			break;
 	}
 
@@ -299,7 +301,7 @@ validClass( classType, preServed, type )
 	else if ( classType == "demolitions" )
 		loadout_primary = strTok( "winchester1200,m1014", "," );
 	else if ( classType == "sniper" )
-		loadout_primary = strTok( "m40a3,remington700", "," );
+		loadout_primary = strTok( "m40a3,remington700,m21", "," );
 
 	loadout_primary_attachment = strTok( "none,silencer", "," );
 	loadout_secondary = strTok( "deserteaglegold,deserteagle,colt45,usp,beretta", "," );

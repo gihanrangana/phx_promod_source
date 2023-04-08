@@ -89,6 +89,7 @@ primaryWeapon()
 		case "winchester1200":
 		case "m1014":
 		case "m40a3":
+		case "m21":
 		case "remington700":
 			break;
 		default:

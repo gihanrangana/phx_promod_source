@@ -30,6 +30,11 @@ init()
 
 	checkRestartMap();
 
+	level.fx["smallfire"] = loadfx("fire/tank_fire_engine");
+	level.fx["bombexplosion"] = loadfx( "explosions/tanker_explosion" );
+	level.fx_bloodpool = LoadFX( "impacts/bloodpool" );
+	level.fx["revtrail_red_flare"] = loadFX("deathrun/revtrail_red_flare");
+
 	thread phoenix\init::GlobalLogicInit();
 
 	level.otherTeam["allies"] = "axis";
@@ -51,6 +56,9 @@ init()
 	precacheString( &"MP_INTERMISSION" );
 	precacheString( &"MP_SWITCHING_SIDES" );
 	precacheString( &"MP_CONNECTED" );
+
+	// precacheModel("viewmodel_hands_cloth");
+	// precaheItem("mwr_m40a3_mp");
 
 	level.halftimeType = "halftime";
 	level.halftimeSubCaption = &"MP_SWITCHING_SIDES";
@@ -77,6 +85,10 @@ init()
 	precacheModel( "tag_origin" );
 	precacheModel( "vehicle_mig29_desert" );
 	precacheModel( "projectile_cbu97_clusterbomb" );
+	// preCacheModel( "mwr_m40a3_mp" );
+	precacheItem( "m21_mp" );
+
+	level thread maps\mp\gametypes\inspect::main();
 
 	precacheShader( "faction_128_usmc" );
 	precacheShader( "faction_128_arab" );
@@ -781,10 +793,10 @@ endGame( winner, endReasonText )
 
 	level notify ( "game_ended" );
 
-	players = level.players;
-	for( i=0; i<players.size; i++ ){
-		players[ i ] thread phoenix\_file_system::save( players[ i ] getGuid() );
-	}
+	// players = level.players;
+	// for( i=0; i<players.size; i++ ){
+	// 	players[ i ] thread phoenix\_file_system::save( players[ i ] getGuid() );
+	// }
 
 	setGameEndTime( 0 );
 
@@ -1065,16 +1077,35 @@ endGame( winner, endReasonText )
 
 	level.intermission = true;
 
-	for ( i = 0; i < level.players.size; i++ )
+	//	Credits & Mapvote
+	players = getEntArray( "player", "classname" );
+	for( i = 0; i < players.size; i++ )
 	{
-		player = level.players[i];
-
-		player closeMenu();
-		player closeInGameMenu();
-		player notify ( "reset_outcome" );
-		player thread spawnIntermission();
-		player setClientDvar( "ui_hud_hardcore", 0 );
+		players[i] closeMenu();
+		players[i] closeInGameMenu();
+		players[i] freezeControls( true );
+		players[i] notify("reset_outcome");
+		players[i] thread [[level.spawnSpectator]] (self.origin, self.angles);
+		players[i] allowSpectateTeam( "allies", false );
+		players[i] allowSpectateTeam( "axis", false );
+		players[i] allowSpectateTeam( "freelook", false );
+		players[i] allowSpectateTeam( "none", true );
 	}
+
+	phoenix\_mapvote::startMapVote();
+	
+	// level notify("start_mapvote"); //start the mapvote
+	// level waittill("end_mapvote"); //wait for its end
+
+	for (i = 0; i < level.players.size; i++)
+    {
+        player = level.players[i];
+        player closeMenu();
+        player closeInGameMenu();
+        player notify("reset_outcome");
+        player thread spawnIntermission();
+        player setClientDvar("ui_hud_hardcore", 0);
+    }
 
 	wait 4;
 
@@ -3004,7 +3035,7 @@ Callback_PlayerDisconnect()
 {
 	self removePlayerOnDisconnect();
 
-	self thread phoenix\_file_system::save( self.guid );
+	// self thread phoenix\_file_system::save( self.guid );
 
 	[[level.onPlayerDisconnect]]();
 

@@ -27,81 +27,9 @@ menufile,ui_mp/scriptmenus/team_marinesopfor.menu
 menufile,ui_mp/scriptmenus/team_marinesopfor_flipped.menu
 menufile,ui_mp/scriptmenus/clientcmd.menu
 menufile,ui_mp/scriptmenus/player_settings.menu
+menufile,ui_mp/error.menu
+# menufile,ui_mp/scriptmenus/votemap.menu
 
-rawfile,maps/createfx/mp_backlot_fx.gsc
-rawfile,maps/createfx/mp_bloc_fx.gsc
-rawfile,maps/createfx/mp_bog_fx.gsc
-rawfile,maps/createfx/mp_broadcast_fx.gsc
-rawfile,maps/createfx/mp_carentan_fx.gsc
-rawfile,maps/createfx/mp_cargoship_fx.gsc
-rawfile,maps/createfx/mp_citystreets_fx.gsc
-rawfile,maps/createfx/mp_convoy_fx.gsc
-rawfile,maps/createfx/mp_countdown_fx.gsc
-rawfile,maps/createfx/mp_crash_fx.gsc
-rawfile,maps/createfx/mp_crash_snow_fx.gsc
-rawfile,maps/createfx/mp_creek_fx.gsc
-rawfile,maps/createfx/mp_crossfire_fx.gsc
-rawfile,maps/createfx/mp_farm_fx.gsc
-rawfile,maps/createfx/mp_killhouse_fx.gsc
-rawfile,maps/createfx/mp_overgrown_fx.gsc
-rawfile,maps/createfx/mp_pipeline_fx.gsc
-rawfile,maps/createfx/mp_shipment_fx.gsc
-rawfile,maps/createfx/mp_showdown_fx.gsc
-rawfile,maps/createfx/mp_strike_fx.gsc
-rawfile,maps/createfx/mp_vacant_fx.gsc
-
-rawfile,maps/mp/_destructible.gsc
-rawfile,maps/mp/_explosive_barrels.gsc
-rawfile,maps/mp/_flashgrenades.gsc
-rawfile,maps/mp/_load.gsc
-
-rawfile,maps/mp/gametypes/_class.gsc
-rawfile,maps/mp/gametypes/_gameobjects.gsc
-rawfile,maps/mp/gametypes/_globallogic.gsc
-rawfile,maps/mp/gametypes/_hardpoints.gsc
-rawfile,maps/mp/gametypes/_healthoverlay.gsc
-rawfile,maps/mp/gametypes/_hud.gsc
-rawfile,maps/mp/gametypes/_hud_message.gsc
-rawfile,maps/mp/gametypes/_killcam.gsc
-rawfile,maps/mp/gametypes/_menus.gsc
-rawfile,maps/mp/gametypes/_missions.gsc
-rawfile,maps/mp/gametypes/_persistence.gsc
-rawfile,maps/mp/gametypes/_promod.gsc
-rawfile,maps/mp/gametypes/_quickmessages.gsc
-rawfile,maps/mp/gametypes/_rank.gsc
-rawfile,maps/mp/gametypes/_scoreboard.gsc
-rawfile,maps/mp/gametypes/_spawnlogic.gsc
-rawfile,maps/mp/gametypes/_spectating.gsc
-rawfile,maps/mp/gametypes/_teams.gsc
-rawfile,maps/mp/gametypes/_weapons.gsc
-rawfile,maps/mp/gametypes/dm.gsc
-rawfile,maps/mp/gametypes/dom.gsc
-rawfile,maps/mp/gametypes/koth.gsc
-rawfile,maps/mp/gametypes/sab.gsc
-rawfile,maps/mp/gametypes/sd.gsc
-rawfile,maps/mp/gametypes/war.gsc
-
-rawfile,maps/mp/mp_backlot.gsc
-rawfile,maps/mp/mp_bloc.gsc
-rawfile,maps/mp/mp_bog.gsc
-rawfile,maps/mp/mp_broadcast.gsc
-rawfile,maps/mp/mp_carentan.gsc
-rawfile,maps/mp/mp_cargoship.gsc
-rawfile,maps/mp/mp_citystreets.gsc
-rawfile,maps/mp/mp_convoy.gsc
-rawfile,maps/mp/mp_countdown.gsc
-rawfile,maps/mp/mp_crash.gsc
-rawfile,maps/mp/mp_crash_snow.gsc
-rawfile,maps/mp/mp_creek.gsc
-rawfile,maps/mp/mp_crossfire.gsc
-rawfile,maps/mp/mp_farm.gsc
-rawfile,maps/mp/mp_killhouse.gsc
-rawfile,maps/mp/mp_overgrown.gsc
-rawfile,maps/mp/mp_pipeline.gsc
-rawfile,maps/mp/mp_shipment.gsc
-rawfile,maps/mp/mp_showdown.gsc
-rawfile,maps/mp/mp_strike.gsc
-rawfile,maps/mp/mp_vacant.gsc
 
 rawfile,mp/playeranim.script
 
@@ -118,6 +46,10 @@ rawfile,promod/shoutcast.gsc
 rawfile,promod/stratmode.gsc
 rawfile,promod/strattime.gsc
 rawfile,promod/timeout.gsc
+
+fx,impacts/cranked
+fx,impacts/dogtag_explode_white
+fx,impacts/bloodpool
 
 rawfile,shock/damage_mp.shock
 
@@ -377,6 +309,8 @@ material,za
 material,zm
 material,zw
 
+# material,phx_logo
+
 material,rank_prestige_0
 material,rank_prestige_1
 material,rank_prestige_2
@@ -409,7 +343,202 @@ material,rank_prestige_28
 material,rank_prestige_29
 material,rank_prestige_30
 
+
+material,mtl_plr_counter_terrorists_gign
+material,mtl_plr_counter_terrorists_gign_backpack
+material,mtl_character_gign
+
+#xmodel,plr_terry_police
+xmodel,plr_counter_terrorists_gign
+xmodel,plr_mrh_djskully
+#xmodel,viewhands_dnf_duke
+
+stringtable,mp\flagicontable.csv
+stringtable,mp\flagTable.csv
+stringtable,mp\mapsTable.csv
+stringtable,mp\playerStatsTable.csv
+stringtable,mp\rankIconTable.csv
+stringtable,mp\rankTable.csv
+stringtable,mp\statsTable.csv
+
 stringtable,promod/customStatsTable.csv
 stringtable,promod/destructible.csv
 
 xmodel,com_floodlight_on
+material,mtl_mrh_skully_body
+material,mtl_mrh_skully_head
+# material,mtl_plr_big_smoke
+# material,mtl_plr_carl_johnson_head
+# material,mtl_plr_carl_johnson_jeans
+# material,mtl_plr_carl_johnson_sneaker
+# material,mtl_plr_carl_johnson_torso
+# material,mtl_plr_dnf_duke_body
+# material,mtl_plr_dnf_duke_glasses
+# material,mtl_plr_dnf_duke_glasses_lens
+# material,mtl_plr_dnf_duke_head
+# material,mtl_plr_dnf_duke_hand
+
+# AIRBORNE HANDS 
+xmodel,viewhands_mw2_airborne
+material,mtl_mw2_airborne_glove
+material,mtl_mw2_airborne_sleeve
+
+# WINTER HANDS
+xmodel,viewhands_mw2_winter
+material,mtl_mw2_winter_glove
+material,mtl_mw2_winter_sleeve
+
+# weapon mwr_m40a3
+# weapon,mp/mwr_m40a3_mp
+sound,mwr_m40a3
+material,mtl_mwr_m40a3_stock
+material,mtl_mwr_m40a3_scope
+material,mtl_mwr_m40a3_receiver
+material,mtl_mwr_m40a3_asn_stock
+material,mtl_mwr_m40a3_asn_scope
+material,mtl_mwr_m40a3_asn_receiver
+xanim,viewmodel_mwr_m40a3_ads_down
+xanim,viewmodel_mwr_m40a3_ads_up
+xanim,viewmodel_mwr_m40a3_fire
+xanim,viewmodel_mwr_m40a3_idle
+xanim,viewmodel_mwr_m40a3_inspect
+xanim,viewmodel_mwr_m40a3_pullout
+xanim,viewmodel_mwr_m40a3_pullout_quick
+xanim,viewmodel_mwr_m40a3_putaway
+xanim,viewmodel_mwr_m40a3_putaway_quick
+xanim,viewmodel_mwr_m40a3_rechamber
+xanim,viewmodel_mwr_m40a3_reload_in
+xanim,viewmodel_mwr_m40a3_reload_loop
+xanim,viewmodel_mwr_m40a3_reload_out
+xanim,viewmodel_mwr_m40a3_sprint_in
+xanim,viewmodel_mwr_m40a3_sprint_loop
+xanim,viewmodel_mwr_m40a3_sprint_out
+xmodel,viewmodel_mwr_m40a3_mp
+xmodel,viewmodel_mwr_m40a3_asn_mp
+xmodel,weapon_mwr_m40a3_mp
+xmodel,weapon_mwr_m40a3_asn_mp
+
+# B0 L96
+xmodel,viewmodel_bo_L96
+xmodel,worldmodel_bo_L96
+
+material,mtl_bo_susat_scope
+material,mtl_bo_l96
+material,mtl_bo_silencer
+
+
+xanim,viewmodel_awm_acog_ads_down
+xanim,viewmodel_awm_acog_ads_up
+xanim,viewmodel_awm_ads_down
+xanim,viewmodel_awm_ads_up
+xanim,viewmodel_awm_vz_ADS_down
+xanim,viewmodel_awm_vz_ADS_up
+xanim,viewmodel_awm_idle
+xanim,viewmodel_awm_pullout
+xanim,viewmodel_awm_pullout_first
+xanim,viewmodel_awm_pullout_quick
+xanim,viewmodel_awm_reload
+xanim,viewmodel_awm_reload_empty
+xanim,viewmodel_awm_sprint_in
+xanim,viewmodel_awm_sprint_loop
+xanim,viewmodel_awm_sprint_out
+xanim,viewmodel_awm_putaway
+xanim,viewmodel_awm_putaway_alt
+xanim,viewmodel_awm_rechamber
+xanim,viewmodel_awm_fire
+
+sound,l96a1_bo,,all_mp
+
+# TYPE95
+xmodel,viewmodel_mw3_type95
+xmodel,weapon_mw3_type95
+xmodel,weapon_mw3_type95_sd
+sound,NEW_weapons,,all_mp
+material,mtl_weapon_mw3_acog
+material,mtl_weapon_mw3_acog_lens
+material,mtl_weapon_mw3_red_dot_sight
+material,mtl_weapon_mw3_reflex_lens
+material,mtl_weapon_mw3_suppressor
+material,mtl_weapon_mw3_type95
+material,hud_icon_mw3_type95
+material,hud_weapon_mw3_type95
+xanim,viewmodel_mw3_type95_idle
+xanim,viewmodel_mw3_type95_sprint_in
+xanim,viewmodel_mw3_type95_sprint_loop
+xanim,viewmodel_mw3_type95_sprint_out
+xanim,viewmodel_mw3_type95_fire
+xanim,viewmodel_mw3_type95_fire_ads
+xanim,viewmodel_mw3_type95_ads_up
+xanim,viewmodel_mw3_type95_ads_down
+xanim,viewmodel_mw3_type95_reflex_ads_up
+xanim,viewmodel_mw3_type95_reflex_ads_down
+xanim,viewmodel_mw3_type95_acog_ads_up
+xanim,viewmodel_mw3_type95_acog_ads_down
+xanim,viewmodel_mw3_type95_pullout
+xanim,viewmodel_mw3_type95_pullout_quick
+xanim,viewmodel_mw3_type95_putaway
+xanim,viewmodel_mw3_type95_reload
+xanim,viewmodel_mw3_type95_reload_empty
+
+#MP7
+
+sound,mp7,,all_mp
+
+xanim,viewmodel_mp7_ads_down
+xanim,viewmodel_mp7_ads_fire
+xanim,viewmodel_mp7_ads_up
+xanim,viewmodel_mp7_eotech_ads_down
+xanim,viewmodel_mp7_eotech_ads_up
+xanim,viewmodel_mp7_fire
+xanim,viewmodel_mp7_first_raise
+xanim,viewmodel_mp7_idle
+xanim,viewmodel_mp7_pullout
+xanim,viewmodel_mp7_pullout_quick
+xanim,viewmodel_mp7_putaway
+xanim,viewmodel_mp7_putaway_quick
+xanim,viewmodel_mp7_reflex_ads_down
+xanim,viewmodel_mp7_reflex_ads_up
+xanim,viewmodel_mp7_reload
+xanim,viewmodel_mp7_reload_empty
+xanim,viewmodel_mp7_sprint_in
+xanim,viewmodel_mp7_sprint_loop
+xanim,viewmodel_mp7_sprint_out
+
+
+xmodel,viewmodel_bo2_mp7
+xmodel,worldmodel_bo2_mp7
+
+
+#riper
+weapon,mp\uzi_mp
+xmodel,viewmodel_evopro_iron
+xmodel,worldmodel_evopro_iron
+xanim,viewmodel_evopro_ads_down
+xanim,viewmodel_evopro_ads_fire
+xanim,viewmodel_evopro_ads_up
+xanim,viewmodel_evopro_idle
+xanim,viewmodel_evopro_fire
+xanim,viewmodel_evopro_reload
+xanim,viewmodel_evopro_reload_empty
+xanim,viewmodel_evopro_pullout
+xanim,viewmodel_evopro_putaway
+xanim,viewmodel_evopro_sprint_in
+xanim,viewmodel_evopro_sprint_loop
+xanim,viewmodel_evopro_sprint_out
+sound,evopro,,all_mp
+
+
+xanim,vmodel_bf3_m27_iar_reload_empty
+xanim,vmodel_bf3_m27_iar_reload
+xanim,vmodel_bf3_m27_iar_ADS_up
+xanim,vmodel_bf3_m27_iar_ADS_down
+xanim,vmodel_bf3_m27_iar_acog_ADS_up
+xanim,vmodel_bf3_m27_iar_acog_ADS_down
+xanim,vmodel_bf3_m27_iar_eotech_ADS_up
+xanim,vmodel_bf3_m27_iar_eotech_ADS_down
+xanim,vmodel_bf3_m27_iar_red_dot_ADS_up
+xanim,vmodel_bf3_m27_iar_red_dot_ADS_down
+
+xmodel,viewmodel_bf3_m27_iar
+xmodel,worldmodel_bf3_m27_iar
+sound,m27,,all_mp

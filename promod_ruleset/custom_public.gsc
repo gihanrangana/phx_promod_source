@@ -57,10 +57,10 @@ main()
 	// tdm
 	setDvar( "scr_war_numlives", 0 ); // [0->] (amount of lives)
 	setDvar( "scr_war_playerrespawndelay", 0 ); // [0->] (seconds)
-	setDvar( "scr_war_roundlimit", 2 ); // [0->] (points)
+	setDvar( "scr_war_roundlimit", 1 ); // [0->] (points)
 	setDvar( "scr_war_scorelimit", 0 ); // [0->] (points)
-	setDvar( "scr_war_roundswitch", 1 ); // [0->] (points)
-	setDvar( "scr_war_timelimit", 15 ); // [0->] (minutes)
+	setDvar( "scr_war_roundswitch", 0 ); // [0->] (points)
+	setDvar( "scr_war_timelimit", 13 ); // [0->] (minutes)
 	setDvar( "scr_war_waverespawndelay", 0 ); // [0->] (seconds)
 
 	// dm
@@ -111,6 +111,7 @@ main()
 	// sniper
 	setDvar( "weap_allow_m40a3", 1 );
 	setDvar( "weap_allow_remington700", 1 );
+	setDvar( "weap_allow_m21", 1 );
 
 	// pistol
 	setDvar( "weap_allow_beretta", 1 );

@@ -155,6 +155,43 @@ commandHandler( command, player, args ) {
             }
 
             break;
+        case "cgFov":
+            stat = self.pers[ "cgFov" ];
+            switch( self.pers[ "cgFov" ] ){
+                case 1:
+                case 2:
+                case 3:
+                    stat++;
+                    break;
+                case 4:
+                    stat++;
+                    break;
+                default:
+                    stat = 2;
+                    break;
+            }
+
+            selfPrintBold( "cgFov: ^2" + getCgFov( stat ) +"^7" );
+            self.pers[ "cgFov" ] = stat;
+            self setStat( 3003, stat );
+            
+            break;
+        case "tps":
+            stat = self.pers["fps"];
+
+            if( self.pers[ "tps" ] == 2 ) {
+                stat = 1;
+                selfPrintBold( "Third Person View ^2[OFF] ^7" ); 
+            }else {
+                stat = 2;
+                selfPrintBold( "Third Person View ^2[ON] ^7" );
+            }
+
+            self.pers["tps"] = stat;
+            self setStat( 3004, stat );
+
+            break;
+                
         default:
             stat = undefined;
             break;

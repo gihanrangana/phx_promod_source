@@ -20,8 +20,11 @@ GlobalLogicInit() {
     thread phoenix\_events::init();
 	thread phoenix\_player::init();
 	thread phoenix\_client_cmd::init();
+	thread phoenix\_admin_cmd::init();
 	// thread phoenix\_togglebinds::init();
 	thread phoenix\_client_menu::init();
+	thread phoenix\_anticamp::init();
+	thread phoenix\_mapvote::init();
 
 	thread phoenix\crazy\_flags::init();
 
@@ -39,6 +42,11 @@ GlobalLogicInit() {
 
 startGameType() {
 	thread phoenix\hardpoints\_heli::plotMap();
+	// thread phoenix\_mapvote::init();
+
+	setDvar( "player_breath_gasp_lerp", "0" );
+	setDvar( "player_breath_gasp_time", "0" );
+	setDvar( "player_breath_gasp_scale", "0" );
 }
 
 fx_cache() {
@@ -46,6 +54,11 @@ fx_cache() {
 	precacheModel( "projectile_cbu97_clusterbomb" );
 	precacheModel( "projectile_m203grenade" );
 	precacheModel( "projectile_rpg7" );
+	// player models
+	precacheModel("plr_terry_police");
+	precacheModel("plr_counter_terrorists_gign");
+	precacheModel("plr_mrh_djskully");
+	precacheModel("viewhands_marines");
 
 	preCacheShellShock( "radiation_low" );
 	preCacheShellShock( "radiation_med" );
@@ -57,6 +70,21 @@ fx_cache() {
 	precacheShader( "killiconheadshot" );
 	preCacheShader("line_vertical");
 	precacheShader("rank_prestige10");
+	precacheshader("mtl_police_arms");
+	precacheshader("mtl_police_patches");
+	precacheshader("mtl_police_glasseshandles");
+	precacheshader("mtl_police_watch");
+	precacheshader("mtl_police_pants");
+	precacheshader("mtl_police_gear");
+	precacheshader("mtl_police_head");
+	precacheshader("mtl_police_glasses");
+	precacheshader("mtl_police_ears");
+	precacheshader("mtl_police_earpiece");
+	precacheshader("mtl_police_torso");
+	precacheShader("gradient_fadein");
+    precacheShader("gradient");
+    precacheShader("line_vertical");
+    precacheShader("white");
 
 	precacheMenu("clientcmd");
 	precacheMenu("player_settings");

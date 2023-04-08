@@ -267,3 +267,21 @@ chooseClassName( classname )
 			return "";
 	}
 }
+
+restoreHeadIcon()
+{
+	if(isdefined(self.oldheadicon))
+		self.headicon = self.oldheadicon;
+
+	if(isdefined(self.oldheadiconteam))
+		self.headiconteam = self.oldheadiconteam;
+}
+
+saveHeadIcon()
+{
+	if(isdefined(self.headicon))
+		self.oldheadicon = self.headicon;
+
+	if(isdefined(self.headiconteam))
+		self.oldheadiconteam = self.headiconteam;
+}
