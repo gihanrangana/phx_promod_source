@@ -962,6 +962,14 @@
 	itemDef \
 	{ \
 		rect                      (CHOICE_X_PHX(itemIndex)+15) CHOICE_Y_PHX(itemIndex) CHOICE_SIZE_X CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+		foreColor                 0 0 0 0.5 \ 
+		style					  WINDOW_STYLE_SHADER \
+		exp                       material ( ( ( "gradient" ) ) ); \
+		decoration \
+	} \
+	itemDef \
+	{ \
+		rect                      (CHOICE_X_PHX(itemIndex)+15) CHOICE_Y_PHX(itemIndex) CHOICE_SIZE_X CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 		borderSize                1 \
 		foreColor                 1 1 1 1 \
 		backColor                 0 0 0 0 \
@@ -988,9 +996,9 @@
 	CHOICE_SETTING_TITLE_BG_PHX(itemIndex,textArg)\
 	itemDef \
 	{ \
-		rect                      (CHOICE_X_PHX(itemIndex)+80) CHOICE_Y_PHX(itemIndex) CHOICE_SIZE_X CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
+		rect                      (CHOICE_X_PHX(itemIndex)+60) CHOICE_Y_PHX(itemIndex) CHOICE_SIZE_X CHOICE_SIZE_Y CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN \
 		borderSize                1 \
-		foreColor                 0.2 0.8 0 1 \
+		foreColor                 1 0 0 1 \
 		backColor                 0 0 0 0 \
 		borderColor               0 0 0 0 \
 		outlineColor              0 0 0 0 \

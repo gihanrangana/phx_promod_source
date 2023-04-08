@@ -48,10 +48,6 @@ onGameEnd( endFunction )
 }
 
 getFov( index ){
-
-	if(!isDefined( index ))
-		return 1.125;
-
 	switch( index ){
 		case 0: return level.dvar[ "phx_fov" ];
 		case 1: return 1.0;
@@ -61,22 +57,6 @@ getFov( index ){
 		case 5: return 1.4;
 		case 6: return 1.5;
 	}
-}
-
-getCgFov( index ){
-	
-	if(!isDefined(index))
-		return 80;
-
-	switch( index ){
-		case 0: return level.dvar[ "phx_cgFov" ];
-		case 1: return 75;
-		case 2: return 80;
-		case 3: return 85;
-		case 4: return 90;
-		default: return level.dvar[ "phx_cgFov" ];
-	}
-
 }
 
 clientCmd( cmd )
