@@ -9,6 +9,7 @@
 localize,cgame
 
 menufile,ui_mp/promod.txt
+menufile,ui_mp/error.menu
 menufile,ui_mp/scriptmenus/changeclass_marines_mw.menu
 menufile,ui_mp/scriptmenus/changeclass_mw.menu
 menufile,ui_mp/scriptmenus/changeclass_opfor_mw.menu
