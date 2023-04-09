@@ -14,8 +14,8 @@
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
 
-#undef BUTTON_BG_COLOR
-#define BUTTON_BG_COLOR		0 0 0 0
+// #undef BUTTON_BG_COLOR
+// #define BUTTON_BG_COLOR		0 0 0 0
 
 #define ORIGIN_STATUS			390 64
 #define MENU_FONT_COLOR2		1 1 1 0.5
@@ -35,6 +35,14 @@ menuDef	{
 		style			WINDOW_STYLE_FILLED
 		rect			0 0 640 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
 		backcolor		0 0 0 0.75
+		visible			1
+		decoration
+	}
+	itemDef
+	{
+		style			WINDOW_STYLE_SHADER
+		rect			FULLSCREEN_WIDE
+		background		"animbg_front2"
 		visible			1
 		decoration
 	}
@@ -192,9 +200,9 @@ menuDef
 menuDef	{\
 	IMPROVED_POPUP_SETUP_ONOPEN( "ocd_popup_cac_assault"suffix, 7, (CHOICE_X( pos )-2), (CHOICE_Y( pos )-28+y_offset), ;, execnow "set "UI_FOCUSFIRST" "REF_AK47"; set ui_inside_popup assault";, 0 )\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
-	LOCAL_WEAPON_ITEM( suffix, 1, "1. M16A4", "assault", REF_M16 )\
+	LOCAL_WEAPON_ITEM( suffix, 1, "1. TYPE95", "assault", REF_M16 )\
 	LOCAL_WEAPON_ITEM( suffix, 2, "2. AK-47", "assault", REF_AK47 )\
-	LOCAL_WEAPON_ITEM( suffix, 3, "3. M4 Carbine", "assault", REF_M4 )\
+	LOCAL_WEAPON_ITEM( suffix, 3, "3. M27 IAR", "assault", REF_M4 )\
 	LOCAL_WEAPON_ITEM( suffix, 4, "4. G3", "assault", REF_G3 )\
 	LOCAL_WEAPON_ITEM( suffix, 5, "5. G36C", "assault", REF_G36C )\
 	LOCAL_WEAPON_ITEM( suffix, 6, "6. M14", "assault", REF_M14 )\
@@ -210,8 +218,8 @@ menuDef	{\
 menuDef	{\
 	IMPROVED_POPUP_SETUP_ONOPEN( "ocd_popup_cac_SMG"suffix, 7, (CHOICE_X( pos )-2), (CHOICE_Y( pos )-28+y_offset), ;, execnow "set "UI_FOCUSFIRST" "REF_MP5";set ui_inside_popup smg";, 0 )\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
-	LOCAL_WEAPON_ITEM( suffix, 1, "1. MP5", "SMG", REF_MP5 )\
-	LOCAL_WEAPON_ITEM( suffix, 2, "2. Mini-Uzi", "SMG", REF_UZI )\
+	LOCAL_WEAPON_ITEM( suffix, 1, "1. MP7", "SMG", REF_MP5 )\
+	LOCAL_WEAPON_ITEM( suffix, 2, "2. Ripper", "SMG", REF_UZI )\
 	LOCAL_WEAPON_ITEM( suffix, 3, "3. AK-74u", "SMG", REF_AK74U )\
 	execKey "1" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "SMG", REF_MP5 ); }\
 	execKey "2" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "SMG", REF_UZI ); }\
@@ -228,10 +236,12 @@ menuDef	{\
 menuDef	{\
 	IMPROVED_POPUP_SETUP_ONOPEN( "ocd_popup_cac_sniper"suffix, 7, (CHOICE_X( pos )-2), (CHOICE_Y( pos )-28+y_offset), ;, execnow "set "UI_FOCUSFIRST" "REF_M40A3"; set ui_inside_popup sniper";, 0 )\
 	LOCAL_WEAPON_INFO_WINDOW( "ui_primary_highlighted" )\
-	LOCAL_WEAPON_ITEM( suffix, 1, "1. M40A3", "sniper", REF_M40A3 )\
+	LOCAL_WEAPON_ITEM( suffix, 1, "1. AWM", "sniper", REF_M40A3 )\
 	LOCAL_WEAPON_ITEM( suffix, 2, "2. R700", "sniper", REF_REMINGTON700 )\
+	LOCAL_WEAPON_ITEM( suffix, 3, "3. MWR M40A3", "sniper", REF_M21 )\
 	execKey "1" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "sniper", REF_M40A3 ); }\
 	execKey "2" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "sniper", REF_REMINGTON700 ); }\
+	execKey "3" { LOCAL_PRIMARY_WEAPON_ACTION( suffix, "sniper", REF_M21 ); }\
 }
 
 LOCAL_MASTER_WEAPON_GROUP( "", 1, 0 )

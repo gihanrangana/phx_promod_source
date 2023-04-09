@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<B3Status Time="Sun Apr  9 00:28:01 2023">
-        <Game CaptureLimit="" FragLimit="" Ip="127.0.0.1" Map="mp_killhouse" MapTime="210" Name="cod4" OnlinePlayers="1" Port="28960" RoundTime="192" Rounds="2" TimeLimit="" Type="war">
+<B3Status Time="Sun Apr  9 00:29:00 2023">
+        <Game CaptureLimit="" FragLimit="" Ip="127.0.0.1" Map="mp_killhouse" MapTime="269" Name="cod4" OnlinePlayers="1" Port="28960" RoundTime="251" Rounds="2" TimeLimit="" Type="war">
                 <Data Name="protocol" Value="21"/>
                 <Data Name="gameName" Value="cod4"/>
                 <Data Name="sv_privateClients" Value="0"/>

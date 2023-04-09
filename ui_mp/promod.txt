@@ -15,4 +15,5 @@
 	loadMenu { "ui_mp/main.menu" }
 	loadMenu { "ui_mp/options_multi.menu" }
 	loadMenu { "ui_mp/wm_quickmessage.menu" }
+	loadMenu { "ui_mp/error.menu" }
 }
