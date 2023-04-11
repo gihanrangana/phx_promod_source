@@ -51,10 +51,19 @@
 #define TREE_COLOR					1 1 1 0.5
 #define LABEL_TEXT_COLOR		0.7 0.75 0.75 1
 
+	// itemDef \
+	// { \
+	// 	rect			0 ((itemIndex * (30) ) + 50) 200 25 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT \
+	// 	style 			WINDOW_STYLE_FILLED \
+	// 	backColor		0 0 0 1 \
+	// 	visible 		1 \
+	// 	decoration \
+	// } \
+
 #define VOTE_MAP_PHX(itemIndex, mapString, actionArgs) \
 	itemDef \
 	{ \
-		rect			0 ((itemIndex * (30) ) + 50) 200 25 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT \
+		rect			0 ((itemIndex * (30) ) + 70) 200 25 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT \
 		style 			WINDOW_STYLE_FILLED \
 		backColor		0 0 0 1 \
 		visible 		1 \
@@ -62,19 +71,24 @@
 	} \
 	itemDef \
 	{ \
-		rect			5 ((itemIndex * (30) ) + 70) 200 25 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT \
-		style 			WINDOW_STYLE_FILLED \
-		foreColor		1 1 1 1 \
+		rect			0 ((itemIndex * (30) ) + 70) 200 25 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT \
+		style			WINDOW_STYLE_EMPTY \
+		type			ITEM_TYPE_BUTTON \
+		textfont		UI_FONT_NORMAL \
+		textalign		ITEM_ALIGN_CENTER \
 		textalign		ITEM_ALIGN_LEFT \
 		textscale		CHOICE_TEXTSIZE \
 		textstyle 		ITEM_TEXTSTYLE_SHADOWED \
+		textaligny		20 \
+		textalignx		5 \
+		forecolor		1 1 1 1 \
+		border			1 \
+		bordercolor		0 0.5 0 1 \
+		backColor  		1 1 1 1 \
 		mapString \
 		visible 		1 \
-		action { \
-			actionArgs; \
-		} \
-		decoration \
-	}\
+		action { play "mouse_click"; actionArgs; } \
+	}
 
 {
 	menuDef
@@ -101,6 +115,14 @@
 		itemDef
 		{
 			style			WINDOW_STYLE_SHADER
+			rect			FULLSCREEN_WIDE
+			background		"animbg_front2"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			style			WINDOW_STYLE_SHADER
 			rect			0 0 854 75 HORIZONTAL_ALIGN_FULLSCREEN 0
 			background		"gradient_top"
 			visible			1
@@ -117,9 +139,12 @@
         
         #include "ui_mp/phx_menu_bg.inc"
 
-		VOTE_MAP_PHX(1 , exp text ( ( dvarstring( "map1_realname" ) ) );, scriptMenuResponse "map1";)
-		VOTE_MAP_PHX(2 , "map2_realname", ;)
-		VOTE_MAP_PHX(3 , "map3_realname", ;)
+		VOTE_MAP_PHX(1 , exp text ( ( dvarstring( "map0_name" ) ) + " - " + ( dvarint( "map0_votes" ) ) );, scriptMenuResponse 0;)
+		VOTE_MAP_PHX(2 , exp text ( ( dvarstring( "map1_name" ) ) + " - " + ( dvarint( "map1_votes" ) ) );, scriptMenuResponse 1;)
+		VOTE_MAP_PHX(3 , exp text ( ( dvarstring( "map2_name" ) ) + " - " + ( dvarint( "map2_votes" ) ) );, scriptMenuResponse 2;)
+		VOTE_MAP_PHX(4 , exp text ( ( dvarstring( "map3_name" ) ) + " - " + ( dvarint( "map3_votes" ) ) );, scriptMenuResponse 3;)
+		VOTE_MAP_PHX(5 , exp text ( ( dvarstring( "map4_name" ) ) + " - " + ( dvarint( "map4_votes" ) ) );, scriptMenuResponse 4;)
+		VOTE_MAP_PHX(6 , exp text ( ( dvarstring( "map5_name" ) ) + " - " + ( dvarint( "map5_votes" ) ) );, scriptMenuResponse 5;)
 
 		itemDef {
 			rect 			30 150 300 200 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
@@ -128,5 +153,18 @@
 			visible			1
 			decoration	
 		}
+
+		itemDef {
+			rect 			30 150 300 200 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
+			style 			WINDOW_STYLE_FILLED
+			foreColor		1 1 1 1
+			exp				text( ( dvarstring( "next_map" ) ) );
+			backColor 		0 0 0 .5
+			textalign		ITEM_ALIGN_LEFT
+			textscale		CHOICE_TEXTSIZE
+			visible			1
+			decoration	
+		}
+		
 	}
 }

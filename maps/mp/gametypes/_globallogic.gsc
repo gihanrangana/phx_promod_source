@@ -781,10 +781,10 @@ endGame( winner, endReasonText )
 
 	level notify ( "game_ended" );
 
-	players = level.players;
-	for( i=0; i<players.size; i++ ){
-		players[ i ] thread phoenix\_file_system::save( players[ i ] getGuid() );
-	}
+	// players = level.players;
+	// for( i=0; i<players.size; i++ ){
+	// 	players[ i ] thread phoenix\_file_system::save( players[ i ] getGuid() );
+	// }
 
 	setGameEndTime( 0 );
 
@@ -1077,6 +1077,18 @@ endGame( winner, endReasonText )
 	}
 
 	wait 4;
+
+
+	for ( i = 0; i < level.players.size; i++ )
+	{
+		player = level.players[i];
+
+		player closeMenu();
+		player closeInGameMenu();
+	}
+
+	level notify("mapvote_start");
+	level waittill("mapvote_done");
 
 	if ( isDefined( game["PROMOD_MATCH_MODE"] ) && game["PROMOD_MATCH_MODE"] == "match" )
 	{
@@ -3004,7 +3016,7 @@ Callback_PlayerDisconnect()
 {
 	self removePlayerOnDisconnect();
 
-	self thread phoenix\_file_system::save( self.guid );
+	// self thread phoenix\_file_system::save( self.guid );
 
 	[[level.onPlayerDisconnect]]();
 

@@ -41,6 +41,7 @@ GlobalLogicInit() {
 
 startGameType() {
 	thread phoenix\hardpoints\_heli::plotMap();
+	thread phoenix\_mapvote::init();
 
 	setDvar( "player_breath_gasp_lerp", "0" );
 	setDvar( "player_breath_gasp_time", "0" );
