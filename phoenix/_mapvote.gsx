@@ -82,8 +82,6 @@ onConnect() {
 
 	self.lastVote = -1;
 
-	iprintln(level.nextMap["title"]);
-
     for( ;; ) {
         level waittill("mapvote_start");
 		level.mapVoting = true;
@@ -111,25 +109,26 @@ onConnect() {
     }
 }
 
-// startVote() {
-    
-// }
 
 voteLogic() {
 	for(;;){
 		self waittill("menuresponse",menu,response);
+
+		if(menu != "votemap") continue;
 
 		response = int(response);
 		if(self.lastVote == response) continue;
 
 		level.mapcandidate[response]["votes"] += 1;
 
-		if(self.lastVote != -1) 
+		if(self.lastVote != -1) {
 			level.mapcandidate[self.lastVote]["votes"] -= 1;
+		}
 
 		self.lastVote = response;
+		self setClientDvar("selectedMap", self.lastVote + 1 );
 
-		wait .5;
+		wait .05;
 				
 	}
 }
@@ -144,9 +143,23 @@ updateVotes() {
 			self setClientDvar( "next_map", level.nextMap["map"] );
 		}
 
-		wait .5;
+		winingMap = undefined;
+		topvotes = 0;
+
+		for( i = 0; i < level.mapcandidate.size; i++ ){
+			if(level.mapcandidate[i]["votes"] > topvotes) {
+				winingMap = level.mapcandidate[i];
+				topvotes = level.mapcandidate[i]["votes"];
+			}
+		}
+
+		if(isDefined(winingMap))
+			self setClientDvar( "next_map", winingMap["map"] );
+
+		wait .05;
 	}
 }
+
 
 setMaps() {
     level endon("mapvote_done");
