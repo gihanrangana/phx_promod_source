@@ -192,6 +192,14 @@ commandHandler( command, player, args ) {
 
             break;
                 
+        case "balance":
+        
+            if(maps\mp\gametypes\_teams::getTeamBalance() == false) 
+                player iPrintlnBold("^1Teams are already Balanced");
+            else
+                level maps\mp\gametypes\_teams::balanceTeams();
+
+            break;
         default:
             stat = undefined;
             break;
