@@ -186,7 +186,7 @@
 
 		itemDef
 		{
-			rect 			25 80 0 0 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT
+			rect 			30 80 0 0 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT
 			style			WINDOW_STYLE_EMPTY
 			type			ITEM_TYPE_TEXT
 			exp				text( "Timer: " + ( dvarint("vote_timer" ) ) )
