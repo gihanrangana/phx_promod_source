@@ -81,6 +81,7 @@ onConnect() {
     self endon("disconnect");
 
 	self.lastVote = -1;
+	self setClientDvar("selectedMap", 0);
 
     for( ;; ) {
         level waittill("mapvote_start");
@@ -102,10 +103,24 @@ onConnect() {
 			player thread updateVotes();
 		}
 
-        // wait 20;
+		timer = 20;
+		self setClientDvar("vote_timer", timer);
+		for ( i = 0; i < 20; i++ ){
+			wait 1;
+			timer -= 1;
+			self setClientDvar("vote_timer", timer);
 
-		// level.mapVoting = false;
-        // level notify( "mapvote_done" );
+			if( timer < 10 )
+				self playLocalSound("ui_mp_timer_countdown");
+		}
+
+		if(isDefined(level.winingMap))
+			setDvar("sv_maprotationcurrent", "gametype " + level.winingMap["gametype"] + " map " + level.winingMap["map"]);
+        // wait 20;
+		wait 1;
+
+		level.mapVoting = false;
+        level notify( "mapvote_done" );
     }
 }
 
@@ -156,6 +171,7 @@ updateVotes() {
 		if(isDefined(winingMap))
 			self setClientDvar( "next_map", winingMap["map"] );
 
+		level.winingMap = winingMap;
 		wait .05;
 	}
 }

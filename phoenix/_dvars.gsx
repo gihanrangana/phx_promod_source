@@ -22,6 +22,7 @@ init() {
 	addDvar( "phx_developer", "int", 1, 0, 1 ); // Allow admins to add dev bots to the game
 	addDvar( "phx_client_cmd", "string", "" ); //disable players to use specific client commands
 	addDvar( "phx_fps", "int", 2, 1, 2 ); // Default value for the fps (1:off/2:on)
+	addDvar( "phx_tps", "int", 1, 1, 2 ); // Default value for the fps (1:off/2:on)
 	addDvar( "phx_fov", "int", 1, 1, 6 ); // Default value for the fov
 	addDvar( "phx_promod", "int", 1, 1, 2); // Default value for the promod (1:off/2:on)
 	addDvar( "phx_cgFov", "int", 2, 1, 4); // Default value for the promod
