@@ -97,6 +97,7 @@ rawfile,shock/damage_mp.shock
 
 sound,promod,,all_mp
 sound,unreal,,all_mp
+sound,music,,all_mp
 
 material,ad
 material,ae

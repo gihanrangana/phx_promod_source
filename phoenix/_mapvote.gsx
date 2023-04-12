@@ -85,6 +85,7 @@ onConnect() {
 
     for( ;; ) {
         level waittill("mapvote_start");
+		self playLocalSound( "mapvote" );
 		level.mapVoting = true;
         thread setMaps();
 
