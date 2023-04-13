@@ -169,8 +169,10 @@ updateVotes() {
 			}
 		}
 
-		if(isDefined(winingMap))
+		if(isDefined(winingMap)){
 			self setClientDvar( "next_map", winingMap["map"] );
+			self setClientDvar( "next_mapname", winingMap["mapname"] );
+		}
 
 		level.winingMap = winingMap;
 		wait .05;

@@ -223,7 +223,7 @@
 			forecolor		0 1 0 1
 			border			0
 			backColor  		1 1 1 1
-			text 			"NEXT MAP:"
+			exp 			text ( "NEXT MAP: ^7" + ( dvarstring( "next_mapname" ) ) )
 			visible 		1
 			decoration
 		}
