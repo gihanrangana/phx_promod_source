@@ -24,11 +24,12 @@ GlobalLogicInit() {
 	thread phoenix\_client_menu::init();
 	thread phoenix\_admin_cmd::init();
 	thread phoenix\_anticamp::init();
+	thread phoenix\_shop::init();
 
 	thread phoenix\crazy\_flags::init();
 
-	if( !level.dvar[ "old_hardpoints" ] )
-		thread phoenix\_hardpoints::init();
+	// if( !level.dvar[ "old_hardpoints" ] )
+	// 	thread phoenix\_hardpoints::init();
 
 	if( level.dvar[ "phx_developer" ] == 1) 
 		thread phoenix\_bots::init();

@@ -1,0 +1,198 @@
+/*===============================================================================================================================================
+|| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -||
+||/ .----------------.  .----------------.  .----------------.  .----------------.  .-----------------. .----------------.  .----------------. \||
+||/| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |\||
+||/| |   ______     | || |  ____  ____  | || |  _________   | || |     ____     | || | ____  _____  | || |     _____    | || |  ____  ____  | |\||
+||/| |  |_   __ \   | || | |_   ||   _| | || | |_   ___  |  | || |   .'    `.   | || ||_   \|_   _| | || |    |_   _|   | || | |_  _||_  _| | |\||
+||/| |    | |__) |  | || |   | |__| |   | || |   | |_  \_|  | || |  /  .--.  \  | || |  |   \ | |   | || |      | |     | || |   \ \  / /   | |\||
+||/| |    |  ___/   | || |   |  __  |   | || |   |  _|  _   | || |  | |    | |  | || |  | |\ \| |   | || |      | |     | || |    > `' <    | |\||
+||/| |   _| |_      | || |  _| |  | |_  | || |  _| |___/ |  | || |  \  `--'  /  | || | _| |_\   |_  | || |     _| |_    | || |  _/ /'`\ \_  | |\||
+||/| |  |_____|     | || | |____||____| | || | |_________|  | || |   `.____.'   | || ||_____|\____| | || |    |_____|   | || | |____||____| | |\||
+||/| |              | || |              | || |              | || |              | || |              | || |              | || |              | |\||
+||/| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |\||
+||/ '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------' \||
+|| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -||
+|| ******************************************************** DEVELOPED BY |PHX| GHOST ********************************************************** ||
+================================================================================================================================================*/
+
+/*
+  Copyright (c) 2009-2017 Andreas Göransson <andreas.goransson@gmail.com>
+  Copyright (c) 2009-2017 Indrek Ardel <indrek@ardel.eu>
+
+  This file is part of Call of Duty 4 Promod.
+
+  Call of Duty 4 Promod is licensed under Promod Modder Ethical Public License.
+  Terms of license can be found in LICENSE.md document bundled with the project.
+*/
+
+#include "ui/menudef.h"
+
+#define CHOICE_SIZE_X
+#define CHOICE_SIZE_Y			22
+
+#define CHOICE_X_START			60
+#define CHOICE_Y_START			34
+
+#define CHOICE_SEP_1			5
+#define CHOICE_SEP_OFFSET_Y		-2
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#undef BUTTON_BG_COLOR
+#define BUTTON_BG_COLOR		0 0 0 0
+
+#define MENU_LOCKED_COLOR		0.25 0.25 0.25 1
+
+#define ORIGIN_BUTTON_BACK			52 438
+#define ORIGIN_MENU_TREE			54 64
+#define ORIGIN_MENU_TITLE_MARINES	178 64
+#define ORIGIN_MENU_TITLE_OPFOR		170 64
+#define TREE_COLOR					1 1 1 0.5
+#define LABEL_TEXT_COLOR		0.7 0.75 0.75 1
+
+#define ORIGIN_BOX_CENTER(width, height) ((640 - width) / 2) ((480 - height) / 2)
+
+{
+	menuDef
+	{
+		name			"shop"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7
+		onOpen
+		{
+			setLocalVarInt ui_highlight "";
+		}
+		onEsc {
+			close self;
+		}
+
+		itemDef
+		{
+			style			WINDOW_STYLE_FILLED
+			rect			0 0 640 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+			backcolor		0 0 0 0.75
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			0 0 854 75 HORIZONTAL_ALIGN_FULLSCREEN 0
+			background		"gradient_top"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			0 405 854 75 HORIZONTAL_ALIGN_FULLSCREEN 0
+			background		"gradient_bottom"
+			visible			1
+			decoration
+		}
+
+		itemDef 
+		{
+			style 			WINDOW_STYLE_FILLED
+			rect			0 0 300 350
+			origin			ORIGIN_BOX_CENTER(300,350)
+			backColor	 	0 0 0 0.75
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			rect			0 0 320 30
+			origin			160 54
+			style			WINDOW_STYLE_FILLED
+			backcolor		0.69 0.85 0.22 1
+			visible			1
+			decoration
+		}
+
+		itemDef 
+		{
+			text			"MARKETPLACE"
+			rect 			160 54 320 30
+			type			ITEM_TYPE_TEXT
+			textfont		UI_FONT_OBJECTIVE
+			textscale		0.6
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			forecolor		1 0 0 1
+			textstyle		ITEM_TEXTSTYLE_SHADOWEDMORE
+			visible			1
+			decoration
+		}
+
+		#define SHOP_ITEM(index) \
+			itemDef {\
+				rect			180 ((index * (30) ) + 95) 280 2 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT \
+				style			WINDOW_STYLE_FILLED \
+				backColor 		1 0 0 1 \
+				visible 		when( localVarInt( ui_highlight ) == index ) \
+				decoration \
+			}\
+			itemDef {\
+				rect			400 ((index * (30) ) + 70) 60 25 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT \
+				style			WINDOW_STYLE_EMPTY \
+				type			ITEM_TYPE_TEXT \
+				textfont		UI_FONT_NORMAL \
+				textscale		CHOICE_TEXTSIZE \
+				textstyle 		ITEM_TEXTSTYLE_NORMAL \
+				textalign		ITEM_ALIGN_MIDDLE_RIGHT \
+				forecolor		0 1 0 1 \
+				exp 			text ( dvarstring( "shop_item"+(index-1) + "_price" ) );\
+				visible 		when( dvarint( "usd" ) >= int( dvarstring( "shop_item"+(index-1) + "_price" ) ) ) \
+				decoration\
+			}\
+			itemDef {\
+				rect			400 ((index * (30) ) + 70) 60 25 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT \
+				style			WINDOW_STYLE_EMPTY \
+				type			ITEM_TYPE_TEXT \
+				textfont		UI_FONT_NORMAL \
+				textscale		CHOICE_TEXTSIZE \
+				textstyle 		ITEM_TEXTSTYLE_NORMAL \
+				textalign		ITEM_ALIGN_MIDDLE_RIGHT \
+				forecolor		1 0 0 1 \
+				exp 			text ( dvarstring( "shop_item"+(index-1) + "_price" ) );\
+				visible 		when( dvarint( "usd" ) < int( dvarstring( "shop_item"+(index-1) + "_price" ) ) ) \
+				decoration\
+			}\
+			itemDef {\
+				rect			180 ((index * (30) ) + 70) 280 25 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT \
+				style			WINDOW_STYLE_EMPTY \
+				type			ITEM_TYPE_BUTTON \
+				textfont		UI_FONT_NORMAL \
+				textscale		CHOICE_TEXTSIZE \
+				textstyle 		ITEM_TEXTSTYLE_NORMAL \
+				textaligny		20 \
+				textalignx		0 \
+				forecolor		1 1 1 1 \
+				exp 			text ( dvarstring( "shop_item"+(index-1) ) );\
+				visible 		1 \
+				mouseEnter {\
+					play "mouse_over"; \
+					setLocalVarInt ui_highlight index; \
+				}\
+				leaveFocus {\
+					setLocalVarInt ui_highlight -1; \
+				}\
+				action{ scriptMenuResponse index-1; close self; }\
+			}
+			
+		SHOP_ITEM(1)
+		SHOP_ITEM(2)
+		SHOP_ITEM(3)
+		SHOP_ITEM(4)
+		SHOP_ITEM(5)
+		SHOP_ITEM(6)
+		SHOP_ITEM(7)
+		SHOP_ITEM(8)
+		SHOP_ITEM(9)
+	}
+}

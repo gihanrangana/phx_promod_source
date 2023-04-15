@@ -26,6 +26,30 @@ init() {
 	addDvar( "phx_fov", "int", 1, 1, 6 ); // Default value for the fov
 	addDvar( "phx_promod", "int", 1, 1, 2); // Default value for the promod (1:off/2:on)
 	addDvar( "phx_cgFov", "int", 2, 1, 4); // Default value for the promod
+
+	// Shop items
+	addDvar( "radar_shop", "int", 20, 1 );
+	addDvar( "airstrike_shop", "int", 70, 1 );
+	addDvar( "helicopter_shop", "int", 180, 1 );
+	addDvar( "artillery_shop", "int", 70, 1 ); 
+	addDvar( "asf_shop", "int", 100, 1 );
+	addDvar( "agm_shop", "int", 100, 1 );
+	addDvar( "predator_shop", "int", 280, 1 );
+	addDvar( "ac130_shop", "int", 380, 1 );
+	addDvar( "nuke_shop", "int", 600, 1 );
+	addDvar( "nukebullets_shop", "int", 500, 1 );
+
+	addDvar( "radar_limit", "int", 0, 1 );
+	addDvar( "airstrike_limit", "int", 3, 1 );
+	addDvar( "helicopter_limit", "int", 1, 1 );
+	addDvar( "artillery_limit", "int", 3, 1 ); 
+	addDvar( "asf_limit", "int", 2, 1 );
+	addDvar( "agm_limit", "int", 1, 1 );
+	addDvar( "predator_limit", "int", 1, 1 );
+	addDvar( "ac130_limit", "int", 1, 1 );
+	addDvar( "nuke_limit", "int", 1, 1 );
+	addDvar( "nukebullets_limit", "int", 1, 1 );
+
 	// Pheonix Dvar End
 
 	addDvar( "shopbuttons_allowchange", "int", 1, 0, 1 ); // Allow the player do decide which buttons to use to navigate hardpoint shop ( 1-W/S ; 0-F/V )
@@ -46,19 +70,6 @@ init() {
 	addDvar( "ac130", "int", 19, 1 );
 	addDvar( "mannedheli", "int", 22, 1 );
 	addDvar( "nuke", "int", 28, 1 );
-
-    // Hardpoints shop - required credits
-	addDvar( "radar_shop", "int", 20, 1 );
-	addDvar( "airstrike_shop", "int", 70, 1 );
-	addDvar( "helicopter_shop", "int", 180, 1 );
-	addDvar( "artillery_shop", "int", 70, 1 ); 
-	addDvar( "asf_shop", "int", 100, 1 );
-	addDvar( "agm_shop", "int", 100, 1 );
-	addDvar( "predator_shop", "int", 280, 1 );
-	addDvar( "ac130_shop", "int", 380, 1 );
-	addDvar( "mannedheli_shop", "int", 500, 1 );
-	addDvar( "nuke_shop", "int", 600, 1 );
-	addDvar( "nukebullets_shop", "int", 500, 1 );
 	
 	addDvar( "arty_shell_num", "int", 35, 10, 100 ); // Number of artillery shells
 }
