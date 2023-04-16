@@ -65,6 +65,9 @@
 		{
 			setLocalVarInt ui_highlight "";
 		}
+		onClose{
+			execnow "openscriptmenu shop change_weap";
+		}
 		onEsc {
 			close self;
 		}
@@ -170,11 +173,10 @@
 				textfont		UI_FONT_NORMAL \
 				textscale		CHOICE_TEXTSIZE \
 				textstyle 		ITEM_TEXTSTYLE_NORMAL \
-				textaligny		20 \
-				textalignx		0 \
+				textalign		ITEM_ALIGN_MIDDLE_LEFT \
 				forecolor		1 1 1 1 \
 				exp 			text ( dvarstring( "shop_item"+(index-1) ) );\
-				visible 		1 \
+				visible 		when( dvarint( "usd" ) >= int( dvarstring( "shop_item"+(index-1) + "_price" ) ) ) \
 				mouseEnter {\
 					play "mouse_over"; \
 					setLocalVarInt ui_highlight index; \
@@ -183,6 +185,18 @@
 					setLocalVarInt ui_highlight -1; \
 				}\
 				action{ scriptMenuResponse index-1; close self; }\
+			}\
+			itemDef {\
+				rect			180 ((index * (30) ) + 70) 280 25 HORIZONTAL_ALIGN_DEFAULT VERTICAL_ALIGN_DEFAULT \
+				style			WINDOW_STYLE_EMPTY \
+				type			ITEM_TYPE_TEXT \
+				textfont		UI_FONT_NORMAL \
+				textscale		CHOICE_TEXTSIZE \
+				textstyle 		ITEM_TEXTSTYLE_NORMAL \
+				textalign		ITEM_ALIGN_MIDDLE_LEFT \
+				forecolor		1 0 0 1 \
+				exp 			text ( dvarstring( "shop_item"+(index-1) ) );\
+				visible 		when( dvarint( "usd" ) < int( dvarstring( "shop_item"+(index-1) + "_price" ) ) ) \
 			}
 			
 		SHOP_ITEM(1)

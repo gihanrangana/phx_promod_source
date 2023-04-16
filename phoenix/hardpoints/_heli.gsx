@@ -47,8 +47,8 @@ init()
 	
 	self thread setup();
 	
-	if( isDefined( self.moneyhud ) )
-		self.moneyhud destroy();
+	if( isDefined( self.usdHud ) )
+		self.usdHud destroy();
 	
 	return true;
 }
@@ -902,7 +902,7 @@ endHeli( type )
 	{
 		self thread phoenix\_common::restoreHP();
 		if( !level.dvar[ "old_hardpoints" ] )
-			self thread phoenix\_hardpoints::moneyHud();
+			self thread phoenix\_shop::usdHud();
 		self thread phoenix\_common::removeInfoHUD();
 		self thread phoenix\_common::restoreVisionSettings();
 		self setClientDvar( "g_compassshowenemies", 0 );

@@ -412,5 +412,11 @@ material,loadscreen_mp_strike
 
 stringtable,promod/customStatsTable.csv
 stringtable,promod/destructible.csv
+stringtable,mp/rankTable.csv
+stringtable,mp/playerStatsTable.csv
+stringtable,mp/rankIconTable.csv
+stringtable,mp/flagTable.csv
+stringtable,mp/flagicontable.csv
+stringtable,mp/splashtable.csv
 
 xmodel,com_floodlight_on

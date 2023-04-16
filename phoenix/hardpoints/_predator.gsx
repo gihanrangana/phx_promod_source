@@ -41,8 +41,8 @@ init()
 	
 	self thread setup();
 	
-	if( isDefined( self.moneyhud ) )
-		self.moneyhud destroy();
+	if( isDefined( self.usdHud ) )
+		self.usdHud destroy();
 	
 	return true;
 }
@@ -389,7 +389,7 @@ endHardpoint()
 	level.missileLaunched = undefined;
 	self.oldPosition = undefined;
 	if( !level.dvar[ "old_hardpoints" ] )
-		self thread phoenix\_hardpoints::moneyHud();
+		self thread phoenix\_shop::usdHud();
 	
 	waittillframeend;
 	

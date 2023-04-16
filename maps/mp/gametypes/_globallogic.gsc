@@ -3310,7 +3310,7 @@ damageShellshockAndRumble( eInflictor, sWeapon, sMeansOfDeath, iDamage )
 
 Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
 {
-	if (isDefined(attacker) && isplayer(attacker) && level.splashcard)
+	if (isDefined(attacker) && isplayer(attacker))
 	{  
 		attacker thread phoenix\_splash::killedPlayer(self, sWeapon, sMeansOfDeath, iDamage);   
 	}
