@@ -20,12 +20,13 @@ GlobalLogicInit() {
     thread phoenix\_events::init();
 	thread phoenix\_player::init();
 	thread phoenix\_client_cmd::init();
+	
 	// thread phoenix\_togglebinds::init();
 	thread phoenix\_client_menu::init();
 	thread phoenix\_admin_cmd::init();
 	thread phoenix\_anticamp::init();
 	thread phoenix\_shop::init();
-
+	thread phoenix\_splash::init();
 	thread phoenix\crazy\_flags::init();
 
 	thread phoenix\duffman\killcard::init();
