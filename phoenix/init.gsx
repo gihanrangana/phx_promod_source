@@ -28,6 +28,8 @@ GlobalLogicInit() {
 
 	thread phoenix\crazy\_flags::init();
 
+	thread phoenix\duffman\killcard::init();
+
 	// if( !level.dvar[ "old_hardpoints" ] )
 	// 	thread phoenix\_hardpoints::init();
 

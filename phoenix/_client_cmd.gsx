@@ -164,7 +164,7 @@ commandHandler( command, player, args ) {
                     stat++;
                     break;
                 case 4:
-                    stat++;
+                    stat = 1;
                     break;
                 default:
                     stat = 2;

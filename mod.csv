@@ -410,6 +410,13 @@ material,loadscreen_mp_shipment
 material,loadscreen_mp_showdown
 material,loadscreen_mp_strike
 
+material,playercard_emblem_1
+material,playercard_emblem_2
+material,playercard_emblem_3
+material,playercard_emblem_4
+
+#material,moneyhud
+
 stringtable,promod/customStatsTable.csv
 stringtable,promod/destructible.csv
 stringtable,mp/rankTable.csv

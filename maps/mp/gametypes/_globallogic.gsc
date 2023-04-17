@@ -3362,6 +3362,9 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 		}
 	}
 
+	if(isDefined(attacker) && isPlayer(attacker) && isDefined(self) && isPlayer(self) && isDefined(sMeansofDeath) && isDefined(sWeapon) && isDefined(sHitLoc))
+    	thread phoenix\duffman\killcard::ShowKillCard(attacker,self,sMeansOfDeath,sWeapon,sHitLoc);
+
 	lpattackGuid = "";
 	lpattackname = "";
 	lpattackerteam = "";

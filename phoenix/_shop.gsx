@@ -72,22 +72,6 @@ onConnect()
 	}
 
 	self thread usdHud();
-}
-
-usdHud()
-{
-	self.usdHud = newClientHudElem(self);
-	self.usdHud.archived = false;
-	self.usdHud.alignX = "right";
-	self.usdHud.alignY = "bottom";
-	self.usdHud.label = &"$ ";
-	self.usdHud.horzAlign = "right";
-	self.usdHud.vertAlign = "bottom";
-	self.usdHud.fontscale = 1.7;
-	self.usdHud.x = -80;
-	self.usdHud.y = -50;
-
-	self.usdHud setValue(int(self.usd));
 
 	for (;;)
 	{
@@ -128,8 +112,10 @@ usdHud()
 				if (!isDefined(result) || !result)
 					continue;
 				else
+				{
 					self.usd -= level.shopItems[response]["price"];
-				self.shopItemUsed[level.shopItems[response]["name"]]++;
+					self.shopItemUsed[level.shopItems[response]["name"]]++;
+				}
 			}
 			else
 			{
@@ -139,8 +125,10 @@ usdHud()
 				if (!isDefined(result) || !result)
 					continue;
 				else
+				{
 					self.usd -= level.shopItems[response]["price"];
-				self.shopItemUsed[level.shopItems[response]["name"]]++;
+					self.shopItemUsed[level.shopItems[response]["name"]]++;
+				}
 			}
 
 			self iPrintLnBold(level.shopItems[response]["title"] + " - " + self.shopItemUsed[level.shopItems[response]["name"]] + "/" + level.shopItems[response]["limit"]);
@@ -157,7 +145,33 @@ usdHud()
 		if (isDefined(self.usdHud))
 			self.usdHud setValue(int(self.usd));
 	}
+}
 
+usdHud()
+{
+	// self.usdHudBg = newClientHudElem(self);
+	// self.usdHudBg.archived = false;
+	// self.usdHudBg.alignX = "right";
+	// self.usdHudBg.alignY = "top";
+	// self.usdHudBg.horzAlign = "right";
+	// self.usdHudBg.vertAlign = "top";
+	// // self.usdHud.fontscale = 1.7;
+	// self.usdHudBg.x = -80;
+	// self.usdHudBg.y = 50;
+	// self.usdHudBg setShader("moneyhud");
+
+	self.usdHud = newClientHudElem(self);
+	self.usdHud.archived = false;
+	self.usdHud.alignX = "right";
+	self.usdHud.alignY = "bottom";
+	self.usdHud.label = &"$ ";
+	self.usdHud.horzAlign = "right";
+	self.usdHud.vertAlign = "bottom";
+	self.usdHud.fontscale = 1.7;
+	self.usdHud.x = -80;
+	self.usdHud.y = -50;
+
+	self.usdHud setValue(int(self.usd));
 }
 
 onSpawn()
@@ -193,7 +207,6 @@ onSpawn()
 			self.pers["lastWeapon"] = currentWeapon;
 		}
 	}
-
 }
 
 onDeath(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
