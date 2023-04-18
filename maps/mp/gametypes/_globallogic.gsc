@@ -10,6 +10,7 @@
 
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
+#include maps\mp\gametypes\_globallogic_utils;
 
 init()
 {
@@ -2758,6 +2759,8 @@ Callback_StartGameType()
 	level.alivePlayers["axis"] = [];
 	level.activePlayers = [];
 
+	registerPostRoundEvent( maps\mp\gametypes\_finalkillcam::postRoundFinalKillcam );
+
 	makeDvarServerInfo( "ui_scorelimit" );
 	makeDvarServerInfo( "ui_timelimit" );
 
@@ -3539,6 +3542,20 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 
 	prof_begin( "PlayerKilled post constants" );
 
+	killcamentity = self getKillcamEntity( attacker, eInflictor, sWeapon );
+	killcamentityindex = -1;
+	killcamentitystarttime = 0;
+	if ( isDefined( killcamentity ) )
+	{
+		killcamentityindex = killcamentity getEntityNumber(); 
+		if ( isdefined( killcamentity.startTime ) )
+			killcamentitystarttime = killcamentity.startTime;
+		else
+			killcamentitystarttime = killcamentity.birthtime;
+		if ( !isdefined( killcamentitystarttime ) )
+			killcamentitystarttime = 0;
+	}
+
 	if ( sMeansOfDeath == "MOD_MELEE" )
 		scWeapon = "knife_mp";
 	else
@@ -3577,6 +3594,9 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 		postDeathDelay = waitForTimeOrNotifies( 1.75 );
 
 	self notify ( "death_delay_finished" );
+
+	level thread maps\mp\gametypes\_finalkillcam::startFinalKillcam( lpattacknum, self getEntityNumber(), killcamentityindex, sWeapon, self.deathTime, 0, psOffsetTime, attacker, self );
+
 
 	if ( !isDefined( game["state"] ) || game["state"] != "playing" )
 		return;
