@@ -415,6 +415,33 @@ material,playercard_emblem_2
 material,playercard_emblem_3
 material,playercard_emblem_4
 
+material,splashicon25
+material,splashicon0
+material,splashicon1
+material,splashicon2
+material,splashicon3
+material,splashicon4
+material,splashicon5
+material,splashicon6
+material,splashicon7
+material,splashicon8
+material,splashicon9
+material,splashicon10
+material,splashicon11
+material,splashicon12
+material,splashicon13
+material,splashicon14
+material,splashicon15
+material,splashicon16
+material,splashicon17
+material,splashicon18
+material,splashicon19
+material,splashicon20
+material,splashicon21
+material,splashicon22
+material,splashicon23
+material,splashicon24
+
 #material,moneyhud
 
 stringtable,promod/customStatsTable.csv
@@ -424,6 +451,6 @@ stringtable,mp/playerStatsTable.csv
 stringtable,mp/rankIconTable.csv
 stringtable,mp/flagTable.csv
 stringtable,mp/flagicontable.csv
-stringtable,mp/splashtable.csv
+stringtable,mp/splashTable.csv
 
 xmodel,com_floodlight_on

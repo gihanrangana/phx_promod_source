@@ -10,41 +10,49 @@ init()
 	precacheString( &"RANK_PROMOTED" );
 	precacheString( &"MP_PLUS" );
 	
-	registerScoreInfo( "kill", 5 );
-	registerScoreInfo( "headshot", 5 );
-	registerScoreInfo( "assist", 3 );
-	registerScoreInfo( "suicide", 0 );
-	registerScoreInfo( "teamkill", 0 );
-	registerScoreInfo( "win", 50 );
-	registerScoreInfo( "loss", 30 );
-	registerScoreInfo( "tie", 40 );
-	registerScoreInfo( "plant", 8 );
-	registerScoreInfo( "defuse", 6 );
-	registerScoreInfo( "ninja_defuse", 10 );
-	registerScoreInfo( "capture", 3 );
-	registerScoreInfo( "assault", 3 );
-	registerScoreInfo( "assault_assist", 1 );
-	registerScoreInfo( "defend", 3 );
-	registerScoreInfo( "defend_assist", 1 );
-	registerScoreInfo( "kill_denied", 2 );
-	registerScoreInfo( "gottags", 2 );
-	registerScoreInfo( "kill_confirmed", 2 );	
-	registerScoreInfo( "headshot_splash", 5 );
-	registerScoreInfo( "execution", 5 );
-	registerScoreInfo( "avenger", 5 );
-	registerScoreInfo( "defender", 5 );
-	registerScoreInfo( "revenge", 5 );
-	registerScoreInfo( "double", 5 );
-	registerScoreInfo( "triple", 15 );
-	registerScoreInfo( "multi", 10 );
-	registerScoreInfo( "buzzkill", 5 );
-	registerScoreInfo( "firstblood", 10 );
-	registerScoreInfo( "comeback", 5 );
-	registerScoreInfo( "longshot", 5 );
-	registerScoreInfo( "assistedsuicide", 5 );
-	registerScoreInfo( "wallbang", 5 );
-	registerScoreInfo( "fieldorders", 10 );
-	registerScoreInfo( "tags_retrieved", 2 );
+	registerScoreInfo("kill", 5);
+    registerScoreInfo("headshot", 5);
+    registerScoreInfo("assist", 3);
+    registerScoreInfo("suicide", 0);
+    registerScoreInfo("teamkill", 0);
+    registerScoreInfo("win", 2);
+    registerScoreInfo("loss", 1);
+    registerScoreInfo("tie", 1.5);
+    registerScoreInfo("plant", 3);
+    registerScoreInfo("defuse", 3);
+    registerScoreInfo("capture", 3);
+    registerScoreInfo("assault", 3);
+    registerScoreInfo("assault_assist", 1);
+    registerScoreInfo("defend", 3);
+    registerScoreInfo("defend_assist", 1);
+    registerScoreInfo("defend", 3);
+    registerScoreInfo("defend_assist", 1);
+    registerScoreInfo("kill_denied", 5);
+    registerScoreInfo("gottags", 10);
+    registerScoreInfo("kill_confirmed", 5);
+    registerScoreInfo("headshot_splash", 5);
+    registerScoreInfo("execution", 5);
+    registerScoreInfo("avenger", 5);
+    registerScoreInfo("defender", 5);
+    registerScoreInfo("posthumous", 3);
+    registerScoreInfo("revenge", 5);
+    registerScoreInfo("double", 5);
+    registerScoreInfo("triple", 5);
+    registerScoreInfo("multi", 10);
+    registerScoreInfo("buzzkill", 5);
+    registerScoreInfo("firstblood", 10);
+    registerScoreInfo("comeback", 5);
+    registerScoreInfo("longshot", 5);
+    registerScoreInfo("assistedsuicide", 5);
+    registerScoreInfo("wallbang", 5);
+    registerScoreInfo("neardeath", 5);
+    registerScoreInfo("king_slayer", 5);
+    registerScoreInfo("bloodthirsty", 10);
+    registerScoreInfo("fieldorders", 10);
+    registerScoreInfo("tags_retrieved", 10);
+    registerScoreInfo("one_shot_kill", 5);
+    registerScoreInfo("merciless", 10);
+    registerScoreInfo("pointblank", 5);
 
 	level.maxRank = int(tableLookup( "mp/rankTable.csv", 0, "maxrank", 1 ));
 	level.maxPrestige = int(tableLookup( "mp/rankIconTable.csv", 0, "maxprestige", 1 ));
@@ -80,6 +88,9 @@ onPlayerConnect()
 	{
 		level waittill( "connected", player );
 		player.pers["rankxp"] = player maps\mp\gametypes\_persistence::statGet( "rankxp" );
+		if(!isDefined(player.pers["rankxp"]))
+			player.pers["rankxp"] = 0;
+			
 		rankId = player getRankForXp( player getRankXP() );
 		player.pers["rank"] = rankId;
 		player.pers["participation"] = 0;
@@ -237,8 +248,8 @@ updateRankScoreHUD( amount )
 	self endon( "joined_team" );
 	self endon( "joined_spectators" );
 	
-	if ( !amount )
-	return;
+	if (!isDefined(amount) || !amount )
+		return;
 	
 	self notify( "update_score" );
 	self endon( "update_score" );

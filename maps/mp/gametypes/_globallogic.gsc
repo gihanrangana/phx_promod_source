@@ -441,8 +441,8 @@ spawnPlayer()
 
 	self thread phoenix\_events::onSpawnPlayer();
 
-	if( level.dvar[ "old_hardpoints" ] )
-		self thread maps\mp\gametypes\_hardpoints::hardpointItemWaiter();
+	// if( level.dvar[ "old_hardpoints" ] )
+	// 	self thread maps\mp\gametypes\_hardpoints::hardpointItemWaiter();
 
 	if ( !isDefined( level.rdyup ) || !level.rdyup )
 		self.statusicon = "";

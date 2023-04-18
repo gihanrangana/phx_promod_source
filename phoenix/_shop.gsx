@@ -132,6 +132,11 @@ onConnect()
 			}
 
 			self iPrintLnBold(level.shopItems[response]["title"] + " - " + self.shopItemUsed[level.shopItems[response]["name"]] + "/" + level.shopItems[response]["limit"]);
+
+			if (isDefined(self.usdHud))
+				self.usdHud setValue(int(self.usd));
+
+			self setClientDvar("usd", self.usd);
 		}
 
 		usdAfter = self.usd;
@@ -139,11 +144,6 @@ onConnect()
 
 		if (difference != 0 && level.dvar["shopXP"])
 			self thread maps\mp\gametypes\_rank::updateRankScoreHUD(difference);
-
-		self setClientDvar("usd", self.usd);
-
-		if (isDefined(self.usdHud))
-			self.usdHud setValue(int(self.usd));
 	}
 }
 
@@ -185,7 +185,7 @@ onSpawn()
 	self setWeaponAmmoStock("radar_mp", 0);
 	self setActionSlot(4, "weapon", "radar_mp");
 
-	self.usd = 400;
+	// self.usd = 400;
 	self setClientDvar("usd", self.usd);
 
 	if (isDefined(self.usdHud))
@@ -236,6 +236,9 @@ onDeath(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, ps
 	}
 
 	attacker setClientDvar("usd", attacker.usd);
+	
+	if(isDefined(attacker.usdHud))
+		attacker.usdHud setValue(int(attacker.usd));
 }
 
 trigger(hardpointType)

@@ -28,8 +28,8 @@
 init() {
     phoenix\_events::addConnectEvent(::onPlayerConnect);
     phoenix\_events::addSpawnEvent(::onPlayerSpawn);
-    phoenix\_events::addDamageEvent(::onPlayerDamage);
-    phoenix\_events::addDeathEvent(::onPlayerKilled);
+    // phoenix\_events::addDamageEvent(::onPlayerDamage);
+    // phoenix\_events::addDeathEvent(::onPlayerKilled);
 }
 
 onPlayerConnect() {
@@ -116,6 +116,8 @@ onPlayerSpawn() {
 	
 	self thread userSettings();
 
+	self iPrintLnBold("Health : " + self.health + "/" + self.maxHealth);
+
 	// self takeAllWeapons();
 	// self giveWeapon("mwr_m40a3_mp", 1);
 	// wait 0.05;
@@ -123,13 +125,13 @@ onPlayerSpawn() {
 
 }
 
-onPlayerKilled( eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration ) {
+// onPlayerKilled( eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration ) {
 
-}
+// }
 
-onPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime ) {
+// onPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime ) {
 
-}
+// }
 
 
 userSettings() {

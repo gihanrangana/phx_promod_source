@@ -1049,3 +1049,91 @@ getCgFov( index ) {
 		default: return 80;
 	}
 }
+
+
+// common function
+stringToFloat(stringVal)
+{
+	floatElements = strTok( stringVal, "." );
+	if(!floatElements.size)
+		return false;
+	
+	floatVal = int(floatElements[0]);
+	if(isDefined(floatElements[1]))
+	{
+		modifier = 1;
+		for(i = 0; i < floatElements[1].size; i++)
+			modifier *= 0.1;
+		floatVal += int (floatElements[1]) * modifier;
+	}
+	return floatVal;	
+}
+
+waittill_notify_ent_or_timeout(ent, msg, timer)
+{
+	if(isDefined(ent) && isDefined(msg))
+		ent endon(msg);
+	wait(timer);
+}
+
+getColorByTeam(enemy)
+{
+	team = self.team;
+	if(isDefined(enemy) && enemy)
+		team = level.otherteam[self.team];
+	return game["colors"][team];
+	return (1,1,1);
+}
+underScorePopup(string, hudColor, glowAlpha)
+{
+	self endon( "disconnect" );
+	self endon( "joined_team" );
+	self endon( "joined_spectators" );
+
+	while(isDefined(self.underScoreInProgress) && self.underScoreInProgress )
+		wait 0.05;
+	
+	self.underScoreInProgress = true;
+	
+	if ( !isDefined( hudColor ) )
+		hudColor = (1,1,1);
+	if ( !isDefined( glowAlpha ) )
+		glowAlpha = 0;
+			
+	if(!isDefined(self._scorePopup))
+	{
+		self._scorePopup = newClientHudElem(self);
+		self._scorePopup.horzAlign = "center";
+		self._scorePopup.vertAlign = "middle";
+		self._scorePopup.alignX = "left";
+		self._scorePopup.alignY = "middle";
+		self._scorePopup.font = "default";
+		self._scorePopup.fontscale = 1.4;
+		self._scorePopup.archived = false;
+		self._scorePopup.hideWhenInMenu = true;
+		self._scorePopup.sort = 9999;
+	}
+	self._scorePopup.y = -30;
+	self._scorePopup.x = 10;
+	self._scorePopup.alpha = 0;
+	self._scorePopup.color = hudColor;
+	self._scorePopup.glowColor = hudColor;
+	self._scorePopup.glowAlpha = glowAlpha;
+	self._scorePopup setText(string);
+	self._scorePopup fadeOverTime(0.2);
+	self._scorePopup.alpha = 1;
+	wait 0.5;
+	self._scorePopup moveOverTime(0.2);
+	self._scorePopup.x = 55;
+	self._scorePopup fadeOverTime(0.2);
+	self._scorePopup.alpha = 0;
+	wait 0.55;
+	self.underScoreInProgress = false;
+}
+
+getWeaponClass( weapon )
+{
+	tokens = strTok( weapon, "_" )[0];
+	weaponClass = tableLookUp( "mp/statsTable.csv", 4, tokens, 2 );
+	return weaponClass;
+}

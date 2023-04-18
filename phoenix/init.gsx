@@ -27,7 +27,7 @@ GlobalLogicInit() {
 	thread phoenix\_anticamp::init();
 	thread phoenix\_shop::init();
 	thread phoenix\_splash::init();
-	thread phoenix\crazy\_flags::init();
+	// thread phoenix\crazy\_flags::init();
 
 	thread phoenix\duffman\killcard::init();
 
@@ -68,7 +68,34 @@ fx_cache() {
 	precacheShader( "killiconheadshot" );
 	preCacheShader("line_vertical");
 	precacheShader("rank_prestige10");
-
+	precacheShader("line_horizontal");
+	precacheShader("splashicon0");
+	precacheShader("splashicon1");
+	precacheShader("splashicon2");
+	precacheShader("splashicon3");
+	precacheShader("splashicon4");
+	precacheShader("splashicon5");
+	precacheShader("splashicon6");
+	precacheShader("splashicon7");
+	precacheShader("splashicon8");
+	precacheShader("splashicon9");
+	precacheShader("splashicon10");
+	precacheShader("splashicon11");
+	precacheShader("splashicon12");
+	precacheShader("splashicon13");
+	precacheShader("splashicon14");
+	precacheShader("splashicon15");
+	precacheShader("splashicon16");
+	precacheShader("splashicon17");
+	precacheShader("splashicon18");
+	precacheShader("splashicon19");
+	precacheShader("splashicon20");
+	precacheShader("splashicon21");
+	precacheShader("splashicon22");
+	precacheShader("splashicon23");
+	precacheShader("splashicon24");
+	precacheShader("splashicon25");
+	
 	precacheMenu("clientcmd");
 	precacheMenu("player_settings");
 
