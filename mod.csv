@@ -445,6 +445,9 @@ material,splashicon22
 material,splashicon23
 material,splashicon24
 
+material,jen_black
+material,jen_score
+
 #material,moneyhud
 
 stringtable,promod/customStatsTable.csv

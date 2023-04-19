@@ -157,6 +157,9 @@ onConnect()
     {
         level waittill("ending_start");
 
+        if (!isDefined(self))
+            continue;
+
         self closeMenu();
         self closeInGameMenu();
         self setClientDvar("ui_hud_hardcore", 0);
@@ -185,7 +188,7 @@ onConnect()
             else
                 player.kd = int(player.pers["kills"] / 1);
 
-            if(!isDefined(player.pers["meleeKills"]))
+            if (!isDefined(player.pers["meleeKills"]))
                 player.pers["meleeKills"] = 0;
 
             if (player.pers["kills"] > level.records[0]["value"])
