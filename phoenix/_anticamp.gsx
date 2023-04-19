@@ -17,64 +17,70 @@
 
 #include phoenix\_common;
 
-init() {
-   phoenix\_events::addSpawnEvent(::onSpawn);
+init()
+{
+    phoenix\_events::addSpawnEvent(::onSpawn);
 }
 
-onSpawn() {
+onSpawn()
+{
     self notify("anticamp");
     self endon("disconnect");
-	self endon("anticamp");
-	self endon( "spawned_player" );
-	self endon("joined_spectators");
-	self endon("death");
+    self endon("anticamp");
+    self endon("spawned_player");
+    self endon("joined_spectators");
+    self endon("death");
     level endon("game_ended");
-	level endon("mapvote");
-
+    level endon("mapvote");
 
     self.camping = 0;
     camptime = 150;
-    
-	wait 1;
-	angles = self.angles;
-	while(angles == self.angles)
-		wait .5;	
 
-    while(isAlive(self)) {
-		oldorg = self.origin;
-		wait .1;
+    wait 1;
+    angles = self.angles;
+    while (angles == self.angles)
+        wait .5;
 
-        if(disabledWeapon())
+    while (isAlive(self))
+    {
+        oldorg = self.origin;
+        wait .1;
+
+        if (disabledWeapon())
             continue;
 
-        if( distance2d(oldorg, self.origin) < 20 ) {
-            if( self.pers["class"] == "sniper")
-                self.camping += .5; 
+        if (distance2d(oldorg, self.origin) < 20)
+        {
+            if (self.pers["class"] == "sniper")
+                self.camping += .5;
             else
-                self.camping++;
-        }else{
+                self.camping += 1;
+        }
+        else
+        {
             self.camping -= 2;
         }
 
-        if(self.camping == camptime - 40) {
+        if (self.camping == camptime - 40)
+        {
             selfPrintBold("You are about to camp. Please move... ");
         }
 
-        if(self.camping == camptime){
+        if (self.camping == camptime)
+        {
             selfPrintBold("^1Camper!!! ^7You are about to die... ");
             self.camping = 0;
             wait 3;
 
             self thread Explode();
         }
-
-	}
-
+    }
 }
 
-disabledWeapon() {
-    if(self GetCurrentWeapon() == "radar_mp" || self GetCurrentWeapon() == "briefcase_bomb_mp" || (isDefined(level.flyingplane) && self.maxhealth == 120000))
+disabledWeapon()
+{
+    if (self GetCurrentWeapon() == "radar_mp" || self GetCurrentWeapon() == "briefcase_bomb_mp" || (isDefined(level.flyingplane) && self.maxhealth == 120000))
         return true;
     else
-        return false; 
+        return false;
 }
