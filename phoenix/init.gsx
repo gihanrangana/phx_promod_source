@@ -20,8 +20,6 @@ GlobalLogicInit() {
     thread phoenix\_events::init();
 	thread phoenix\_player::init();
 	thread phoenix\_client_cmd::init();
-	
-	// thread phoenix\_togglebinds::init();
 	thread phoenix\_client_menu::init();
 	thread phoenix\_admin_cmd::init();
 	thread phoenix\_anticamp::init();
@@ -30,9 +28,6 @@ GlobalLogicInit() {
 	// thread phoenix\crazy\_flags::init();
 
 	thread phoenix\duffman\killcard::init();
-
-	// if( !level.dvar[ "old_hardpoints" ] )
-	// 	thread phoenix\_hardpoints::init();
 
 	if( level.dvar[ "phx_developer" ] == 1) 
 		thread phoenix\_bots::init();
@@ -46,6 +41,7 @@ GlobalLogicInit() {
 startGameType() {
 	thread phoenix\hardpoints\_heli::plotMap();
 	thread phoenix\_mapvote::init();
+	thread phoenix\_ending::init();
 
 	setDvar( "player_breath_gasp_lerp", "0" );
 	setDvar( "player_breath_gasp_time", "0" );

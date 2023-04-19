@@ -1066,6 +1066,9 @@ endGame( winner, endReasonText )
 
 	level.intermission = true;
 
+	level notify("ending_start");
+	level waittill("ending_end");
+
 	for ( i = 0; i < level.players.size; i++ )
 	{
 		player = level.players[i];
@@ -1087,6 +1090,8 @@ endGame( winner, endReasonText )
 		player closeMenu();
 		player closeInGameMenu();
 	}
+
+	// level thread phoenix\_ending::finalRecords();
 
 	level notify("mapvote_start");
 	level waittill("mapvote_done");

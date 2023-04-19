@@ -95,6 +95,9 @@ rawfile,promod/strattime.gsc
 rawfile,promod/timeout.gsc
 
 rawfile,shock/damage_mp.shock
+rawfile,shock/radiation_low.shock
+rawfile,shock/radiation_med.shock
+rawfile,shock/radiation_high.shock
 
 sound,promod,,all_mp
 sound,unreal,,all_mp
