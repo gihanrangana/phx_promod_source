@@ -50,7 +50,7 @@ init()
     level.endRecords[0]["title"] = recordHud(level.endRecordsIcons["width"], level.endRecordsIcons["height"], -180, undefined);
     level.endRecords[0]["title"].x = ((space * 2) + level.endRecordsIcons["width"] * 2) * -1;
     level.endRecords[0]["title"].font = "default";
-    level.endRecords[0]["title"].fontScale = 2;
+    level.endRecords[0]["title"].fontScale = 1.8;
     level.endRecords[0]["title"].color = (1, 1, 0);
     level.endRecords[0]["title"] setText("KILLER");
 
@@ -71,7 +71,7 @@ init()
     level.endRecords[1]["title"] = recordHud(level.endRecordsIcons["width"], level.endRecordsIcons["height"], -180, undefined);
     level.endRecords[1]["title"].x = (space + level.endRecordsIcons["width"] * 1) * -1;
     level.endRecords[1]["title"].font = "default";
-    level.endRecords[1]["title"].fontScale = 2;
+    level.endRecords[1]["title"].fontScale = 1.8;
     level.endRecords[1]["title"].color = (1, 1, 0);
     level.endRecords[1]["title"] setText("HEAD HUNTER");
 
@@ -92,7 +92,7 @@ init()
     level.endRecords[2]["title"] = recordHud(level.endRecordsIcons["width"], level.endRecordsIcons["height"], -180, undefined);
     level.endRecords[2]["title"].x = 0;
     level.endRecords[2]["title"].font = "default";
-    level.endRecords[2]["title"].fontScale = 2;
+    level.endRecords[2]["title"].fontScale = 1.8;
     level.endRecords[2]["title"].color = (1, 1, 0);
     level.endRecords[2]["title"] setText("NINJA");
 
@@ -113,7 +113,7 @@ init()
     level.endRecords[3]["title"] = recordHud(level.endRecordsIcons["width"], level.endRecordsIcons["height"], -180, undefined);
     level.endRecords[3]["title"].x = space + level.endRecordsIcons["width"] * 1;
     level.endRecords[3]["title"].font = "default";
-    level.endRecords[3]["title"].fontScale = 2;
+    level.endRecords[3]["title"].fontScale = 1.8;
     level.endRecords[3]["title"].color = (1, 1, 0);
     level.endRecords[3]["title"] setText("BEST K/D");
 
@@ -134,7 +134,7 @@ init()
     level.endRecords[4]["title"] = recordHud(level.endRecordsIcons["width"], level.endRecordsIcons["height"], -180, undefined);
     level.endRecords[4]["title"].x = (space * 2) + level.endRecordsIcons["width"] * 2;
     level.endRecords[4]["title"].font = "default";
-    level.endRecords[4]["title"].fontScale = 2;
+    level.endRecords[4]["title"].fontScale = 1.8;
     level.endRecords[4]["title"].color = (1, 1, 0);
     level.endRecords[4]["title"] setText("DEAD MAN");
 
@@ -184,6 +184,9 @@ onConnect()
                 player.kd = int(player.pers["kills"] / player.pers["deaths"]);
             else
                 player.kd = int(player.pers["kills"] / 1);
+
+            if(!isDefined(player.pers["meleeKills"]))
+                player.pers["meleeKills"] = 0;
 
             if (player.pers["kills"] > level.records[0]["value"])
             {
