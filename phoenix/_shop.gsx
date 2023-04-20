@@ -77,8 +77,8 @@ onConnect()
 	{
 		self waittill("menuresponse", menu, response);
 
-		if (menu != "shop")
-			continue;
+		// if (menu != "shop")
+		// 	continue;
 
 		if (response == "change_weap")
 		{
@@ -185,7 +185,7 @@ onSpawn()
 	self setWeaponAmmoStock("radar_mp", 0);
 	self setActionSlot(4, "weapon", "radar_mp");
 
-	// self.usd = 400;
+	self.usd = 1400;
 	self setClientDvar("usd", self.usd);
 
 	if (isDefined(self.usdHud))

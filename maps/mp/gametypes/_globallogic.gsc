@@ -3478,19 +3478,20 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 
 				if ( isAlive( attacker ) )
 				{
-					checkW = ( sWeapon == "artillery_mp" || isSubStr( sWeapon, "cobra" ) || isSubStr( sWeapon, "hind" ) );
-					if( !checkW )
-					{
-						attacker.cur_kill_streak++;
-						if( level.dvar["old_hardpoints"] )
-							attacker thread maps\mp\gametypes\_hardpoints::giveHardpointItemForStreak();
-					}
-					else if( checkW && level.dvar[ "hardpoint_streak" ] )
-					{
-						attacker.cur_kill_streak++;
-						if( level.dvar["old_hardpoints"] )
-							attacker thread maps\mp\gametypes\_hardpoints::giveHardpointItemForStreak();
-					}
+					attacker.cur_kill_streak++;
+					// checkW = ( sWeapon == "artillery_mp" || isSubStr( sWeapon, "cobra" ) || isSubStr( sWeapon, "hind" ) );
+					// if( !checkW )
+					// {
+					// 	attacker.cur_kill_streak++;
+					// 	if( level.dvar["old_hardpoints"] )
+					// 		attacker thread maps\mp\gametypes\_hardpoints::giveHardpointItemForStreak();
+					// }
+					// else if( checkW && level.dvar[ "hardpoint_streak" ] )
+					// {
+					// 	attacker.cur_kill_streak++;
+					// 	if( level.dvar["old_hardpoints"] )
+					// 		attacker thread maps\mp\gametypes\_hardpoints::giveHardpointItemForStreak();
+					// }
 				}
 				// hardpoints related from new ex - end
 

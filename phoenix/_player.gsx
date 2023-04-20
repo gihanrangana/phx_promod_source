@@ -37,7 +37,6 @@ onPlayerConnect()
 {
 
 	self.pers["hardpointSType"] = level.dvar["shopbuttons_default"];
-	// self.money = 10000;
 
 	self.killedPlayers = [];
 	self.killedPlayersCurrent = [];
@@ -124,7 +123,9 @@ onPlayerSpawn()
 
 	self thread userSettings();
 
-	self iPrintLnBold("Health : " + self.health + "/" + self.maxHealth);
+	// self iPrintLnBold("Health : " + self.health + "/" + self.maxHealth);
+
+	self.usd = 10000;
 
 	// self takeAllWeapons();
 	// self giveWeapon("mwr_m40a3_mp", 1);
