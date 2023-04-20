@@ -7,6 +7,7 @@
 # Terms of license can be found in LICENSE.md document bundled with the project.
 
 localize,cgame
+localize,splashes
 
 menufile,ui_mp/promod.txt
 menufile,ui_mp/scriptmenus/changeclass_marines_mw.menu

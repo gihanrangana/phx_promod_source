@@ -105,10 +105,10 @@ onPlayerConnect()
 
 	waittillframeend;
 
-	if( !isDefined( self.pers["meleeKills"]) )
+	if (!isDefined(self.pers["meleeKills"]))
 		self.pers["meleeKills"] = 0;
 
-	if( !isDefined( self.pers["explosiveKills"]) )
+	if (!isDefined(self.pers["explosiveKills"]))
 		self.pers["explosiveKills"] = 0;
 
 	self thread setPlayerModel();
@@ -138,6 +138,20 @@ onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHit
 
 	if (!isDefined(attacker) || attacker == self || !isPlayer(attacker))
 		return;
+
+	if (self.pers["deaths"] == 0)
+		self.pers["kd"] = self.pers["kills"];
+	else
+	{
+		self.pers["kd"] = self.pers["kills"] / self.pers["deaths"];
+	}
+
+	if (attacker.pers["deaths"] == 0)
+		attacker.pers["kd"] = attacker.pers["kills"];
+	else
+	{
+		attacker.pers["kd"] = attacker.pers["kills"] / attacker.pers["deaths"];
+	}
 
 	if (sMeansOfDeath == "MOD_MELEE")
 		attacker.pers["meleeKills"]++;
