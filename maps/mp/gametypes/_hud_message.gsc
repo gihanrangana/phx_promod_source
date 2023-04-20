@@ -500,10 +500,11 @@ teamOutcomeNotify(winner, isRound, endReasonText, delay)
 
 	leftScore = createFontString(font, titleSize);
 	leftScore setParent(leftIcon);
-	leftScore setPoint("TOP", "BOTTOM", 100, -50);
+	leftScore setPoint("TOP", "BOTTOM", 75, -50);
 	leftScore.glowColor = game["colors"][team];
 	leftScore.glowAlpha = 0;
 	leftScore setValue(getTeamScore(team));
+	// leftScore setValue(2000);
 	leftScore.hideWhenInMenu = false;
 	leftScore.archived = false;
 	leftScore.sort = 1;
@@ -511,10 +512,11 @@ teamOutcomeNotify(winner, isRound, endReasonText, delay)
 
 	rightScore = createFontString(font, titleSize);
 	rightScore setParent(rightIcon);
-	rightScore setPoint("TOP", "BOTTOM", -100, -50);
+	rightScore setPoint("TOP", "BOTTOM", -80, -50);
 	rightScore.glowColor = game["colors"][level.otherTeam[team]];
 	rightScore.glowAlpha = 0;
 	rightScore setValue(getTeamScore(level.otherTeam[team]));
+	// rightScore setValue(2000);
 	rightScore.hideWhenInMenu = false;
 	rightScore.archived = false;
 	rightScore.sort = 1;
