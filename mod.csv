@@ -413,6 +413,17 @@ material,loadscreen_mp_pipeline
 material,loadscreen_mp_shipment
 material,loadscreen_mp_showdown
 material,loadscreen_mp_strike
+material,loadscreen_mp_killzon
+material,loadscreen_mp_toujane_v2
+material,loadscreen_mp_poolday
+material,loadscreen_mp_nuketown
+material,loadscreen_mp_modern_rust
+material,loadscreen_mp_killhouse_2
+material,loadscreen_mp_dust2
+material,loadscreen_mp_csgo_shortdust
+material,loadscreen_mp_cgc_bog
+material,loadscreen_mp_bubba
+material,loadscreen_mp_berry_village
 
 material,playercard_emblem_1
 material,playercard_emblem_2
@@ -448,6 +459,17 @@ material,splashicon24
 
 material,jen_black
 material,jen_score
+
+#heli
+material,compass_map_helicopter_ride
+material,compass_objpoint_helicopter
+material,compass_objpoint_helicopter_busy
+material,compass_objpoint_helicopter_friendly
+material,death_helicopter
+material,mtl_head_velinda_helicopter
+material,mtl_head_zack_helicopter
+material,mtl_helicopter_helmet_visor
+material,objpoint_helicopter
 
 #material,moneyhud
 

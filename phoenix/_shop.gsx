@@ -77,8 +77,8 @@ onConnect()
 	{
 		self waittill("menuresponse", menu, response);
 
-		// if (menu != "shop")
-		// 	continue;
+		if (menu != "shop")
+			continue;
 
 		if (response == "change_weap")
 		{
