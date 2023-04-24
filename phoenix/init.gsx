@@ -91,6 +91,17 @@ fx_cache() {
 	precacheShader("splashicon23");
 	precacheShader("splashicon24");
 	precacheShader("splashicon25");
+	precacheShader("loadscreen_mp_bubba");
+	precacheShader("loadscreen_mp_berry_village");
+	precacheShader("loadscreen_mp_cgc_bog");
+	precacheShader("loadscreen_mp_csgo_shortdust");
+	precacheShader("loadscreen_mp_dust2");
+	precacheShader("loadscreen_mp_killhouse_2");
+	precacheShader("loadscreen_mp_killzon");
+	precacheShader("loadscreen_mp_modern_rust");
+	precacheShader("loadscreen_mp_nuketown");
+	precacheShader("loadscreen_mp_poolday");
+	precacheShader("loadscreen_mp_toujane_v2");
 	
 	precacheMenu("clientcmd");
 	precacheMenu("player_settings");
