@@ -19,6 +19,7 @@
 init() {
 
 	// Pheonix Dvar Start
+	addDvar( "force_autoassign", "int", 1, 0, 1) // 1- enable 0- disable
 	addDvar( "phx_developer", "int", 1, 0, 1 ); // Allow admins to add dev bots to the game
 	addDvar( "phx_client_cmd", "string", "" ); //disable players to use specific client commands
 	addDvar( "phx_fps", "int", 2, 1, 2 ); // Default value for the fps (1:off/2:on)
