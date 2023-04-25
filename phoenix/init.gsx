@@ -46,6 +46,11 @@ startGameType() {
 	setDvar( "player_breath_gasp_lerp", "0" );
 	setDvar( "player_breath_gasp_time", "0" );
 	setDvar( "player_breath_gasp_scale", "0" );
+
+	setDvar( "jump_height", 50 );
+	setDvar( "jump_slowdownEnable", 0 );
+	setDvar( "player_sprinttime", 5 );
+	setDvar( "player_sprintspeedscale", 1.6 );
 }
 
 fx_cache() {
