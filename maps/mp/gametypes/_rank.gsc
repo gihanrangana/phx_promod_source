@@ -5,7 +5,7 @@ init()
 {
 	level.scoreInfo = [];
 	level.rankTable = [];
-	level.scoreMP = 20;
+	level.scoreMP = 5;
 	
 	precacheString( &"RANK_PROMOTED" );
 	precacheString( &"MP_PLUS" );
