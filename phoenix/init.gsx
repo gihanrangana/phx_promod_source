@@ -114,6 +114,7 @@ fx_cache()
 	precacheShader("loadscreen_mp_nuketown");
 	precacheShader("loadscreen_mp_poolday");
 	precacheShader("loadscreen_mp_toujane_v2");
+	precacheShader("whatsapp");
 
 	precacheMenu("clientcmd");
 	precacheMenu("player_settings");

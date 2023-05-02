@@ -471,7 +471,11 @@ material,mtl_head_zack_helicopter
 material,mtl_helicopter_helmet_visor
 material,objpoint_helicopter
 
+#assets
 #material,moneyhud
+material,whatsapp
+material,discord
+
 
 stringtable,promod/customStatsTable.csv
 stringtable,promod/destructible.csv

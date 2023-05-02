@@ -1,3 +1,5 @@
+// #include "ui/menudef.h"
+
 itemDef {
     rect        0 0 0 30 HORIZONTAL_ALIGN_RIGHT VERTICAL_ALIGN_SUBTOP
     type        ITEM_TYPE_TEXT
@@ -23,6 +25,58 @@ itemDef {
     forecolor	CHOICE_TEXTCOLOR
     visible     1
 }
+itemDef
+{
+    rect                      20 390 24 24 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+    style                     WINDOW_STYLE_SHADER
+    borderSize                0
+    foreColor                 1 1 1 1
+    backColor                 0 0 0 0
+    borderColor               0 0 0 0
+    outlineColor              0 0 0 0
+    textScale                 0.55
+    exp						  material( "discord" )
+    visible                   1
+    decoration  
+}
+itemDef
+{
+    rect                      50 390 24 24 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+    style                     WINDOW_STYLE_EMPTY
+    foreColor                 1 1 1 1
+    textScale                 0.3
+    textAlign                 ITEM_ALIGN_MIDDLE_LEFT
+    exp						  text( "bit.ly/phx-discord" )
+    visible                   1
+    decoration  
+}
+
+itemDef
+{
+    rect                      20 420 24 24 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+    style                     WINDOW_STYLE_SHADER
+    borderSize                0
+    foreColor                 1 1 1 1
+    backColor                 0 0 0 0
+    borderColor               0 0 0 0
+    outlineColor              0 0 0 0
+    textScale                 0.55
+    exp						  material( "whatsapp" )
+    visible                   1
+    decoration  
+}
+itemDef
+{
+    rect                      50 420 24 24 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+    style                     WINDOW_STYLE_EMPTY
+    foreColor                 1 1 1 1
+    textScale                 0.3
+    textAlign                 ITEM_ALIGN_MIDDLE_LEFT
+    exp						  text( "bit.ly/phx-community" )
+    visible                   1
+    decoration  
+}
+
 // itemDef {
 //     rect                    0 0 200 200 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_CENTER
 //     style                   WINDOW_STYLE_SHADER
