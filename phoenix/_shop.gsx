@@ -199,6 +199,12 @@ onSpawn()
 
 		if (currentWeapon == "radar_mp")
 		{
+			if (level.gametype == "dm")
+			{
+				self iPrintLnBold("Shop is not available on Free-for-all mode");
+				continue;
+			}
+
 			self openMenu("shop");
 		}
 		else
@@ -236,8 +242,8 @@ onDeath(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, ps
 	}
 
 	attacker setClientDvar("usd", attacker.usd);
-	
-	if(isDefined(attacker.usdHud))
+
+	if (isDefined(attacker.usdHud))
 		attacker.usdHud setValue(int(attacker.usd));
 }
 

@@ -123,14 +123,16 @@ onPlayerSpawn()
 
 	self thread userSettings();
 
-	// self iPrintLnBold("Health : " + self.health + "/" + self.maxHealth);
+	if(getDvar( "g_gameType") == "dm") {
+		attachment = "";
+		if (self.pers[self.pers["class"]]["loadout_secondary_attachment"] == "silencer")
+			attachment = "_silencer";
+			
+		sidearmWeapon = self.pers[self.pers["class"]]["loadout_secondary"] + attachment + "_mp";
 
-	self.usd = 10000;
-
-	// self takeAllWeapons();
-	// self giveWeapon("mwr_m40a3_mp", 1);
-	// wait 0.05;
-	// self switchToWeapon("mwr_m40a3_mp");
+		self setweaponammoclip(sidearmWeapon, 0);
+		self setweaponammostock(sidearmWeapon, 0);
+	}
 }
 
 onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
@@ -139,6 +141,11 @@ onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHit
 
 	if (!isDefined(attacker) || attacker == self || !isPlayer(attacker))
 		return;
+
+	// if(getDvar( "g_gameType" ) == "dm" && attacker.pers["class"] != "sniper")
+	// {
+	// 	return;
+	// }
 
 	if (self.pers["deaths"] == 0)
 		self.pers["kd"] = self.pers["kills"];

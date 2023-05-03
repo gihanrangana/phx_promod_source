@@ -98,19 +98,19 @@
 		#undef	CHOICE_HORIZONTAL_ALIGN
 		#define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_LEFT
 
-		CHOICE_BUTTON_VIS( 1, "1. Assault", scriptMenuResponse "assault";, when( dvarBool( allies_allow_assault ) || dvarString( loadout_curclass ) == "assault" ) )
-		CHOICE_DBUTTON_VIS( 1, "1. Assault", when( !dvarBool( allies_allow_assault ) && dvarString( loadout_curclass ) != "assault" ) )
+		CHOICE_BUTTON_VIS( 1, "Assault-" + dvarString("g_gametype"), scriptMenuResponse "assault";, when( (dvarBool( allies_allow_assault ) || dvarString( loadout_curclass ) == "assault") && dvarString( g_gametype ) != "dm" ) )
+		CHOICE_DBUTTON_VIS( 1, "Assault", when( !dvarBool( allies_allow_assault ) && dvarString( loadout_curclass ) != "assault" ) )
 
-		CHOICE_BUTTON_VIS( 2, "2. Spec Ops", scriptMenuResponse "specops";, when( dvarBool( allies_allow_specops ) || dvarString( loadout_curclass ) == "specops" ) )
-		CHOICE_DBUTTON_VIS( 2, "2. Spec Ops", when( !dvarBool( allies_allow_specops ) && dvarString( loadout_curclass ) != "specops" ) )
+		CHOICE_BUTTON_VIS( 2, "Spec Ops", scriptMenuResponse "specops";, when( (dvarBool( allies_allow_specops ) || dvarString( loadout_curclass ) == "specops") && dvarString( g_gametype ) != "dm" ) )
+		CHOICE_DBUTTON_VIS( 2, "Spec Ops", when( !dvarBool( allies_allow_specops ) && dvarString( loadout_curclass ) != "specops" ) )
 
-		CHOICE_BUTTON_VIS( 3, "3. Demolitions", scriptMenuResponse "demolitions";, when( dvarBool( allies_allow_demolitions ) || dvarString( loadout_curclass ) == "demolitions" ) )
-		CHOICE_DBUTTON_VIS( 3, "3. Demolitions", when( !dvarBool( allies_allow_demolitions ) && dvarString( loadout_curclass ) != "demolitions" ) )
+		CHOICE_BUTTON_VIS( 3, "Demolitions", scriptMenuResponse "demolitions";, when( (dvarBool( allies_allow_demolitions ) || dvarString( loadout_curclass ) == "demolitions") && dvarString( g_gametype ) != "dm" ) )
+		CHOICE_DBUTTON_VIS( 3, "Demolitions", when( !dvarBool( allies_allow_demolitions ) && dvarString( loadout_curclass ) != "demolitions" ) )
 
-		CHOICE_BUTTON_VIS( 4, "4. Sniper", scriptMenuResponse "sniper";, when( dvarBool( allies_allow_sniper ) || dvarString( loadout_curclass ) == "sniper" ) )
-		CHOICE_DBUTTON_VIS( 4, "4. Sniper", when( !dvarBool( allies_allow_sniper ) && dvarString( loadout_curclass ) != "sniper" ) )
+		CHOICE_BUTTON_VIS( 4, "Sniper", scriptMenuResponse "sniper";, when( dvarBool( allies_allow_sniper ) || dvarString( loadout_curclass ) == "sniper" ) )
+		CHOICE_DBUTTON_VIS( 4, "Sniper", when( !dvarBool( allies_allow_sniper ) && dvarString( loadout_curclass ) != "sniper" ) )
 
-		CHOICE_BUTTON( 6, "5. Spectate Team", scriptMenuResponse "killspec"; )
+		CHOICE_BUTTON( 6, "Spectate Team", scriptMenuResponse "killspec"; )
 
 		execKey "1" { scriptMenuResponse "assault"; }
 		execKey "2" { scriptMenuResponse "specops"; }

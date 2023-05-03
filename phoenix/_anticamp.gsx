@@ -51,7 +51,7 @@ onSpawn()
 
         if (distance2d(oldorg, self.origin) < 20)
         {
-            if (self.pers["class"] == "sniper")
+            if (isDefined(self.pers["class"]) && self.pers["class"] == "sniper")
                 self.camping += .5;
             else
                 self.camping += 1;
