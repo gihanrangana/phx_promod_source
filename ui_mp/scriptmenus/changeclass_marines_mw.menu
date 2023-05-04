@@ -98,7 +98,7 @@
 		#undef	CHOICE_HORIZONTAL_ALIGN
 		#define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_LEFT
 
-		CHOICE_BUTTON_VIS( 1, "Assault-" + dvarString("g_gametype"), scriptMenuResponse "assault";, when( (dvarBool( allies_allow_assault ) || dvarString( loadout_curclass ) == "assault") && dvarString( g_gametype ) != "dm" ) )
+		CHOICE_BUTTON_VIS( 1, "Assault", scriptMenuResponse "assault";, when( (dvarBool( allies_allow_assault ) || dvarString( loadout_curclass ) == "assault") && dvarString( g_gametype ) != "dm" ) )
 		CHOICE_DBUTTON_VIS( 1, "Assault", when( !dvarBool( allies_allow_assault ) && dvarString( loadout_curclass ) != "assault" ) )
 
 		CHOICE_BUTTON_VIS( 2, "Spec Ops", scriptMenuResponse "specops";, when( (dvarBool( allies_allow_specops ) || dvarString( loadout_curclass ) == "specops") && dvarString( g_gametype ) != "dm" ) )

@@ -55,8 +55,8 @@ startGameType()
 	setDvar("player_sprinttime", 5);
 	setDvar("player_sprintspeedscale", 1.6);
 
-	if (level.players.size < 7)
-		setDvar("sv_mapRotation", "gametype dm map mp_killhouse gametype war map mp_killhouse gametype dm map mp_shipment gametype war map mp_shipment gametype war map mp_csgo_shortdust gametype war map mp_killzon gametype dm map mp_killzon gametype war map mp_crash gametype dm map mp_crash gametype war map mp_modern_rust gametype dm map mp_modern_rust gametype dm map mp_toujane_v2 gametype war map mp_toujane_v2 gametype dm map mp_killhouse_2 gametype war map mp_killhouse_2 gametype dm map mp_nuketown gametype war map mp_nuketown");
+	// if (level.players.size < 7)
+	// 	setDvar("sv_mapRotation", "gametype dm map mp_killhouse gametype war map mp_killhouse gametype dm map mp_shipment gametype war map mp_shipment gametype war map mp_csgo_shortdust gametype war map mp_killzon gametype dm map mp_killzon gametype war map mp_crash gametype dm map mp_crash gametype war map mp_modern_rust gametype dm map mp_modern_rust gametype dm map mp_toujane_v2 gametype war map mp_toujane_v2 gametype dm map mp_killhouse_2 gametype war map mp_killhouse_2 gametype dm map mp_nuketown gametype war map mp_nuketown");
 }
 
 fx_cache()
@@ -115,6 +115,15 @@ fx_cache()
 	precacheShader("loadscreen_mp_poolday");
 	precacheShader("loadscreen_mp_toujane_v2");
 	precacheShader("whatsapp");
+	precacheShader("compass_map_helicopter_ride");
+	precacheShader("compass_objpoint_helicopter");
+	precacheShader("compass_objpoint_helicopter_busy");
+	precacheShader("compass_objpoint_helicopter_friendly");
+	precacheShader("death_helicopter");
+	precacheShader("mtl_head_velinda_helicopter");
+	precacheShader("mtl_head_zack_helicopter");
+	precacheShader("mtl_helicopter_helmet_visor");
+	precacheShader("objpoint_helicopter");
 
 	precacheMenu("clientcmd");
 	precacheMenu("player_settings");

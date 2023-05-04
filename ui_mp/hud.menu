@@ -189,6 +189,10 @@
 		}
 	}
 
+	#define ALLIES_HAVE_UAV (dvarint( ui_uav_allies ) && team( name ) == "TEAM_ALLIES" )
+	#define AXIS_HAVE_UAV (dvarint( ui_uav_axis ) && team( name ) == "TEAM_AXIS" )
+	#define CLIENT_HAS_UAV (dvarint( ui_uav_client ) && team( name ) == "TEAM_FREE" )
+
 	#define RECT_COMPASS		0 0 COMPASS_SIZE_MP COMPASS_SIZE_MP HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
 	#undef MINIMAP_ORIGIN
 	#define MINIMAP_ORIGIN		6 6
@@ -282,6 +286,26 @@
 			background		"compassping_player"
 			ownerdraw		CG_PLAYER_COMPASS_PLAYER
 			visible			1
+		}
+		// Helicopter pointers
+		itemDef
+		{
+			name			"compasshelicopters"
+			rect			MINIMAP_X_MP MINIMAP_Y_MP MINIMAP_W_MP MINIMAP_H_MP
+	 	   	origin 			MINIMAP_ORIGIN
+			forecolor		1 1 1 1
+			ownerdraw		CG_PLAYER_COMPASS_HELICOPTERS
+			visible when ( (dvarint( ui_hud_hardcore ) == 0 || dvarint( ui_hud_hardcore_show_minimap ) == 1 || ALLIES_HAVE_UAV || AXIS_HAVE_UAV || CLIENT_HAS_UAV || dvarInt( g_compassShowEnemies ) ) && NOT_SPECTATING && !selecting_location() && dvarint( ui_hud_show_hardpoints ) == 1 );
+		}
+ 	   	// Plane pointers
+		itemDef
+		{
+			name			"compassplanes"
+			rect			MINIMAP_X_MP MINIMAP_Y_MP MINIMAP_W_MP MINIMAP_H_MP
+	 	   	origin 			MINIMAP_ORIGIN
+			forecolor		1 1 1 1
+			ownerdraw		CG_PLAYER_COMPASS_PLANES
+			visible when ( (dvarint( ui_hud_hardcore ) == 0 || dvarint( ui_hud_hardcore_show_minimap ) == 1 || ALLIES_HAVE_UAV || AXIS_HAVE_UAV || CLIENT_HAS_UAV || dvarInt( g_compassShowEnemies ) ) && NOT_SPECTATING && !selecting_location() && dvarint( ui_hud_show_hardpoints ) == 1 );
 		}
 	}
 
@@ -1077,6 +1101,27 @@
 		fullScreen		0
 		visible			when ( dvarint( hud_enable ) && !dvarint( ui_hud_hardcore ) && !ui_active() && DVAR_BLANK && ( team( name ) == "TEAM_ALLIES" || team( name ) == "TEAM_AXIS" ) )
 
+		// Helicopter pointers
+		itemDef
+		{
+			name			"compasshelicopters"
+			rect			MINIMAP_X_MP MINIMAP_Y_MP MINIMAP_W_MP MINIMAP_H_MP HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+	 	   	origin 			MINIMAP_ORIGIN
+			forecolor		1 1 1 1
+			ownerdraw		CG_PLAYER_COMPASS_HELICOPTERS
+			visible 1
+		}
+ 	   	// Plane pointers
+		itemDef
+		{
+			name			"compassplanes"
+			rect			MINIMAP_X_MP MINIMAP_Y_MP MINIMAP_W_MP MINIMAP_H_MP HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+	 	   	origin 			MINIMAP_ORIGIN
+			forecolor		1 1 1 1
+			ownerdraw		CG_PLAYER_COMPASS_PLANES
+			visible 1
+		}
+		
 		itemDef
 		{
 			rect			-60 -107 1 1 HORIZONTAL_ALIGN_RIGHT VERTICAL_ALIGN_BOTTOM

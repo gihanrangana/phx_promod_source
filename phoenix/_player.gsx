@@ -119,6 +119,8 @@ onPlayerSpawn()
 
 	self.pers["lastWeapon"] = self getCurrentWeapon();
 
+	// self.usd = 1000;
+
 	waittillframeend;
 
 	self thread userSettings();
